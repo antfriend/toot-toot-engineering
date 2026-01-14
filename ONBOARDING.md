@@ -19,6 +19,7 @@ Welcome! This guide is for first-time humans who want to run a Mortal Engines cy
 - Follows the roles and rules in `AGENTS.md`.
 - Writes outputs into `deliverables/cycle-XX/`.
 - Updates `PLAN.md` and `LOG.md` every step.
+- Produces `deliverables/cycle-XX/STORYTELLER.md` when the Storyteller role is in the plan.
 - Provides 3 suggested next-cycle prompts grounded in the latest deliveries and asks the human to choose one.
 
 ## When to stop planning

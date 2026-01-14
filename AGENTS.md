@@ -1,6 +1,6 @@
 # AGENTS
 
-Workflow version: 3.4
+Workflow version: 3.5
 
 ## Roles
 - Bootstrap: Interprets the prompt; proposes team composition, high-level objectives, and strategic modifications to roles or the default plan to improve outcomes; concludes with a retrospective recommending role/plan changes to prevent issues or enhance results, and offers to implement the Retrospective recommendations and reset the plan with a new prompt grounded in the latest deliveries. Always suggest 3 prompts for the next cycle that build on the previous cycle and require the human to choose one.

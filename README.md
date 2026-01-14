@@ -7,35 +7,7 @@ Workflow version: 3.5
 ## You, the reader,
 are either a human or an agent.   
 Welcome!
-<div class="crt-banner"><span class="crt-text">You have entered the program.</span></div>
-<style>
-  .crt-banner {
-    background: #06100b;
-    border: 1px solid #1a3b2a;
-    padding: 10px 14px;
-    display: inline-block;
-    box-shadow: 0 0 14px rgba(93, 255, 122, 0.2);
-  }
-  .crt-text {
-    color: #5dff7a;
-    font-family: "VT323", "Courier New", Courier, monospace;
-    font-size: 20px;
-    letter-spacing: 1px;
-    text-shadow: 0 0 6px rgba(93, 255, 122, 0.6);
-    display: inline-block;
-    animation: crt-glitch 2.2s infinite;
-  }
-  @keyframes crt-glitch {
-    0%, 100% { transform: translate(0, 0); opacity: 0.95; }
-    6% { transform: translate(-1px, 0.5px); }
-    12% { transform: translate(1px, -0.5px); }
-    20% { transform: translate(-0.5px, 1px); }
-    28% { transform: translate(0.5px, -1px); }
-    60% { transform: translate(0, 0); opacity: 1; }
-    62% { transform: translate(-2px, 0); opacity: 0.85; }
-    64% { transform: translate(2px, 0); opacity: 0.9; }
-  }
-</style>
+### You have entered the program.
 
 We are all mortal engines here. 
 

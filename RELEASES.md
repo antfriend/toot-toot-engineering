@@ -19,6 +19,7 @@ How to update:
   - `deliverables/cycle-01/output/` (print-ready PDF, if any)
   - `deliverables/cycle-01/REVIEW.md`
   - `deliverables/cycle-01/DELIVERY.md`
+  - Small Toot Toot Engineering logo included in final deliverables (embedded or companion asset).
 
 ## Templates
 ### Cycle XX (template)
@@ -34,3 +35,4 @@ How to update:
   - `deliverables/cycle-XX/output/` (print-ready PDF, if any)
   - `deliverables/cycle-XX/REVIEW.md`
   - `deliverables/cycle-XX/DELIVERY.md`
+  - Small Toot Toot Engineering logo included in final deliverables (embedded or companion asset).

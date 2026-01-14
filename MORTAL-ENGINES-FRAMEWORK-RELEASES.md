@@ -1,7 +1,13 @@
 # Mortal Engines Framework Releases
 
-## v3.5
+## v3.6
 - Status: current
+- Summary: Require final deliverables to include a small Toot Toot Engineering logo appropriate for the media.
+- Notes: Cycle tracking lives in `RELEASES.md`.
+- Cycle releases: `RELEASES.md`.
+
+## v3.5
+- Status: superseded
 - Summary: Added Storyteller role and aligned workflow docs.
 - Notes: Cycle tracking lives in `RELEASES.md`.
 - Cycle releases: `RELEASES.md`.

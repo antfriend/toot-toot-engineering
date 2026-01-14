@@ -1,6 +1,6 @@
 # AGENTS
 
-Workflow version: 3.5
+Workflow version: 3.6
 
 ## Roles
 - Bootstrap: Interprets the prompt; proposes team composition, high-level objectives, and strategic modifications to roles or the default plan to improve outcomes; concludes with a retrospective recommending role/plan changes to prevent issues or enhance results, and offers to implement the Retrospective recommendations and reset the plan with a new prompt grounded in the latest deliveries. Always suggest 3 prompts for the next cycle that build on the previous cycle and require the human to choose one.
@@ -10,7 +10,7 @@ Workflow version: 3.5
 - Image producer: Generates or composes visual assets programmatically (e.g., Python rendering).
 - PDF assembler: Builds print-ready PDFs from assets and layout specifications.
 - Reviewer: Checks for correctness, gaps, and risks; ensures outputs are ready.
-- Delivery packager: Assembles final assets and export notes.
+- Delivery packager: Assembles final assets and export notes, ensuring the final deliverables include a small Toot Toot Engineering logo appropriate for the media.
 - Retrospective: Summarizes what to change next time to prevent issues or improve outcomes.
 
 ## Role outputs (expected assets)
@@ -41,6 +41,7 @@ Workflow version: 3.5
 - A step may not be marked complete in [`PLAN.md`](PLAN.md) if its output contains placeholders (e.g., `<to verify>`, `<source>`, `ƒ?`).
 - Placeholder files are created at the step they are needed, not upfront.
 - Final delivery requires review complete and all placeholders resolved.
+- Final deliverables include a small Toot Toot Engineering logo appropriate for the media (embedded or as a companion asset based on `toot-toot-logo.png` or `toot-toot-logo.svg`).
 - In revision cycles, each role updates existing assets in place rather than creating new versions.
 - Use [`LOG.md`](LOG.md) to record decisions, changes, and open questions.
 - Update `RELEASES.md` with cycle deliverables when they are produced (at least during Delivery packager).

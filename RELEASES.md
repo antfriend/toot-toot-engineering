@@ -92,3 +92,21 @@ How to update:
   - `deliverables/cycle-04/REVIEW.md`
   - `deliverables/cycle-04/DELIVERY.md`
   - Small Toot Toot Engineering logo included in final deliverables (embedded or companion asset).
+
+## Cycle 05
+- Status: complete
+- Prompt source: `deliverables/cycle-05/BOOTSTRAP.md`
+- Deliverables root: `deliverables/cycle-05/`
+- Deliverables:
+  - `deliverables/cycle-05/BOOTSTRAP.md`
+  - `deliverables/cycle-05/STORYTELLER.md`
+  - `deliverables/cycle-05/SOLUTION.md` (or primary artifact)
+  - `deliverables/cycle-05/assets/` (if any)
+  - `deliverables/cycle-05/assets/concept-factory-storyboard.svg`
+  - `deliverables/cycle-05/assets/toot-toot-logo-small.svg`
+  - `deliverables/cycle-05/IMAGE_ASSETS.md`
+  - `deliverables/cycle-05/PRINT_PDF.md` (if any)
+  - `deliverables/cycle-05/output/` (print-ready PDF, if any)
+  - `deliverables/cycle-05/REVIEW.md`
+  - `deliverables/cycle-05/DELIVERY.md`
+  - Small Toot Toot Engineering logo included in final deliverables (embedded or companion asset).

@@ -181,3 +181,51 @@
 - Decisions: Capture layout variants and icon consistency in future maps.
 - Open questions: None.
 - Next step: Human feedback
+- Step: 1 (cycle-05)
+- Role: Bootstrap
+- Summary: Defined the storyboard prompt for cycle-05 in `deliverables/cycle-05/BOOTSTRAP.md`.
+- Decisions: Keep image producer step to visualize storyboard frames.
+- Open questions: None.
+- Next step: Storyteller
+- Step: 2 (cycle-05)
+- Role: Storyteller
+- Summary: Authored cinematic storyboard beats and caption ideas in `deliverables/cycle-05/STORYTELLER.md`.
+- Decisions: Frame the sequence as a guided camera move through role stations.
+- Open questions: None.
+- Next step: Orchestrator
+- Step: 3 (cycle-05)
+- Role: Orchestrator
+- Summary: Updated `PLAN.md` to set storyboard asset outputs and advance the cycle-05 steps.
+- Decisions: Capture image producer outputs in `deliverables/cycle-05/IMAGE_ASSETS.md`.
+- Open questions: None.
+- Next step: Image producer
+- Step: 4 (cycle-05)
+- Role: Image producer
+- Summary: Generated the cinematic storyboard SVG and documented assets in `deliverables/cycle-05/IMAGE_ASSETS.md`.
+- Decisions: Use five panels in a 3:1 layout to match the cinematic brief.
+- Open questions: None.
+- Next step: Core worker
+- Step: 5 (cycle-05)
+- Role: Core worker
+- Summary: Authored the solution writeup and added the small logo bug in `deliverables/cycle-05/assets/toot-toot-logo-small.svg`.
+- Decisions: Map timing to 20–30 seconds with five beats.
+- Open questions: None.
+- Next step: Reviewer
+- Step: 6 (cycle-05)
+- Role: Reviewer
+- Summary: Reviewed the storyboard package; no issues found.
+- Decisions: None.
+- Open questions: None.
+- Next step: Delivery packager
+- Step: 7 (cycle-05)
+- Role: Delivery packager
+- Summary: Assembled delivery notes and updated release tracking with the storyboard assets.
+- Decisions: List the storyboard SVG and logo bug explicitly in `RELEASES.md`.
+- Open questions: None.
+- Next step: Retrospective
+- Step: 8 (cycle-05)
+- Role: Retrospective
+- Summary: Added retrospective notes to `deliverables/cycle-05/BOOTSTRAP.md` and marked cycle status complete in `RELEASES.md`.
+- Decisions: Standardize the cinematic frame template and include timing callouts.
+- Open questions: None.
+- Next step: Human feedback

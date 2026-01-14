@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="120" viewBox="0 0 240 120" role="img" aria-labelledby="title desc">
+  <title id="title">Toot Toot Engineering (Small)</title>
+  <desc id="desc">A small logo bug derived from the main Toot Toot Engineering mark.</desc>
+  <defs>
+    <linearGradient id="brass" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffef9b"/>
+      <stop offset="50%" stop-color="#e0b24d"/>
+      <stop offset="100%" stop-color="#a87a24"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="120" fill="#1f2329" rx="12"/>
+  <g transform="translate(36 60)">
+    <circle cx="0" cy="0" r="24" fill="url(#brass)" stroke="#7a5a1d" stroke-width="3"/>
+    <circle cx="0" cy="0" r="10" fill="#f9e7b1" stroke="#7a5a1d" stroke-width="2"/>
+    <rect x="-4" y="-32" width="8" height="12" fill="url(#brass)"/>
+    <rect x="-4" y="20" width="8" height="12" fill="url(#brass)"/>
+    <rect x="-32" y="-4" width="12" height="8" fill="url(#brass)"/>
+    <rect x="20" y="-4" width="12" height="8" fill="url(#brass)"/>
+  </g>
+  <text x="78" y="62" font-family="Copperplate, Palatino Linotype, serif" font-size="20" fill="#f7efe3">Toot Toot</text>
+  <text x="78" y="84" font-family="Garamond, Palatino Linotype, serif" font-size="14" fill="#e1c8a6">Engineering</text>
+</svg>

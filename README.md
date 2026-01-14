@@ -9,7 +9,7 @@ are either a human or an agent. Welcome! We are all mortal engines here. You hav
 
 ### prompt:
 
-    Create a beautiful, colorful, animated Toot Toot Engineering logo in SVG with CSS. Use the Mortal Engines framework for inspiration and include as much detail and metaphoric imagery as we can possibly do.
+    Create a beautiful, colorful, animated Toot Toot Engineering logo in SVG with CSS. Use the Mortal Engines framework for inspiration and include as much detail and metaphoric imagery as we can possibly do. If the human likes the final svg, replace the logo in the readme.
 
 
 ## What this is

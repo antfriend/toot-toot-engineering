@@ -1,5 +1,5 @@
 ﻿# Mortal Engines
-![Toot Toot Engineering logo](toot-toot-logo.png)
+![Toot Toot Engineering logo](toot-toot-logo.svg)
 Toot Toot Engineering
 
 Workflow version: 3.4

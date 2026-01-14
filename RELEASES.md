@@ -7,7 +7,7 @@ How to update:
 - Mark status as in progress or complete, and keep the deliverables list accurate.
 
 ## Cycle 01
-- Status: complete
+- Status: in progress
 - Prompt source: `README.md`
 - Deliverables root: `deliverables/cycle-01/`
 - Deliverables:
@@ -15,27 +15,10 @@ How to update:
   - `deliverables/cycle-01/STORYTELLER.md`
   - `deliverables/cycle-01/SOLUTION.md` (or primary artifact)
   - `deliverables/cycle-01/assets/` (if any)
-  - `deliverables/cycle-01/assets/toot-toot-engineering-animated.svg`
   - `deliverables/cycle-01/PRINT_PDF.md` (if any)
   - `deliverables/cycle-01/output/` (print-ready PDF, if any)
   - `deliverables/cycle-01/REVIEW.md`
   - `deliverables/cycle-01/DELIVERY.md`
-
-
-
-## Cycle 02
-- Status: complete
-- Prompt source: `deliverables/cycle-02/BOOTSTRAP.md`
-- Deliverables root: `deliverables/cycle-02/`
-- Deliverables:
-  - `deliverables/cycle-02/BOOTSTRAP.md`
-  - `deliverables/cycle-02/STORYTELLER.md`
-  - `deliverables/cycle-02/SOLUTION.md` (or primary artifact)
-  - `deliverables/cycle-02/assets/` (if any)
-  - `deliverables/cycle-02/PRINT_PDF.md` (if any)
-  - `deliverables/cycle-02/output/` (print-ready PDF, if any)
-  - `deliverables/cycle-02/REVIEW.md`
-  - `deliverables/cycle-02/DELIVERY.md`
 
 ## Templates
 ### Cycle XX (template)
@@ -44,6 +27,7 @@ How to update:
 - Deliverables root: `deliverables/cycle-XX/`
 - Deliverables:
   - `deliverables/cycle-XX/BOOTSTRAP.md`
+  - `deliverables/cycle-XX/STORYTELLER.md`
   - `deliverables/cycle-XX/SOLUTION.md` (or primary artifact)
   - `deliverables/cycle-XX/assets/` (if any)
   - `deliverables/cycle-XX/PRINT_PDF.md` (if any)

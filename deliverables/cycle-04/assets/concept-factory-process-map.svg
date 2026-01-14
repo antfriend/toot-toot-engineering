@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Concept Factory Process Map</title>
+  <desc id="desc">An illustrated map of the Mortal Engines workflow from prompt intake to final delivery.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f8efe1"/>
+      <stop offset="60%" stop-color="#f0d0ad"/>
+      <stop offset="100%" stop-color="#e7b788"/>
+    </linearGradient>
+    <linearGradient id="forge" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fff7da"/>
+      <stop offset="55%" stop-color="#f3c96f"/>
+      <stop offset="100%" stop-color="#c67932"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#dfe9f6" stop-opacity="0.75"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#b7e5ff"/>
+      <stop offset="100%" stop-color="#d2b4ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#72553a" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <style>
+    .panel { fill: url(#panel); stroke: #c9d5e6; stroke-width: 2; }
+    .label { font-family: "Garamond", "Palatino Linotype", serif; font-size: 28px; fill: #3a2e24; }
+    .small { font-size: 20px; fill: #6a5a4a; }
+    .path { fill: none; stroke: #f4e6d7; stroke-width: 10; stroke-linecap: round; }
+    .node { fill: url(#accent); stroke: #6e7aa8; stroke-width: 2; }
+    .forge { fill: url(#forge); stroke: #b9762f; stroke-width: 4; }
+    .arrow { fill: #f4e6d7; }
+  </style>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <path d="M200 450 C420 220 620 200 820 320 C980 420 1140 430 1400 300" class="path"/>
+  <path d="M200 450 C420 680 620 700 820 580 C980 480 1140 470 1400 600" class="path" opacity="0.7"/>
+
+  <polygon points="1400,300 1440,300 1420,270" class="arrow"/>
+  <polygon points="1400,600 1440,600 1420,630" class="arrow"/>
+
+  <g filter="url(#shadow)">
+    <rect x="120" y="360" width="280" height="180" rx="24" class="panel"/>
+    <text x="170" y="430" class="label">Prompt Intake</text>
+    <text x="170" y="470" class="label small">Seeds & sparks enter</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <circle cx="800" cy="450" r="150" class="forge"/>
+    <text x="740" y="435" class="label">Forge</text>
+    <text x="710" y="470" class="label small">Ideas become matter</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1220" y="340" width="260" height="180" rx="24" class="panel"/>
+    <text x="1260" y="420" class="label">Delivery</text>
+    <text x="1260" y="460" class="label small">Artifacts released</text>
+  </g>
+
+  <g>
+    <circle cx="520" cy="260" r="56" class="node"/>
+    <text x="490" y="270" class="label small">Bootstrap</text>
+
+    <circle cx="620" cy="200" r="56" class="node"/>
+    <text x="590" y="210" class="label small">Storyteller</text>
+
+    <circle cx="740" cy="190" r="56" class="node"/>
+    <text x="712" y="200" class="label small">Orchestrator</text>
+
+    <circle cx="930" cy="230" r="56" class="node"/>
+    <text x="915" y="240" class="label small">Image</text>
+    <text x="900" y="262" class="label small">Producer</text>
+
+    <circle cx="1040" cy="300" r="56" class="node"/>
+    <text x="1016" y="310" class="label small">Core</text>
+    <text x="1008" y="332" class="label small">Worker</text>
+  </g>
+
+  <g>
+    <circle cx="520" cy="640" r="56" class="node"/>
+    <text x="500" y="650" class="label small">Reviewer</text>
+
+    <circle cx="670" cy="700" r="56" class="node"/>
+    <text x="640" y="710" class="label small">Delivery</text>
+    <text x="636" y="732" class="label small">Packager</text>
+
+    <circle cx="850" cy="710" r="56" class="node"/>
+    <text x="824" y="720" class="label small">Retrospective</text>
+  </g>
+
+  <g>
+    <text x="120" y="120" class="label">Mortal Engines Concept Factory</text>
+    <text x="120" y="160" class="label small">From prompt to artifact, every role adds momentum.</text>
+  </g>
+</svg>

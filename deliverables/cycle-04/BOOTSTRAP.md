@@ -30,3 +30,8 @@
 1. Convert the process map into a short animated explainer storyboard.
 2. Design a printable poster of the concept factory pipeline with typography refinements.
 3. Create a compact "cheat sheet" card for the Mortal Engines workflow.
+
+## Retrospective updates
+- Recommendation: Add simplified map variants (stacked or mobile) to support narrow layouts.
+- Recommendation: Maintain a consistent icon set for role nodes across future maps.
+- Offer: I can implement these recommendations and reset the plan once a cycle-05 prompt is selected.

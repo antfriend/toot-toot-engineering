@@ -151,3 +151,33 @@
 - Decisions: Sequence imagery assets before the solution writeup.
 - Open questions: None.
 - Next step: Image producer
+- Step: 4 (cycle-04)
+- Role: Image producer
+- Summary: Generated the process map SVG and documented it in `deliverables/cycle-04/IMAGE_ASSETS.md`.
+- Decisions: Use dual conveyors and a central forge to show parallel flow.
+- Open questions: None.
+- Next step: Core worker
+- Step: 5 (cycle-04)
+- Role: Core worker
+- Summary: Authored the solution writeup and added the small logo bug in `deliverables/cycle-04/assets/toot-toot-logo-small.svg`.
+- Decisions: Keep the map readable with large labels and simple iconography.
+- Open questions: None.
+- Next step: Reviewer
+- Step: 6 (cycle-04)
+- Role: Reviewer
+- Summary: Reviewed the process map package; no issues found.
+- Decisions: None.
+- Open questions: None.
+- Next step: Delivery packager
+- Step: 7 (cycle-04)
+- Role: Delivery packager
+- Summary: Assembled delivery notes and updated release tracking with the process map assets.
+- Decisions: List the map SVG and logo bug explicitly in `RELEASES.md`.
+- Open questions: None.
+- Next step: Retrospective
+- Step: 8 (cycle-04)
+- Role: Retrospective
+- Summary: Added retrospective notes to `deliverables/cycle-04/BOOTSTRAP.md` and marked cycle status complete in `RELEASES.md`.
+- Decisions: Capture layout variants and icon consistency in future maps.
+- Open questions: None.
+- Next step: Human feedback

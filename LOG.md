@@ -1,3 +1,75 @@
 # LOG
 
 ## Entries
+- Step: 1
+- Role: Bootstrap
+- Summary: Interpreted the prompt, proposed team composition, objectives, and plan adjustments; created cycle-01 BOOTSTRAP deliverable.
+- Decisions: Emphasized print-safe STL deliverable, added optional render preview and mesh QA recommendation.
+- Open questions: None.
+- Next step: Storyteller
+- Step: 2
+- Role: Storyteller
+- Summary: Defined the Marioland-inspired bonsai narrative, visual language, and texture guidance.
+- Decisions: Emphasized chunky silhouettes, fused leaf masses, and shallow textures for printability.
+- Open questions: None.
+- Next step: SVG engineer (optional)
+- Step: 3
+- Role: SVG engineer
+- Summary: Confirmed SVG engineering is not required for this STL-focused cycle and documented minimal notes.
+- Decisions: Proceeded without SVG pipeline steps.
+- Open questions: None.
+- Next step: Orchestrator
+- Step: 4
+- Role: Orchestrator
+- Summary: Updated PLAN.md with concrete deliverable paths and advanced the cycle to core production.
+- Decisions: Set expected STL and documentation filenames for cycle-01 assets.
+- Open questions: None.
+- Next step: Core worker
+- Step: 5
+- Role: Core worker
+- Summary: Generated a voxel-based bonsai STL and documented the model and print notes.
+- Decisions: Used voxel union to guarantee a watertight mesh and blocky Marioland-like texture.
+- Open questions: None.
+- Next step: Reviewer
+- Step: 6
+- Role: Reviewer
+- Summary: Reviewed the STL and documentation; no blocking issues found.
+- Decisions: Recommended optional smoothing and external mesh validation.
+- Open questions: None.
+- Next step: Delivery packager
+- Step: 7
+- Role: Delivery packager
+- Summary: Packaged cycle-01 assets, added companion logo, and updated releases.
+- Decisions: Included logo as a companion PNG asset for STL-only delivery.
+- Open questions: None.
+- Next step: Retrospective
+- Step: 8
+- Role: Retrospective
+- Summary: Added post-delivery retrospective notes and marked cycle-01 as complete in releases.
+- Decisions: Recommended mesh validation and smoothing options for future cycles.
+- Open questions: Awaiting human selection of the next-cycle prompt.
+- Next step: Human feedback
+- Step: 1 (cycle-02)
+- Role: Bootstrap
+- Summary: Interpreted the banner animation prompt and created cycle-02 bootstrap deliverable.
+- Decisions: Planned for a self-contained HTML animation if MP4/GIF encoding is unavailable.
+- Open questions: None.
+- Next step: Storyteller
+- Step: 2 (cycle-02)
+- Role: Storyteller
+- Summary: Defined the cinematic banner tone, lighting, and motion beats.
+- Decisions: Chose a slow, gallery-like turntable with soft gradients and subtle highlights.
+- Open questions: None.
+- Next step: SVG engineer (optional)
+- Step: 3 (cycle-02)
+- Role: SVG engineer
+- Summary: Confirmed SVG engineering is not required for the STL-based animation output.
+- Decisions: Proceeded without SVG pipeline steps.
+- Open questions: None.
+- Next step: Orchestrator
+- Step: 4 (cycle-02)
+- Role: Orchestrator
+- Summary: Updated PLAN.md with concrete deliverable paths for the banner animation assets.
+- Decisions: Set HTML/CSS/JS deliverables plus ANIMATION.md for notes.
+- Open questions: None.
+- Next step: Core worker

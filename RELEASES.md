@@ -7,19 +7,20 @@ How to update:
 - Mark status as in progress or complete, and keep the deliverables list accurate.
 
 ## Cycle 01
-- Status: in progress
+- Status: complete
 - Prompt source: `README.md`
 - Deliverables root: `deliverables/cycle-01/`
-- Primary artifacts: none yet.
+- Primary artifacts:
+  - `deliverables/cycle-01/bonsai-marioland.stl`
+  - `deliverables/cycle-01/SOLUTION.md`
 - Other deliverables:
   - `deliverables/cycle-01/BOOTSTRAP.md`
   - `deliverables/cycle-01/STORYTELLER.md`
-  - `deliverables/cycle-01/assets/` (if any)
-  - `deliverables/cycle-01/PRINT_PDF.md` (if any)
-  - `deliverables/cycle-01/output/` (print-ready PDF, if any)
+  - `deliverables/cycle-01/SVG_ENGINEER.md`
+  - `deliverables/cycle-01/assets/toot-toot-logo.png`
   - `deliverables/cycle-01/REVIEW.md`
   - `deliverables/cycle-01/DELIVERY.md`
-  - Small Toot Toot Engineering logo included in final deliverables (embedded or companion asset).
+  - Small Toot Toot Engineering logo included in final deliverables (companion asset).
 
 ## Templates
 ### Cycle XX (template)

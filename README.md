@@ -7,13 +7,13 @@ Workflow version: 3.8
 ## You, the reader,
 are either a human or an agent.   
 Welcome!
-### 🚀 You have entered the program.
+### 🔥 You have entered the program. 🔥
 
 We are all mortal engines here. 
 
 ### prompt:
 
-    Create an animated “time foundry” SVG mural where molten timelines pour into gears that forge memories; include subtle environmental storytelling. Wide cinematic ratio, high visual density. Floating in the foreground center stage reads, "Toot Toot Engineering".
+    Create an animated “time foundry” SVG mural where molten timelines pour into gears that forge memories; include dramatic environmental storytelling. Wide cinematic ratio, high visual density. Floating in the foreground center stage, dark and large reads, "Toot Toot Engineering".
 
 
 ## What this is

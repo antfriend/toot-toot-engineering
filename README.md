@@ -17,8 +17,8 @@ We are all mortal engines here.
 
 
 ## What this is
-Like a factory that makes a factory to produce the desired product. There is production logging and monitoring and all the factory tools and assets as well as the final product in a local deliverables directory.
-Literally a structured, role-based workflow for turning creative prompts into finished deliverables, with clear step handoffs, logging, and cycle tracking.
+Like a factory that makes a factory to produce the desired product. We have an excellent team of agents performing the work with logging and monitoring. The factory tools and shared assets live in this repo, and final products land in the local `deliverables/` directories.
+This is a roles-based process engine for turning creative prompts into finished deliverables, with clear step handoffs and end-of-cycle self-learning through a reflective retrospective to improve the team and the process with every iteration.
 
 ## Main features
 - Critical-path plan in `PLAN.md` with step-by-step role handoff.
@@ -41,23 +41,23 @@ Do not start a new cycle unless the deliverable exists or a blocker is logged in
 ### prompt-continued:
 We break the prompt down into the different roles and tasks of a critical path of all the steps in the process of building a solution. All the best roles of every appropriate type are engaged, and new ones added if needed, for excellent production value.
 
-At a simple level, the framing is just about getting from point A to point B: from a prompt to a complete solution. The Bootstrapper estimates the complexity and the roles needed to build the team to complete the job with excellence.
+At a simple level, the framing is just about getting from point A to point B: from a prompt to a complete solution. The Bootstrap estimates the complexity and the roles needed to build the team to complete the job with excellence.
 
 Assets are generated in a single git repo (like this one!) in an iterative process following the critical path in [`PLAN.md`](PLAN.md). Iterations consist of a single step performed by a single agent in a single role. Deliverable outputs are stored under `deliverables/cycle-XX/`.
 
 The default starting agent role is the bootstrap. They interpret the prompt and propose team composition, objectives, and plan adjustments. The orchestrator then builds the initial plan, [`PLAN.md`](PLAN.md), [`AGENTS.md`](AGENTS.md), role definitions, rules, and logging assets, and can optimize the critical path. Upon completion of that, they update the plan file to show the first step as complete and move the placeholder to start with the next agent role, for the next step. The plan file serves as an easy to read table of contents of what is to come and what has been done so far.
 
 ```
-The user, that's you human, repo forker, can say "go", "proceed", "next", "I believe in you" or any similar AFFIRMATIVE to start the cycle. Agents proceed automatically between steps unless feedback is required to continue, then request human feedback at the end. If you ask for a mid-cycle pause or review, agents should comply.
+The user, that's you human, repo forker, can say "go", "proceed", "next", "I believe in you" or any similar AFFIRMATIVE to start the cycle. Agents proceed automatically between steps; human feedback is requested only after the final step or if a blocking issue occurs. If you ask for a mid-cycle pause or review, agents should comply.
 ```  
 
 Different roles review each others work, make choices, revise the plan, and produce the assets used to move to the next step.
 
 In this way the production value is enriched. Supporting details and source assets are generated for later steps as needed.
 
-During each step, the human co-producer clicks the guardrail approval pop-ups, if any, in their development environment and at the end of a step, optionally commits the work to the repo.   
+During each step, the human co-producer only clicks guardrail approval pop-ups when required by the environment, and commits can be batched at the end of the cycle if desired.   
 
-The plan is updated and revised as it progresses. The human co-producer can watch progress in the [`PLAN.md`](PLAN.md).md file and the [`LOG.md`](LOG.md). Humans can refer to the [Human Monitor](#human-monitor) section for running a live monitor.  Iteratively, step-by-step, the requested product is produced, reliably, repeatably, excellently. Deliverables land in `deliverables/cycle-XX/`.
+The plan is updated and revised as it progresses. The human co-producer can watch progress in the [`PLAN.md`](PLAN.md) file and the [`LOG.md`](LOG.md). Humans can refer to the [Human Monitor](#human-monitor) section for running a live monitor.  Iteratively, step-by-step, the requested product is produced, reliably, repeatably, excellently. Deliverables land in `deliverables/cycle-XX/`.
 
 In short, Mortal Engines takes a prompt, makes a plan, reviews the plan, updates and follows the plan, in a grand sequence of iterations until the final output is produced with EXCELLENCE!
 
@@ -77,7 +77,7 @@ This is a fork-able app. It is shared and propagated by forking. To create a var
 6. The reviewer checks for correctness and gaps, producing `deliverables/cycle-XX/REVIEW.md`.
 7. The delivery packager assembles final assets and export notes in `deliverables/cycle-XX/DELIVERY.md`.
 8. The retrospective suggests role/plan changes to prevent issues or improve outcomes, and updates `deliverables/cycle-XX/BOOTSTRAP.md`.
-9. The human co-producer approves guardrail pop-ups and commits changes, if desired after each step. Agents proceed automatically between steps unless feedback is required, and request feedback after the final step.
+9. The human co-producer approves guardrail pop-ups only when required and commits changes, if desired, after the final step. Agents proceed automatically between steps unless a blocking issue requires feedback.
 
 ## Execution rule
 Planning cycles are capped at 1. Once a production pipeline exists (e.g., image generation + PDF assembly), the next cycle must execute it unless a blocking issue is logged.

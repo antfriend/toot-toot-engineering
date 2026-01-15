@@ -45,9 +45,9 @@ Workflow version: 3.7
 - In revision cycles, each role updates existing assets in place rather than creating new versions.
 - Use [`LOG.md`](LOG.md) to record decisions, changes, and open questions.
 - Update `RELEASES.md` with cycle deliverables when they are produced (at least during Delivery packager).
-- The human co-producer starts the run and is not normally needed between steps; agents proceed automatically unless feedback is required to continue.
+- The human co-producer starts the run and is not normally needed between steps; agents proceed automatically and only request feedback if a blocking issue occurs.
 - Agents proceed without soliciting human feedback between steps.
-- Request human feedback only after the final plan step is completed.
+- Request human feedback only after the final plan step is completed (or earlier if blocked).
 - If the human requests a mid-cycle pause or review, comply.
 
 ## Logging

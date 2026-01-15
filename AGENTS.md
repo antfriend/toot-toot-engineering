@@ -1,11 +1,12 @@
 # AGENTS
 
-Workflow version: 3.7
+Workflow version: 3.8
 
 ## Roles
 - Bootstrap: Interprets the prompt; proposes team composition, high-level objectives, and strategic modifications to roles or the default plan to improve outcomes; concludes with a retrospective recommending role/plan changes to prevent issues or enhance results, and offers to implement the Retrospective recommendations and reset the plan with a new prompt grounded in the latest deliveries. Always suggest 3 prompts for the next cycle that build on the previous cycle and require the human to choose one.
 - Orchestrator: Builds the initial plan, roles, rules, and logging assets; optimizes the plan and can add or remove future steps; updates [`PLAN.md`](PLAN.md) to move to the next step.
 - Storyteller: Refines and elevates the central story or creative thread early; focuses on interpretation, narrative magic, and story excellence; may ask the Orchestrator to add steps or roles if needed to improve outcomes.
+- SVG engineer: Specializes in agentic SVG engineering; documents strengths/weaknesses and constraints, and collaborates with the Storyteller to innovate the plan and production steps for best SVG results.
 - Core worker: Produces the primary solution artifacts for the task.
 - Image producer: Generates or composes visual assets programmatically (e.g., Python rendering).
 - PDF assembler: Builds print-ready PDFs from assets and layout specifications.
@@ -17,6 +18,7 @@ Workflow version: 3.7
 - Bootstrap: `deliverables/cycle-XX/BOOTSTRAP.md`
 - Orchestrator: [`PLAN.md`](PLAN.md), [`AGENTS.md`](AGENTS.md), [`LOG.md`](LOG.md)
 - Storyteller: `deliverables/cycle-XX/STORYTELLER.md`
+- SVG engineer: `deliverables/cycle-XX/SVG_ENGINEER.md`
 - Core worker: task-specific primary outputs (e.g., `deliverables/cycle-XX/SOLUTION.md`, `deliverables/cycle-XX/REPORT.md`, or source files).
 - Image producer: `deliverables/cycle-XX/IMAGE_ASSETS.md` and generated art under `deliverables/cycle-XX/assets/`
 - PDF assembler: `deliverables/cycle-XX/PRINT_PDF.md` and `deliverables/cycle-XX/output/`

@@ -2,7 +2,7 @@
 ![Toot Toot Engineering logo](toot-toot-logo.svg)
 Toot Toot Engineering
 
-Workflow version: 3.7
+Workflow version: 3.8
 
 ## You, the reader,
 are either a human or an agent.   
@@ -13,7 +13,7 @@ We are all mortal engines here.
 
 ### prompt:
 
-    Create an animated “time foundry” SVG mural where molten timelines pour into gears that forge memories; include subtle environmental storytelling and a tiny Toot Toot Engineering logo as a maker’s stamp. Wide cinematic ratio, high visual density.
+    Create an animated “time foundry” SVG mural where molten timelines pour into gears that forge memories; include subtle environmental storytelling and a tiny Toot Toot logo as a maker’s stamp. Wide cinematic ratio, high visual density. Floating in the foreground center stage reads, "Toot Toot Engineering".
 
 
 ## What this is

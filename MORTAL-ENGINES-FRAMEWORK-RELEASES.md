@@ -1,7 +1,13 @@
 # Mortal Engines Framework Releases
 
-## v3.7
+## v3.8
 - Status: current
+- Summary: Added an SVG engineer role, reduced between-step human feedback, and clarified README workflow wording.
+- Notes: Cycle tracking lives in `RELEASES.md`.
+- Cycle releases: `RELEASES.md`.
+
+## v3.7
+- Status: superseded
 - Summary: Added primary artifact links in `RELEASES.md` and enabled markdown link rendering in `monitor.html`.
 - Notes: Cycle tracking lives in `RELEASES.md`.
 - Cycle releases: `RELEASES.md`.

@@ -1,0 +1,220 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" role="img" aria-labelledby="title desc">
+  <title id="title">Time Foundry Mural</title>
+  <desc id="desc">An animated cinematic SVG mural of molten timelines pouring into gears that forge memories. The foreground reads Toot Toot Engineering.</desc>
+  <defs>
+    <linearGradient id="bg-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b0f17"/>
+      <stop offset="45%" stop-color="#151e2a"/>
+      <stop offset="100%" stop-color="#07090d"/>
+    </linearGradient>
+    <radialGradient id="forge-glow" cx="50%" cy="55%" r="45%">
+      <stop offset="0%" stop-color="#ffd384" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#ff8c3a" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#3a1206" stop-opacity="0.05"/>
+    </radialGradient>
+    <linearGradient id="molten-stream" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffed9c"/>
+      <stop offset="50%" stop-color="#ff8a2c"/>
+      <stop offset="100%" stop-color="#ff3b1f"/>
+    </linearGradient>
+    <linearGradient id="memory-teal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6fe9ff"/>
+      <stop offset="100%" stop-color="#1b6c8c"/>
+    </linearGradient>
+    <linearGradient id="metal-brass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7e3a0"/>
+      <stop offset="50%" stop-color="#c18a35"/>
+      <stop offset="100%" stop-color="#6a4a1f"/>
+    </linearGradient>
+    <linearGradient id="metal-copper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f1a473"/>
+      <stop offset="60%" stop-color="#b15a2d"/>
+      <stop offset="100%" stop-color="#5c2a17"/>
+    </linearGradient>
+    <linearGradient id="logo-metal" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f0f4f7"/>
+      <stop offset="55%" stop-color="#aab5c2"/>
+      <stop offset="100%" stop-color="#6c7a89"/>
+    </linearGradient>
+    <linearGradient id="logo-brass" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffef9b"/>
+      <stop offset="55%" stop-color="#e0b24d"/>
+      <stop offset="100%" stop-color="#a87a24"/>
+    </linearGradient>
+    <filter id="soft-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="ember-glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="4" result="ember"/>
+      <feMerge>
+        <feMergeNode in="ember"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <style>
+      .bg { fill: url(#bg-sky); }
+      .cavern { fill: #0f141d; opacity: 0.9; }
+      .scaffold { stroke: #1d2a38; stroke-width: 3; opacity: 0.6; }
+      .gear { fill: url(#metal-brass); stroke: #4e3615; stroke-width: 3; }
+      .gear-core { fill: #2c1e0c; }
+      .gear-tooth { fill: url(#metal-brass); }
+      .gear.spin { animation: spin 18s linear infinite; transform-origin: center; transform-box: fill-box; }
+      .gear.spin.reverse { animation: spinReverse 22s linear infinite; }
+      .gear.slow { animation: spin 34s linear infinite; }
+      .molten { fill: none; stroke: url(#molten-stream); stroke-width: 18; stroke-linecap: round; filter: url(#soft-glow); }
+      .molten.thin { stroke-width: 10; opacity: 0.8; }
+      .molten.flow { stroke-dasharray: 140 40; animation: flow 5s linear infinite; }
+      .memory { fill: url(#memory-teal); opacity: 0.65; filter: url(#soft-glow); }
+      .ember { fill: #ffb866; opacity: 0.9; filter: url(#ember-glow); }
+      .glow-pulse { animation: pulse 6s ease-in-out infinite; }
+      .fore-text { font-family: "Cinzel", "Trajan Pro", "Times New Roman", serif; font-size: 84px; letter-spacing: 4px; fill: #1b1612; }
+      .fore-shadow { fill: #ffcf7a; opacity: 0.25; filter: url(#soft-glow); }
+      .plaque { fill: #121015; stroke: #2c2421; stroke-width: 3; }
+      .plate-rivet { fill: #3b2a1c; }
+
+      @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @keyframes spinReverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+      @keyframes flow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -180; } }
+      @keyframes pulse { 0%, 100% { opacity: 0.65; } 50% { opacity: 1; } }
+      @keyframes drift { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 0.9; } 100% { transform: translateY(-120px); opacity: 0; } }
+      @keyframes sway { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(20px); } }
+    </style>
+
+    <g id="logo-mark">
+      <rect x="0" y="0" width="420" height="190" rx="22" fill="url(#logo-metal)" stroke="#3a3f44" stroke-width="4"/>
+      <rect x="20" y="20" width="380" height="150" rx="18" fill="#2f3540" stroke="#1b1f24" stroke-width="4"/>
+      <circle cx="105" cy="95" r="44" fill="url(#logo-brass)" stroke="#7a5a1d" stroke-width="3"/>
+      <circle cx="105" cy="95" r="20" fill="#5c3b1c"/>
+      <text x="240" y="98" text-anchor="middle" font-family="Copperplate, Palatino Linotype, serif" font-size="38" fill="#f4e5c3">Toot Toot</text>
+      <text x="240" y="132" text-anchor="middle" font-family="Garamond, Palatino Linotype, serif" font-size="20" fill="#cbb18b">Engineering</text>
+    </g>
+  </defs>
+
+  <rect class="bg" width="1600" height="700"/>
+  <rect x="250" y="150" width="1100" height="400" fill="url(#forge-glow)" class="glow-pulse"/>
+
+  <path class="cavern" d="M0 480 C120 420 240 420 360 470 C520 540 660 520 820 460 C980 400 1160 400 1320 460 C1440 505 1520 520 1600 510 L1600 700 L0 700 Z"/>
+  <path class="cavern" d="M0 200 C180 120 360 120 540 190 C720 260 900 250 1100 180 C1300 110 1480 140 1600 200 L1600 0 L0 0 Z"/>
+
+  <g opacity="0.6">
+    <path class="scaffold" d="M120 160 H520"/>
+    <path class="scaffold" d="M220 140 V280"/>
+    <path class="scaffold" d="M480 140 V300"/>
+    <path class="scaffold" d="M1080 150 H1480"/>
+    <path class="scaffold" d="M1200 150 V310"/>
+    <path class="scaffold" d="M1400 160 V320"/>
+  </g>
+
+  <g transform="translate(140 240)">
+    <g class="gear spin">
+      <circle cx="0" cy="0" r="120" class="gear"/>
+      <circle cx="0" cy="0" r="60" class="gear-core"/>
+      <rect x="-12" y="-140" width="24" height="38" class="gear-tooth"/>
+      <rect x="-12" y="-140" width="24" height="38" class="gear-tooth" transform="rotate(30)"/>
+      <rect x="-12" y="-140" width="24" height="38" class="gear-tooth" transform="rotate(60)"/>
+      <rect x="-12" y="-140" width="24" height="38" class="gear-tooth" transform="rotate(90)"/>
+      <rect x="-12" y="-140" width="24" height="38" class="gear-tooth" transform="rotate(120)"/>
+      <rect x="-12" y="-140" width="24" height="38" class="gear-tooth" transform="rotate(150)"/>
+      <rect x="-12" y="-140" width="24" height="38" class="gear-tooth" transform="rotate(180)"/>
+      <rect x="-12" y="-140" width="24" height="38" class="gear-tooth" transform="rotate(210)"/>
+      <rect x="-12" y="-140" width="24" height="38" class="gear-tooth" transform="rotate(240)"/>
+      <rect x="-12" y="-140" width="24" height="38" class="gear-tooth" transform="rotate(270)"/>
+      <rect x="-12" y="-140" width="24" height="38" class="gear-tooth" transform="rotate(300)"/>
+      <rect x="-12" y="-140" width="24" height="38" class="gear-tooth" transform="rotate(330)"/>
+    </g>
+  </g>
+
+  <g transform="translate(420 380)">
+    <g class="gear spin reverse">
+      <circle cx="0" cy="0" r="80" class="gear"/>
+      <circle cx="0" cy="0" r="38" class="gear-core"/>
+      <rect x="-9" y="-98" width="18" height="28" class="gear-tooth"/>
+      <rect x="-9" y="-98" width="18" height="28" class="gear-tooth" transform="rotate(30)"/>
+      <rect x="-9" y="-98" width="18" height="28" class="gear-tooth" transform="rotate(60)"/>
+      <rect x="-9" y="-98" width="18" height="28" class="gear-tooth" transform="rotate(90)"/>
+      <rect x="-9" y="-98" width="18" height="28" class="gear-tooth" transform="rotate(120)"/>
+      <rect x="-9" y="-98" width="18" height="28" class="gear-tooth" transform="rotate(150)"/>
+      <rect x="-9" y="-98" width="18" height="28" class="gear-tooth" transform="rotate(180)"/>
+      <rect x="-9" y="-98" width="18" height="28" class="gear-tooth" transform="rotate(210)"/>
+      <rect x="-9" y="-98" width="18" height="28" class="gear-tooth" transform="rotate(240)"/>
+      <rect x="-9" y="-98" width="18" height="28" class="gear-tooth" transform="rotate(270)"/>
+      <rect x="-9" y="-98" width="18" height="28" class="gear-tooth" transform="rotate(300)"/>
+      <rect x="-9" y="-98" width="18" height="28" class="gear-tooth" transform="rotate(330)"/>
+    </g>
+  </g>
+
+  <g transform="translate(1180 300)">
+    <g class="gear spin slow">
+      <circle cx="0" cy="0" r="140" class="gear"/>
+      <circle cx="0" cy="0" r="70" class="gear-core"/>
+      <rect x="-14" y="-162" width="28" height="44" class="gear-tooth"/>
+      <rect x="-14" y="-162" width="28" height="44" class="gear-tooth" transform="rotate(30)"/>
+      <rect x="-14" y="-162" width="28" height="44" class="gear-tooth" transform="rotate(60)"/>
+      <rect x="-14" y="-162" width="28" height="44" class="gear-tooth" transform="rotate(90)"/>
+      <rect x="-14" y="-162" width="28" height="44" class="gear-tooth" transform="rotate(120)"/>
+      <rect x="-14" y="-162" width="28" height="44" class="gear-tooth" transform="rotate(150)"/>
+      <rect x="-14" y="-162" width="28" height="44" class="gear-tooth" transform="rotate(180)"/>
+      <rect x="-14" y="-162" width="28" height="44" class="gear-tooth" transform="rotate(210)"/>
+      <rect x="-14" y="-162" width="28" height="44" class="gear-tooth" transform="rotate(240)"/>
+      <rect x="-14" y="-162" width="28" height="44" class="gear-tooth" transform="rotate(270)"/>
+      <rect x="-14" y="-162" width="28" height="44" class="gear-tooth" transform="rotate(300)"/>
+      <rect x="-14" y="-162" width="28" height="44" class="gear-tooth" transform="rotate(330)"/>
+    </g>
+  </g>
+
+  <g class="glow-pulse">
+    <path class="molten flow" d="M160 150 C320 220 430 190 560 230 C700 280 860 310 1040 260 C1220 210 1380 240 1500 320"/>
+    <path class="molten thin flow" d="M120 210 C320 280 500 260 620 300 C820 360 980 360 1200 320 C1320 300 1460 330 1560 390"/>
+    <path class="molten thin flow" d="M260 90 C420 140 560 120 720 150 C920 190 1060 210 1200 190 C1360 170 1460 190 1540 240"/>
+  </g>
+
+  <g opacity="0.7">
+    <rect x="520" y="420" width="560" height="60" rx="18" fill="url(#metal-copper)" stroke="#3b1f12" stroke-width="3"/>
+    <rect x="560" y="436" width="480" height="28" rx="12" fill="#191217"/>
+    <rect x="600" y="410" width="80" height="20" rx="8" class="memory"/>
+    <rect x="720" y="410" width="80" height="20" rx="8" class="memory"/>
+    <rect x="840" y="410" width="80" height="20" rx="8" class="memory"/>
+    <rect x="960" y="410" width="80" height="20" rx="8" class="memory"/>
+  </g>
+
+  <g class="glow-pulse">
+    <ellipse cx="820" cy="360" rx="220" ry="100" fill="url(#forge-glow)" opacity="0.6"/>
+  </g>
+
+  <g>
+    <circle class="ember" cx="300" cy="520" r="4">
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -120" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.9;0" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    <circle class="ember" cx="520" cy="500" r="3">
+      <animateTransform attributeName="transform" type="translate" values="0 0; 10 -140" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.8;0" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle class="ember" cx="980" cy="520" r="4">
+      <animateTransform attributeName="transform" type="translate" values="0 0; -10 -150" dur="6.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.9;0" dur="6.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle class="ember" cx="1220" cy="500" r="3">
+      <animateTransform attributeName="transform" type="translate" values="0 0; 6 -120" dur="5.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.8;0" dur="5.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <g transform="translate(380 510)">
+    <rect width="840" height="110" rx="30" class="plaque"/>
+    <circle cx="40" cy="40" r="6" class="plate-rivet"/>
+    <circle cx="800" cy="40" r="6" class="plate-rivet"/>
+    <circle cx="40" cy="80" r="6" class="plate-rivet"/>
+    <circle cx="800" cy="80" r="6" class="plate-rivet"/>
+    <text x="420" y="70" text-anchor="middle" class="fore-text">Toot Toot Engineering</text>
+  </g>
+
+  <g transform="translate(1260 520) scale(0.55)" opacity="0.9">
+    <use href="#logo-mark"/>
+  </g>
+</svg>

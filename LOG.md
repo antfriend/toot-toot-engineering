@@ -1,3 +1,51 @@
 # LOG
 
 ## Entries
+- Step: 1
+- Role: Bootstrap
+- Summary: Interpreted the prompt, proposed team composition, objectives, and plan adjustments; recorded next-cycle prompt options.
+- Decisions: Treat SVG engineer as required; add animation timing table expectation; require logo inclusion in delivery packaging.
+- Open questions: Which next-cycle prompt should be selected after delivery.
+- Next step: Storyteller
+- Step: 2
+- Role: Storyteller
+- Summary: Defined narrative spine, environmental beats, motion cues, and palette for the time foundry mural.
+- Decisions: Emphasize layered depth with molten ribbons and staggered gear motion.
+- Open questions: None.
+- Next step: SVG engineer
+- Step: 3
+- Role: SVG engineer
+- Summary: Documented SVG constraints, composition strategy, and animation plan for the mural.
+- Decisions: Use three depth planes, shared glow filters, and SMIL/CSS animations.
+- Open questions: None.
+- Next step: Orchestrator
+- Step: 4
+- Role: Orchestrator
+- Summary: Updated the plan to treat the SVG engineer step as required and advanced the workflow.
+- Decisions: Locked the SVG engineer step as mandatory due to SVG-centric prompt.
+- Open questions: None.
+- Next step: Core worker
+- Step: 5
+- Role: Core worker
+- Summary: Built the animated time foundry SVG mural and documented animation timings.
+- Decisions: Embedded a small logo derived from the repo mark; used SMIL/CSS animations for gears, flow, glow, and embers.
+- Open questions: None.
+- Next step: Reviewer
+- Step: 6
+- Role: Reviewer
+- Summary: Reviewed SVG for prompt fidelity and animation correctness; no blocking issues found.
+- Decisions: Adjusted logo gradient scope to avoid nested defs pitfalls.
+- Open questions: None.
+- Next step: Delivery packager
+- Step: 7
+- Role: Delivery packager
+- Summary: Assembled delivery notes, ensured logo inclusion, and updated releases.
+- Decisions: Documented SVG export guidance and primary artifacts in releases.
+- Open questions: None.
+- Next step: Retrospective
+- Step: 8
+- Role: Retrospective
+- Summary: Recorded retrospective updates and plan change recommendations in BOOTSTRAP.
+- Decisions: Recommend an animation QA checklist step before review in future cycles.
+- Open questions: Which next-cycle prompt the human prefers.
+- Next step: Human feedback

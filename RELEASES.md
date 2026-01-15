@@ -10,10 +10,13 @@ How to update:
 - Status: in progress
 - Prompt source: `README.md`
 - Deliverables root: `deliverables/cycle-01/`
-- Primary artifacts: none yet.
+- Primary artifacts:
+  - `deliverables/cycle-01/time-foundry.svg`
+  - `deliverables/cycle-01/SOLUTION.md`
 - Other deliverables:
   - `deliverables/cycle-01/BOOTSTRAP.md`
   - `deliverables/cycle-01/STORYTELLER.md`
+  - `deliverables/cycle-01/SVG_ENGINEER.md`
   - `deliverables/cycle-01/assets/` (if any)
   - `deliverables/cycle-01/PRINT_PDF.md` (if any)
   - `deliverables/cycle-01/output/` (print-ready PDF, if any)

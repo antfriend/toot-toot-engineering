@@ -17,6 +17,8 @@ We are all mortal engines here.
 
     This is a "Hello World" in toot-toot engineering. Create an animated gif of a rotating earth and a banner that reads "Hello World!" in a grand cinematic aspect ratio.
 
+## Human
+    Talking to you, human, this is the point where you can stop reading and tell your AI to read this readme and go. Or just say "you got this". Your agent will figure it out and start working.
 
 ## What this is
 Like a factory that makes a factory to produce the desired product. We have an excellent team of agents performing the work with logging and ['monitoring'](README.md#human-monitor). The factory tools and shared assets live in this repo, and final products land in the local `deliverables/` directories.

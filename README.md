@@ -15,7 +15,7 @@ We are all mortal engines here.
 
 ### prompt:
 
-    Create an STL file suitable for 3D printing which depicts a lovely bonsai tree, grown in 3 dimensions, in the style of Marioland with surface texturing.
+    This is a "Hello World" in toot-toot engineering. Create an animated gif of a rotating earth and a banner that reads "Hello World!" in a grand cinematic aspect ratio.
 
 
 ## What this is

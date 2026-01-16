@@ -85,3 +85,59 @@
 - Decisions: Used serif typography in SVG and single-frame GIF encoding to avoid ffmpeg hangs.
 - Open questions: None.
 - Next step: None.
+
+- Step: 1
+- Role: Bootstrap
+- Summary: Initialized cycle-02 with the new hello-world.svg orbiting text prompt and role recommendations.
+- Decisions: Made SVG engineer a required step and set SVG deliverable as a single file.
+- Open questions: Final aspect ratio for the SVG (2.39:1 vs square).
+- Next step: Storyteller
+
+- Step: 2
+- Role: Storyteller
+- Summary: Defined narrative and visual direction for orbiting "Hello World" SVG, including motion and typography guidance.
+- Decisions: Preferred 2.39:1 layout with readable orbit speed and serif title treatment.
+- Open questions: Final aspect ratio confirmation and whether text should remain upright or tangent.
+- Next step: SVG engineer
+
+- Step: 3
+- Role: SVG engineer
+- Summary: Documented SVG animation approach, constraints, and validation checklist for orbiting text.
+- Decisions: Prefer SMIL animateMotion for broad support; keep orbit path simple.
+- Open questions: Final animation duration and text orientation mode.
+- Next step: Orchestrator
+
+- Step: 4
+- Role: Orchestrator
+- Summary: Confirmed cycle-02 plan sequencing and advanced to Core worker.
+- Decisions: No additional plan changes required.
+- Open questions: None.
+- Next step: Core worker
+
+- Step: 5
+- Role: Core worker
+- Summary: Created hello-world.svg with orbiting text path, stylized Earth, and embedded Toot Toot Engineering logo.
+- Decisions: Used SMIL startOffset animation for text orbit and embedded logo as a base64 SVG image.
+- Open questions: None.
+- Next step: Reviewer
+
+- Step: 6
+- Role: Reviewer
+- Summary: Reviewed hello-world.svg for self-contained assets, animation, and logo inclusion.
+- Decisions: Logged SMIL compatibility as a moderate risk.
+- Open questions: None.
+- Next step: Delivery packager
+
+- Step: 7
+- Role: Delivery packager
+- Summary: Packaged cycle-02 deliverables and updated RELEASES.md.
+- Decisions: Marked cycle-02 status as in progress pending retrospective.
+- Open questions: None.
+- Next step: Retrospective
+
+- Step: 8
+- Role: Retrospective
+- Summary: Added retrospective recommendations to cycle-02 BOOTSTRAP.md and closed the cycle.
+- Decisions: Recommend SMIL fallback and smaller logo embedding.
+- Open questions: Which next-cycle prompt to use.
+- Next step: Human selects next-cycle prompt.

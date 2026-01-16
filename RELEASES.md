@@ -22,6 +22,19 @@ How to update:
   - `deliverables/cycle-01/assets/` (source assets and logo)
   - `deliverables/cycle-01/REVIEW.md`
   - `deliverables/cycle-01/DELIVERY.md`
+
+## Cycle 02
+- Status: complete
+- Prompt source: `deliverables/cycle-02/BOOTSTRAP.md`
+- Deliverables root: `deliverables/cycle-02/`
+- Primary artifacts:
+  - `deliverables/cycle-02/hello-world.svg`
+- Other deliverables:
+  - `deliverables/cycle-02/BOOTSTRAP.md`
+  - `deliverables/cycle-02/STORYTELLER.md`
+  - `deliverables/cycle-02/SVG_ENGINEER.md`
+  - `deliverables/cycle-02/REVIEW.md`
+  - `deliverables/cycle-02/DELIVERY.md`
   - Small Toot Toot Engineering logo included in final deliverables (embedded or companion asset).
 
 ## Templates

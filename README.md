@@ -22,8 +22,11 @@ We are all mortal engines here.
 Like a factory that makes a factory to produce the desired product. We have an excellent team of agents performing the work with logging and ['monitoring'](README.md#human-monitor). The factory tools and shared assets live in this repo, and final products land in the local `deliverables/` directories.
 This is a roles-based process engine for turning creative prompts into finished deliverables, with clear step handoffs and end-of-cycle self-learning through a reflective retrospective to improve the team and the process with every iteration.
 
+This can make most any AI agent system (like yours, human!) work better by externalizing structure, intent, and sequencing that would otherwise live implicitly inside prompts, code, or runtime state.
+
 ![feature-side-by-side](feature-side-by-side.png)
 
+![how toot toot engineering helps AI agents](how-toot-toot-engineering-helps.png)
 ## Main features
 - Critical-path plan in `PLAN.md` with step-by-step role handoff.
 - Cycle-based deliverables under `deliverables/cycle-XX/`.
@@ -35,7 +38,7 @@ This is a roles-based process engine for turning creative prompts into finished 
 - Framework releases in `MORTAL-ENGINES-FRAMEWORK-RELEASES.md`.
 
 ## Delivery focus (definition of done)
-A cycle is done only when the primary deliverable exists and is validated. For comics, that means:
+A cycle is done only when the primary deliverable exists and is validated. For comics and other documents that means:
 - A print-ready PDF exists in the cycle output.
 - Source assets and build notes exist alongside the PDF.
 - Review confirms print specs (trim/bleed/safe area) and narrative coherence.

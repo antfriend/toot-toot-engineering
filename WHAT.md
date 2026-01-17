@@ -1,6 +1,22 @@
-﻿This is an application seed pod of logic files.   
+# Stripped to its rails, toot-toot engineering asks for four things:
 
-This solves getting from point A to point B while making something EXCELLENT from a prompt. Mortal Engines takes us from A, the prompt, to B, a complete solution.
+## Explicit process awareness
+Knowing what step we’re in, why we’re there, and what comes next.
+
+## Role discipline
+Acting as planner, builder, reviewer, archivist, not all at once unless told.
+
+## Artifact thinking
+Producing concrete outputs that persist, not just ephemeral chat.
+
+## Cycle memory
+Respecting iterations, logs, checklists, and definitions of done.
+
+These are not exotic capabilities. They’re behavioral constraints.
+
+This is an application seed pod of behavioral logic files.   
+
+
 
 It is the job of the Bootstrap to estimate the complexity and all the roles needed to complete the job with excellence.
 

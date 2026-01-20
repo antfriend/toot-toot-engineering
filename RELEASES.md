@@ -10,7 +10,10 @@ How to update:
 - Status: in progress
 - Prompt source: `README.md`
 - Deliverables root: `deliverables/cycle-01/`
-- Primary artifacts: none yet.
+- Primary artifacts:
+  - `deliverables/cycle-01/SLIDESHOW-cycle.svg`
+  - `deliverables/cycle-01/MONOLOGUE-cycle.md`
+  - `toot-toot-toolbox/MyMentalPalaceDB.md`
 - Other deliverables:
   - `deliverables/cycle-01/BOOTSTRAP.md`
   - `deliverables/cycle-01/STORYTELLER.md`

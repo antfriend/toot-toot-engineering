@@ -1,0 +1,310 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" width="1600" height="600">
+  <defs>
+    <linearGradient id="bg-ink" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c1822"/>
+      <stop offset="1" stop-color="#1c2f3a"/>
+    </linearGradient>
+    <linearGradient id="bg-haze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f2029" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#0a141b" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffcf7a"/>
+      <stop offset="1" stop-color="#ff8a2a"/>
+    </linearGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" fill="none" stroke="#1d2d36" stroke-width="2" opacity="0.6"/>
+    </pattern>
+    <style>
+      text { font-family: "Georgia", "Times New Roman", serif; fill: #e6eef2; }
+      .title { font-size: 58px; font-weight: 600; letter-spacing: 1px; }
+      .subtitle { font-size: 30px; fill: #c9d6de; }
+      .body { font-size: 34px; fill: #d9e3e8; }
+      .muted { fill: #9fb3bd; font-size: 24px; }
+      .label { font-size: 22px; letter-spacing: 2px; text-transform: uppercase; fill: #ffcf7a; }
+      .footer { font-size: 20px; fill: #a5b7c0; }
+      .slide { display: none; }
+      .active { display: inline; }
+    </style>
+  </defs>
+
+  <g id="base-bg">
+    <rect width="1600" height="600" fill="url(#bg-ink)"/>
+    <rect width="1600" height="600" fill="url(#bg-haze)"/>
+    <rect width="1600" height="600" fill="url(#grid)" opacity="0.35"/>
+    <rect x="120" y="80" width="1360" height="440" fill="#0f1b22" opacity="0.65" rx="24"/>
+  </g>
+
+  <g id="foundry-scene">
+    <rect x="0" y="0" width="1600" height="600" fill="url(#bg-ink)"/>
+    <g opacity="0.7">
+      <rect x="0" y="80" width="1600" height="400" fill="#0e1a21"/>
+      <g stroke="#1c2d36" stroke-width="2" opacity="0.6">
+        <line x1="0" y1="120" x2="1600" y2="120"/>
+        <line x1="0" y1="200" x2="1600" y2="200"/>
+        <line x1="0" y1="280" x2="1600" y2="280"/>
+        <line x1="0" y1="360" x2="1600" y2="360"/>
+      </g>
+      <g fill="#162630" opacity="0.8">
+        <rect x="80" y="140" width="140" height="80"/>
+        <rect x="260" y="140" width="120" height="90"/>
+        <rect x="1200" y="150" width="160" height="70"/>
+        <rect x="1380" y="150" width="140" height="80"/>
+      </g>
+    </g>
+    <g opacity="0.85">
+      <path d="M300 0 C320 80 290 120 310 200 C330 300 300 420 320 600" fill="url(#accent)" opacity="0.6"/>
+      <path d="M500 0 C520 60 480 160 510 260 C540 340 500 460 520 600" fill="url(#accent)" opacity="0.45"/>
+      <path d="M1200 0 C1180 90 1220 180 1190 260 C1160 360 1200 460 1180 600" fill="url(#accent)" opacity="0.45"/>
+    </g>
+    <g opacity="0.95">
+      <circle cx="650" cy="340" r="84" fill="#2a3a44" stroke="#6f8793" stroke-width="6"/>
+      <circle cx="820" cy="300" r="52" fill="#2a3a44" stroke="#6f8793" stroke-width="6"/>
+      <circle cx="1020" cy="360" r="44" fill="#2a3a44" stroke="#6f8793" stroke-width="6"/>
+      <circle cx="460" cy="360" r="50" fill="#2a3a44" stroke="#6f8793" stroke-width="6"/>
+    </g>
+    <rect x="560" y="420" width="520" height="80" rx="10" fill="#1f2e37" stroke="#425560" stroke-width="3"/>
+    <rect x="610" y="440" width="420" height="40" rx="8" fill="#2c3f4a"/>
+    <rect x="640" y="450" width="320" height="20" fill="#ffb35c" opacity="0.6"/>
+    <rect x="520" y="520" width="560" height="60" rx="12" fill="#101a20" stroke="#6f8793" stroke-width="3"/>
+    <text x="800" y="560" font-size="28" text-anchor="middle" fill="#d8e0e5" letter-spacing="2">TOOT TOOT ENGINEERING</text>
+  </g>
+
+  <!-- Slide 01 -->
+  <g id="slide-01" class="slide active">
+    <use href="#foundry-scene"/>
+    <text x="160" y="170" class="title">Welcome to Toot Toot Engineering</text>
+    <text x="160" y="220" class="subtitle">A factory for reliable creative work</text>
+    <text x="160" y="520" class="footer">Slide 01/24 - The time foundry opens</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 02 -->
+  <g id="slide-02" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Why this exists</text>
+    <text x="160" y="240" class="body">Make AI collaboration reliable, repeatable, and human-readable.</text>
+    <text x="160" y="300" class="body">No magic. Just clear steps.</text>
+    <text x="160" y="520" class="footer">Slide 02/24 - The problem</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 03 -->
+  <g id="slide-03" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">The cycle</text>
+    <text x="160" y="240" class="body">Prompt - Plan - Roles - Deliverables</text>
+    <text x="160" y="290" class="body">Review - Delivery - Retrospective</text>
+    <text x="160" y="520" class="footer">Slide 03/24 - Big picture</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 04 -->
+  <g id="slide-04" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Start with a prompt</text>
+    <text x="160" y="240" class="body">Write a clear request in README.md.</text>
+    <text x="160" y="300" class="body">That is the lantern for the cycle.</text>
+    <text x="160" y="520" class="footer">Slide 04/24 - Prompt</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 05 -->
+  <g id="slide-05" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Work happens in cycles</text>
+    <text x="160" y="240" class="body">Each cycle has a folder and a plan.</text>
+    <text x="160" y="300" class="body">Every step leaves traceable artifacts.</text>
+    <text x="160" y="520" class="footer">Slide 05/24 - Cycle</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 06 -->
+  <g id="slide-06" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">PLAN.md is the press</text>
+    <text x="160" y="240" class="body">It shows the critical path and current step.</text>
+    <text x="160" y="300" class="body">One step, one role, one output.</text>
+    <text x="160" y="520" class="footer">Slide 06/24 - Plan</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 07 -->
+  <g id="slide-07" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">LOG.md keeps memory</text>
+    <text x="160" y="240" class="body">Every step records decisions and questions.</text>
+    <text x="160" y="300" class="body">No hidden context.</text>
+    <text x="160" y="520" class="footer">Slide 07/24 - Log</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 08 -->
+  <g id="slide-08" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Roles take turns</text>
+    <text x="160" y="240" class="body">Each role has a focused job.</text>
+    <text x="160" y="300" class="body">The baton moves after every step.</text>
+    <text x="160" y="520" class="footer">Slide 08/24 - Roles</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 09 -->
+  <g id="slide-09" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Bootstrap</text>
+    <text x="160" y="240" class="body">Interprets the prompt and proposes the team.</text>
+    <text x="160" y="300" class="body">Adds risks and plan adjustments.</text>
+    <text x="160" y="520" class="footer">Slide 09/24 - Bootstrap</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 10 -->
+  <g id="slide-10" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Storyteller</text>
+    <text x="160" y="240" class="body">Builds the narrative arc and pacing.</text>
+    <text x="160" y="300" class="body">Keeps the story clear and human.</text>
+    <text x="160" y="520" class="footer">Slide 10/24 - Storyteller</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 11 -->
+  <g id="slide-11" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">SVG engineer</text>
+    <text x="160" y="240" class="body">Defines layout, legibility, and export rules.</text>
+    <text x="160" y="300" class="body">Keeps visuals clean and feasible.</text>
+    <text x="160" y="520" class="footer">Slide 11/24 - SVG engineering</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 12 -->
+  <g id="slide-12" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Orchestrator</text>
+    <text x="160" y="240" class="body">Maintains PLAN.md, AGENTS.md, and LOG.md.</text>
+    <text x="160" y="300" class="body">Keeps the critical path honest.</text>
+    <text x="160" y="520" class="footer">Slide 12/24 - Orchestrator</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 13 -->
+  <g id="slide-13" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Core worker</text>
+    <text x="160" y="240" class="body">Builds the actual artifacts.</text>
+    <text x="160" y="300" class="body">Slides, scripts, assets, or code.</text>
+    <text x="160" y="520" class="footer">Slide 13/24 - Core worker</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 14 -->
+  <g id="slide-14" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Reviewer</text>
+    <text x="160" y="240" class="body">Finds gaps, risks, and missing tests.</text>
+    <text x="160" y="300" class="body">No placeholders allowed.</text>
+    <text x="160" y="520" class="footer">Slide 14/24 - Review</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 15 -->
+  <g id="slide-15" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Delivery packager</text>
+    <text x="160" y="240" class="body">Assembles outputs and release notes.</text>
+    <text x="160" y="300" class="body">Adds the Toot Toot logo.</text>
+    <text x="160" y="520" class="footer">Slide 15/24 - Delivery</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 16 -->
+  <g id="slide-16" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Retrospective</text>
+    <text x="160" y="240" class="body">Improve the system for the next cycle.</text>
+    <text x="160" y="300" class="body">Capture lessons and plan updates.</text>
+    <text x="160" y="520" class="footer">Slide 16/24 - Retrospective</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 17 -->
+  <g id="slide-17" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">deliverables/cycle-XX</text>
+    <text x="160" y="240" class="body">Every artifact lands in a cycle folder.</text>
+    <text x="160" y="300" class="body">Easy to find. Easy to review.</text>
+    <text x="160" y="520" class="footer">Slide 17/24 - Artifacts</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 18 -->
+  <g id="slide-18" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Always include the logo</text>
+    <text x="160" y="240" class="body">Final deliverables include the Toot Toot mark.</text>
+    <text x="160" y="300" class="body">Embedded or companion asset.</text>
+    <text x="160" y="520" class="footer">Slide 18/24 - Branding</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 19 -->
+  <g id="slide-19" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Human involvement</text>
+    <text x="160" y="240" class="body">Approve guardrails when needed.</text>
+    <text x="160" y="300" class="body">Give feedback at the end of the cycle.</text>
+    <text x="160" y="520" class="footer">Slide 19/24 - Co-producer</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 20 -->
+  <g id="slide-20" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Starting is simple</text>
+    <text x="160" y="240" class="body">Say: go, proceed, or you got this.</text>
+    <text x="160" y="300" class="body">The system takes it from there.</text>
+    <text x="160" y="520" class="footer">Slide 20/24 - Start</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 21 -->
+  <g id="slide-21" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Example output</text>
+    <text x="160" y="240" class="body">A slideshow and a monologue.</text>
+    <text x="160" y="300" class="body">Ready to record and publish.</text>
+    <text x="160" y="520" class="footer">Slide 21/24 - Example</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 22 -->
+  <g id="slide-22" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Quality bar</text>
+    <text x="160" y="240" class="body">Cite sources when needed.</text>
+    <text x="160" y="300" class="body">Resolve every placeholder.</text>
+    <text x="160" y="520" class="footer">Slide 22/24 - Standards</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 23 -->
+  <g id="slide-23" class="slide">
+    <use href="#base-bg"/>
+    <text x="160" y="160" class="title">Back to the foundry</text>
+    <text x="160" y="240" class="body">The press stamps a finished artifact.</text>
+    <text x="160" y="300" class="body">Now you can ship with confidence.</text>
+    <text x="160" y="520" class="footer">Slide 23/24 - Ready</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+
+  <!-- Slide 24 -->
+  <g id="slide-24" class="slide">
+    <use href="#foundry-scene"/>
+    <text x="160" y="170" class="title">Start your first cycle</text>
+    <text x="160" y="220" class="subtitle">Open README.md and light the lantern</text>
+    <text x="160" y="520" class="footer">Slide 24/24 - Closing</text>
+    <image href="../../toot-toot-logo.svg" x="1440" y="500" width="120" height="60"/>
+  </g>
+</svg>

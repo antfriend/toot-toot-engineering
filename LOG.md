@@ -1,3 +1,45 @@
 # LOG
 
 ## Entries
+- Step: 1
+- Role: Bootstrap
+- Summary: Interpreted the cycle-01 prompt, proposed team composition, objectives, constraints, and plan adjustments; captured feasibility notes and next-cycle prompts in `deliverables/cycle-01/BOOTSTRAP.md`.
+- Decisions: Note DB file absent; recommend early decision gate for storyboard storage; plan to use `time-foundry.svg` for aspect ratio and bookends if feasible.
+- Open questions: Should a new `MyMentalPalaceDB.db` be created or should the storyboard live in Markdown?
+- Next step: Storyteller
+- Step: 2
+- Role: Storyteller
+- Summary: Defined the narrative spine, metaphors, audience framing, and a 24-slide timing map for a 4-minute onboarding slideshow in `deliverables/cycle-01/STORYTELLER.md`.
+- Decisions: Use a 24-slide cadence at 10 seconds each and a foundry/factory metaphor anchored to `time-foundry.svg`.
+- Open questions: Confirm whether to include a concrete example artifact on-screen beyond the slideshow itself.
+- Next step: SVG engineer
+- Step: 3
+- Role: SVG engineer
+- Summary: Documented SVG constraints, layout grid, slide system, and export guidance for the 1600x600 slideshow in `deliverables/cycle-01/SVG_ENGINEER.md`.
+- Decisions: Use `time-foundry.svg` as opening/closing scenes; prefer static exports over animations for video rendering reliability.
+- Open questions: Should the slideshow be a single SVG with layered slides or multiple per-slide SVG files?
+- Next step: Orchestrator
+- Step: 4
+- Role: Orchestrator
+- Summary: Updated `PLAN.md` to reflect completed steps and to specify orchestrator deliverables; confirmed `AGENTS.md` and `LOG.md` conventions remain in force.
+- Decisions: Keep existing role definitions; move the cycle to the Core worker step.
+- Open questions: None.
+- Next step: Core worker
+- Step: 5
+- Role: Core worker
+- Summary: Built the 24-slide SVG slideshow and aligned monologue script; replaced the MyMentalPalaceDB sample with the slideshow storyboard.
+- Decisions: Use a single SVG with layered slide groups and `time-foundry.svg` as opening/closing scene; keep 10-second slide cadence.
+- Open questions: None.
+- Next step: Reviewer
+- Step: 6
+- Role: Reviewer
+- Summary: Reviewed slideshow, monologue, and storyboard for requirements alignment and export risks; logged findings in `deliverables/cycle-01/REVIEW.md`.
+- Decisions: Flagged external logo references, `time-foundry.svg` reuse ambiguity, and DB storage feasibility for resolution during delivery packaging.
+- Open questions: Should the logo be embedded and should a real `MyMentalPalaceDB.db` be created?
+- Next step: Delivery packager
+- Step: 7
+- Role: Delivery packager
+- Summary: Packaged final cycle assets, documented export notes, and updated releases; renamed cycle-only files to include `-cycle` suffix.
+- Decisions: Keep external logo references and note embedding recommendation; document Markdown as the storyboard fallback for the missing DB file.
+- Open questions: None.
+- Next step: Retrospective

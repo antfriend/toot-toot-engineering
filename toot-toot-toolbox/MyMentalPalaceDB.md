@@ -1,18 +1,18 @@
 # My Mental Palace DB
-A single-file semantic story database. This sample is designed to look good in the monitor.
+A single-file semantic story database. This cycle stores the Toot Toot Engineering slideshow storyboard.
 Agent note: users may refer to this DB and its actions (e.g., "select", "update", "insert", "delete", "upsert") using data-user parlance; interpret those requests as edits to this file's current cursor selection, DB properties, or records. If a request is ambiguous (e.g., multiple possible records), ask a short clarification or select the most recently updated matching record and state the assumption.
 
 ```mmpdb
-db_id: mmpdb:sample:stroll
-db_name: "My Mental Palace DB"
+db_id: mmpdb:cycle-01:slideshow
+db_name: "Toot Toot Engineering Storyboard"
 coord_increment:
   lat: 1
   lon: 1
 collision_policy: southeast_step
 timestamp_kind: unix_utc
 cursor_policy:
-  max_preview_chars: 280
-  max_nodes: 25
+  max_preview_chars: 240
+  max_nodes: 24
 typed_edges:
   enabled: true
   syntax: "type>@TARGET_ID"
@@ -21,152 +21,182 @@ typed_edges:
 
 ```cursor
 selected:
-  - @LAT0LON0
+  - @SLIDE01
 preview:
-  @LAT0LON0: "You arrive at the North Pole of meaning. A lantern, a signpost, and the first thread."
-agent_note: "Interpret DB-action language as edits to the current cursor selection, DB properties, or records. If selection is ambiguous, ask or select the most recently updated match and state the assumption."
+  @SLIDE01: "Opening foundry scene. Welcome and framing for the cycle."
+agent_note: "Storyboard nodes map directly to slide groups in deliverables/cycle-01/SLIDESHOW-cycle.svg."
 dot: |
   digraph Cursor {
     rankdir=LR;
-    "@LAT0LON0" -> "@LAT1LON1" [label="inspires"];
-    "@LAT1LON1" -> "@LAT2LON2" [label="leads_to"];
+    "@SLIDE01" -> "@SLIDE02" [label="leads_to"];
+    "@SLIDE02" -> "@SLIDE03" [label="leads_to"];
   }
 ```
 
 ---
 
-@LAT0LON0 | created:1700000000 | updated:1700000600 | relates:inspires>@LAT1LON1,anchors>@LAT0LON1
+@SLIDE01 | created:1700002000 | updated:1700002000 | relates:leads_to>@SLIDE02
 
-## The North Pole Lantern
-You arrive at **@LAT0LON0**, the pole-star node.  
-A lantern hangs here, bright enough to read by, dim enough to keep secrets.
-
-- **Rule of this palace:** all paths are *chosen*, not forced.
-- The glow here **inspires** a first corridor to the South-East.
-- It also **anchors** a small alcove to the East.
-
-> Stroll tip: click this node in the monitor and watch the graph come alive.
+## Opening foundry
+Welcome to Toot Toot Engineering. Establish the time foundry as the visual motif.
 
 ---
 
-@LAT0LON1 | created:1700000100 | updated:1700000700 | relates:references>@LAT0LON0,contrasts>@LAT1LON2
+@SLIDE02 | created:1700002010 | updated:1700002010 | relates:leads_to>@SLIDE03
 
-## The Alcove of Contrasts
-A thin shelf of notes, all written in the same hand, but in different moods.
-
-This room exists to remind you:
-- even neighbors can disagree
-- disagreement can be *useful*
-- a contrast edge is a story device
+## Why it exists
+Reliability and clarity for AI collaboration. No hidden magic.
 
 ---
 
-@LAT1LON1 | created:1700000200 | updated:1700000900 | relates:leads_to>@LAT2LON2,echoes>@LAT1LON2,questions>@LAT2LON1
+@SLIDE03 | created:1700002020 | updated:1700002020 | relates:leads_to>@SLIDE04
 
-## Corridor of Soft Footsteps
-The corridor slopes South-East one increment at a time.
-Each step is a coordinate, each coordinate a promise.
-
-This corridor:
-- **leads_to** a workshop
-- **echoes** a side room of repeating motifs
-- **questions** a locked door nearby
+## The cycle
+Prompt, plan, roles, deliverables, review, delivery, retrospective.
 
 ---
 
-@LAT1LON2 | created:1700000250 | updated:1700000950 | relates:refines>@LAT2LON2,contrasts>@LAT0LON1
+@SLIDE04 | created:1700002030 | updated:1700002030 | relates:leads_to>@SLIDE05
 
-## Echo Room
-Here, the same idea repeats until it changes shape.
-
-- An echo is not duplication.
-- An echo is a pressure wave that reveals structure.
-
-This room **refines** the workshop by sending it better questions.
+## Start with a prompt
+README.md contains the lantern prompt that sets the goal.
 
 ---
 
-@LAT2LON1 | created:1700000300 | updated:1700001000 | relates:guards>@LAT3LON2
+@SLIDE05 | created:1700002040 | updated:1700002040 | relates:leads_to>@SLIDE06
 
-## The Locked Door (With a Friendly Note)
-The door is locked, but the note is not.
-
-> “If you can explain the story in one paragraph, you may enter.”
-
-This node **guards** a deeper chamber (a future you, waiting).
+## Work in cycles
+Each cycle has a folder and a plan with tracked outputs.
 
 ---
 
-@LAT2LON2 | created:1700000400 | updated:1700001100 | relates:builds>@LAT3LON3,depends_on>@LAT2LON3
+@SLIDE06 | created:1700002050 | updated:1700002050 | relates:leads_to>@SLIDE07
 
-## Workshop of Artifacts
-A workbench. A pencil. A tiny robot-shaped paperweight.
-
-This is where story becomes *stuff*:
-- sketches
-- plans
-- prototypes
-- pages you can hand to someone else
-
-This workshop **builds** the archive wing,
-and **depends_on** the indexing desk.
+## PLAN.md
+Critical path and current step. One step, one role, one output.
 
 ---
 
-@LAT2LON3 | created:1700000450 | updated:1700001150 | relates:supports>@LAT2LON2,organizes>@LAT3LON3
+@SLIDE07 | created:1700002060 | updated:1700002060 | relates:leads_to>@SLIDE08
 
-## Indexing Desk
-A neat desk with an absurdly sharp pencil.
-
-This desk:
-- **supports** the workshop by organizing parts
-- **organizes** the archive so it stays walkable
+## LOG.md
+Decisions and questions are logged for traceability.
 
 ---
 
-@LAT3LON2 | created:1700000500 | updated:1700001200 | relates:reveals>@LAT4LON4
+@SLIDE08 | created:1700002070 | updated:1700002070 | relates:leads_to>@SLIDE09
 
-## The Chamber of Future Footprints
-You made it. The lock was never a lock, it was a filter.
-
-Inside: footprints that haven’t happened yet.
-This node **reveals** a distant observatory.
+## Roles overview
+Roles take turns to keep the work focused and reviewable.
 
 ---
 
-@LAT3LON3 | created:1700000550 | updated:1700001250 | relates:archives>@LAT2LON2,extends>@LAT4LON3
+@SLIDE09 | created:1700002080 | updated:1700002080 | relates:leads_to>@SLIDE10
 
-## Archive Wing
-Cabinets of paper and pixels.
-Everything here has provenance, even if the provenance is “a good hunch.”
-
-This wing:
-- **archives** what the workshop produces
-- **extends** the palace outward
+## Bootstrap
+Interprets the prompt and proposes team and plan adjustments.
 
 ---
 
-@LAT4LON3 | created:1700000580 | updated:1700001280 | relates:maps_to>@LAT4LON4
+@SLIDE10 | created:1700002090 | updated:1700002090 | relates:leads_to>@SLIDE11
 
-## Gallery of Maps
-Maps of the palace drawn from memory, then corrected by walking.
-
-- A map is a story about navigation.
-- A map is never the territory, but it can be a faithful rumor.
-
-This node **maps_to** the observatory.
+## Storyteller
+Shapes the narrative arc and timing for the work.
 
 ---
 
-@LAT4LON4 | created:1700000600 | updated:1700001300 | relates:observes>@LAT0LON0,blesses>@LAT2LON2
+@SLIDE11 | created:1700002100 | updated:1700002100 | relates:leads_to>@SLIDE12
 
-## Observatory of the Whole
-From here you can see the lantern at the pole and the workshop below,
-like constellations connected by deliberate lines.
+## SVG engineer
+Defines layout, legibility, and export constraints.
 
-- It **observes** the origin without rewriting it.
-- It **blesses** the workshop by confirming the path was real.
+---
 
-### End of stroll
-Now pick any node and wander.
-The palace will recompose itself around your choices.
+@SLIDE12 | created:1700002110 | updated:1700002110 | relates:leads_to>@SLIDE13
+
+## Orchestrator
+Maintains PLAN.md, AGENTS.md, and LOG.md to avoid drift.
+
+---
+
+@SLIDE13 | created:1700002120 | updated:1700002120 | relates:leads_to>@SLIDE14
+
+## Core worker
+Builds the real artifacts: slides, scripts, assets, or code.
+
+---
+
+@SLIDE14 | created:1700002130 | updated:1700002130 | relates:leads_to>@SLIDE15
+
+## Reviewer
+Finds gaps, risks, and missing tests before shipping.
+
+---
+
+@SLIDE15 | created:1700002140 | updated:1700002140 | relates:leads_to>@SLIDE16
+
+## Delivery packager
+Assembles final outputs and release notes with logo.
+
+---
+
+@SLIDE16 | created:1700002150 | updated:1700002150 | relates:leads_to>@SLIDE17
+
+## Retrospective
+Captures lessons and improvements for the next cycle.
+
+---
+
+@SLIDE17 | created:1700002160 | updated:1700002160 | relates:leads_to>@SLIDE18
+
+## Deliverables folder
+All outputs live in deliverables/cycle-XX.
+
+---
+
+@SLIDE18 | created:1700002170 | updated:1700002170 | relates:leads_to>@SLIDE19
+
+## Logo rule
+Every final deliverable includes the Toot Toot mark.
+
+---
+
+@SLIDE19 | created:1700002180 | updated:1700002180 | relates:leads_to>@SLIDE20
+
+## Human involvement
+Approve guardrails and give feedback after the final step.
+
+---
+
+@SLIDE20 | created:1700002190 | updated:1700002190 | relates:leads_to>@SLIDE21
+
+## Start signal
+Say go, proceed, or you got this to begin.
+
+---
+
+@SLIDE21 | created:1700002200 | updated:1700002200 | relates:leads_to>@SLIDE22
+
+## Example output
+A slideshow and monologue ready to record and publish.
+
+---
+
+@SLIDE22 | created:1700002210 | updated:1700002210 | relates:leads_to>@SLIDE23
+
+## Quality bar
+Cite sources and resolve placeholders before completion.
+
+---
+
+@SLIDE23 | created:1700002220 | updated:1700002220 | relates:leads_to>@SLIDE24
+
+## Back to the foundry
+The press stamps a finished artifact with confidence.
+
+---
+
+@SLIDE24 | created:1700002230 | updated:1700002230 | relates:closes>@SLIDE01
+
+## Closing call to action
+Return to the foundry and invite the viewer to start a cycle.

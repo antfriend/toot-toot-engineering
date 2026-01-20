@@ -15,7 +15,7 @@ We are all mortal engines here.
 
 ### prompt:
 
-    Create an STL file suitable for 3D printing which depicts a lovely bonsai tree, grown in 3 dimensions, in the style of Marioland with surface texturing.
+    Create a 4 minute SVG slideshow of how to get started doing toot toot engineering. This is to be used for creating a youtube video and may include viewers who are not vibe coders. Please also make a 4 minute monologue for me to read while the slideshow is running. If feasable, use toot-toot-toolbox MyMentalPalaceDB.db to store the screenplay or storyboard (remove or overwrite the demo records that are in there). If feasable use time-foundry.svg for the aspect ratio, the opening scene and a closing scene.
 
 ## Human Mortal
 this is the point where you can tell your AI to read this readme and go. Or just say "you got this". Your agent will figure it out and start working.

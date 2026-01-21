@@ -4,7 +4,7 @@
 - cycle-01
 
 ## Current step
-- [ ] Step 1 (cycle-01): Bootstrap interprets the prompt, proposes team composition, and recommends plan adjustments. (`deliverables/cycle-01/BOOTSTRAP.md`)
+- [ ] Step 2 (cycle-01): Storyteller refines the central story or creative thread and defines the art-direction/spec for a “Marioland-style” bonsai suitable for 3D printing. (`deliverables/cycle-01/STORYTELLER.md`)
 
 ## Inputs for this cycle
 - `README.md` (cycle-01 prompt source)
@@ -13,16 +13,16 @@
 - `CHECKLIST.md`
 - `RELEASES.md`
 - `MORTAL-ENGINES-FRAMEWORK-RELEASES.md`
+- `deliverables/cycle-01/BOOTSTRAP.md`
 
 ## Critical path
-- [ ] 1. Bootstrap interprets the prompt, proposes team composition, and recommends plan adjustments. (`deliverables/cycle-01/BOOTSTRAP.md`)
-- [ ] 2. Storyteller refines the central story or creative thread and elevates narrative excellence. (`deliverables/cycle-01/STORYTELLER.md`)
-- [ ] 3. (Optional) SVG engineer documents SVG constraints and coordinates with Storyteller when the prompt centers on SVG output. (`deliverables/cycle-01/SVG_ENGINEER.md`)
-- [ ] 4. Orchestrator bootstraps the repo and sets the plan (cycle-01).
-- [ ] 5. Core worker produces primary solution assets (cycle-01).
-- [ ] 6. Reviewer checks for correctness and gaps (cycle-01).
-- [ ] 7. Delivery packager assembles final assets and export notes (cycle-01).
-- [ ] 8. Retrospective recommends role/plan changes to prevent issues or improve outcomes; Bootstrap offers to implement the recommendations and reset the plan with a new prompt that builds on the latest deliveries (cycle-01).
+- [x] 1. Bootstrap interprets the prompt, proposes team composition, and recommends plan adjustments. (`deliverables/cycle-01/BOOTSTRAP.md`)
+- [ ] 2. Storyteller defines art direction + printable style constraints for the bonsai (silhouette, proportions, “platformer world” cues, minimum feature thickness). (`deliverables/cycle-01/STORYTELLER.md`)
+- [ ] 3. Orchestrator updates the plan for 3D/STL production, adds concrete validation + packaging artifacts, and marks any irrelevant steps as skipped. (`PLAN.md`)
+- [ ] 4. Core worker implements procedural model generation and produces the primary STL + source. (`deliverables/cycle-01/source/`, `deliverables/cycle-01/output/`)
+- [ ] 5. Reviewer validates manifoldness/printability + style match; documents issues/fixes. (`deliverables/cycle-01/REVIEW.md`)
+- [ ] 6. Delivery packager assembles final assets and notes; updates `RELEASES.md`. (`deliverables/cycle-01/DELIVERY.md`)
+- [ ] 7. Retrospective recommends workflow improvements and proposes next-cycle prompt selection. (update `deliverables/cycle-01/BOOTSTRAP.md`)
 
 ## Assets index
 - `AGENTS.md`

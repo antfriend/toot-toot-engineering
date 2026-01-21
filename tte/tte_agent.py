@@ -247,19 +247,47 @@ def main():
         # Collect any assistant text
         assistant_texts: List[str] = []
         tool_calls: List[Tuple[str, str, Dict[str, Any]]] = []
+        output_items: List[Dict[str, Any]] = []
 
         for item in resp.output:
-            itype = item.get("type")
-            if itype == "message":
+            # resp.output items may be dict-like or pydantic models.
+            if hasattr(item, "model_dump"):
+                item_dict = item.model_dump()
+            elif hasattr(item, "dict"):
+                item_dict = item.dict()
+            else:
+                item_dict = item
+            output_items.append(item_dict)
+
+            item_type = getattr(item, "type", None)
+            if item_type is None:
+                item_type = item.get("type")
+
+            if item_type == "message":
                 # message content can be an array of parts
-                content = item.get("content", [])
+                content = getattr(item, "content", None)
+                if content is None:
+                    content = item.get("content", [])
                 for part in content:
-                    if part.get("type") == "output_text":
-                        assistant_texts.append(part.get("text", ""))
-            elif itype == "function_call":
-                tool_calls.append(
-                    (item["call_id"], item["name"], json.loads(item.get("arguments", "{}")))
-                )
+                    part_type = getattr(part, "type", None)
+                    if part_type is None:
+                        part_type = part.get("type")
+                    if part_type == "output_text":
+                        text = getattr(part, "text", None)
+                        if text is None:
+                            text = part.get("text", "")
+                        assistant_texts.append(text)
+            elif item_type == "function_call":
+                call_id = getattr(item, "call_id", None)
+                if call_id is None:
+                    call_id = item.get("call_id")
+                name = getattr(item, "name", None)
+                if name is None:
+                    name = item.get("name")
+                arguments = getattr(item, "arguments", None)
+                if arguments is None:
+                    arguments = item.get("arguments", "{}")
+                tool_calls.append((call_id, name, json.loads(arguments)))
 
         if assistant_texts:
             print("\n".join(t.strip() for t in assistant_texts if t.strip()))
@@ -267,6 +295,9 @@ def main():
         if not tool_calls:
             # No tool calls requested: we assume the model is done.
             return
+
+        # Add assistant outputs (including tool calls) to the conversation state.
+        input_items.extend(output_items)
 
         # Execute tool calls and append outputs as function_call_output items
         for call_id, name, args in tool_calls:

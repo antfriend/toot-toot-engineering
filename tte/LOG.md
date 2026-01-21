@@ -14,3 +14,10 @@
 - Decisions: Recommended chunky rounded forms; constrained surface texturing to low-amplitude trunk texture; suggested optionally shipping smooth + textured STL variants if texturing risks manifoldness.
 - Open questions: Should the generator target a specific size (defaulted to ~90mm tall) and printer type (FDM assumed)?
 - Next step: Orchestrator
+
+- Step: 3 (cycle-01)
+- Role: Orchestrator
+- Summary: Updated PLAN to be STL/3D-specific: added explicit output artifacts (generator source, STL(s), SOLUTION.md, PRINT_NOTES.md), added a concrete 3D validation checklist and a validation output folder, and explicitly marked the SVG engineer step as not applicable for this cycle.
+- Decisions: Folded print notes into the Core worker step; added `output/validation/` as a place for any manifold/scale reports produced during review.
+- Open questions: None.
+- Next step: Core worker

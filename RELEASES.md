@@ -10,15 +10,17 @@ How to update:
 - Status: in progress
 - Prompt source: `README.md`
 - Deliverables root: `deliverables/cycle-01/`
-- Primary artifacts: none yet.
+- Primary artifacts:
+  - `deliverables/cycle-01/output/bonsai-zoetrope.stl` (combined zoetrope; reviewer flagged as non-watertight)
 - Other deliverables:
   - `deliverables/cycle-01/BOOTSTRAP.md`
   - `deliverables/cycle-01/STORYTELLER.md`
-  - `deliverables/cycle-01/assets/` (if any)
-  - `deliverables/cycle-01/PRINT_PDF.md` (if any)
-  - `deliverables/cycle-01/output/` (print-ready PDF, if any)
+  - `deliverables/cycle-01/GEOMETRY_SPEC.md`
+  - `deliverables/cycle-01/SOLUTION.md`
   - `deliverables/cycle-01/REVIEW.md`
   - `deliverables/cycle-01/DELIVERY.md`
+  - `deliverables/cycle-01/bonsai_zoetrope.py`
+  - `deliverables/cycle-01/output/frame-01.stl` … `frame-12.stl`
   - Small Toot Toot Engineering logo included in final deliverables (embedded or companion asset).
 
 ## Templates

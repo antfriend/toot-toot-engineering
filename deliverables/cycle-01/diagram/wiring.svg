@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="700" viewBox="0 0 1100 700">
+  <defs>
+    <style>
+      .title{font:700 24px sans-serif}
+      .h{font:700 16px sans-serif}
+      .t{font:14px sans-serif}
+      .box{fill:#ffffff;stroke:#222;stroke-width:2}
+      .pin{fill:#f7f7f7;stroke:#444;stroke-width:1}
+      .wire{fill:none;stroke-width:4;stroke-linecap:round}
+      .wGND{stroke:#111}
+      .wVCC{stroke:#d32f2f}
+      .wSCK{stroke:#1976d2}
+      .wMOSI{stroke:#388e3c}
+      .wCS{stroke:#7b1fa2}
+      .wDC{stroke:#f57c00}
+      .wRST{stroke:#00796b}
+      .note{font:12px sans-serif;fill:#333}
+    </style>
+  </defs>
+
+  <text x="30" y="40" class="title">QT Py RP2040 → ST7735S (128×160) SPI Wiring (Fritzing-style)</text>
+  <text x="30" y="70" class="note">Edit pin choices as needed; ensure the display breakout is 3.3V-safe. Some boards label VCC as 3V/5V.</text>
+
+  <!-- QT Py RP2040 block -->
+  <rect x="60" y="130" width="420" height="470" rx="18" class="box"/>
+  <text x="80" y="165" class="h">Adafruit QT Py RP2040</text>
+
+  <!-- QT Py pins (subset) -->
+  <g>
+    <rect x="90" y="210" width="170" height="34" rx="6" class="pin"/><text x="102" y="233" class="t">3V</text>
+    <rect x="90" y="255" width="170" height="34" rx="6" class="pin"/><text x="102" y="278" class="t">GND</text>
+    <rect x="90" y="300" width="170" height="34" rx="6" class="pin"/><text x="102" y="323" class="t">SCK</text>
+    <rect x="90" y="345" width="170" height="34" rx="6" class="pin"/><text x="102" y="368" class="t">MOSI</text>
+    <rect x="90" y="390" width="170" height="34" rx="6" class="pin"/><text x="102" y="413" class="t">MISO (unused)</text>
+
+    <rect x="90" y="450" width="170" height="34" rx="6" class="pin"/><text x="102" y="473" class="t">TX (→ CS)</text>
+    <rect x="90" y="495" width="170" height="34" rx="6" class="pin"/><text x="102" y="518" class="t">A3 (→ DC)</text>
+    <rect x="90" y="540" width="170" height="34" rx="6" class="pin"/><text x="102" y="563" class="t">A2 (→ RST)</text>
+  </g>
+
+  <!-- ST7735S block -->
+  <rect x="650" y="130" width="390" height="470" rx="18" class="box"/>
+  <text x="670" y="165" class="h">ST7735S TFT Breakout (128×160)</text>
+  <text x="670" y="190" class="note">Common pin labels: VCC, GND, SCL/SCK, SDA/MOSI, CS, DC/A0, RST/RES, BL/LED</text>
+
+  <!-- Display pins -->
+  <g>
+    <rect x="680" y="210" width="320" height="34" rx="6" class="pin"/><text x="692" y="233" class="t">VCC (3.3V)</text>
+    <rect x="680" y="255" width="320" height="34" rx="6" class="pin"/><text x="692" y="278" class="t">GND</text>
+    <rect x="680" y="300" width="320" height="34" rx="6" class="pin"/><text x="692" y="323" class="t">SCK / SCL</text>
+    <rect x="680" y="345" width="320" height="34" rx="6" class="pin"/><text x="692" y="368" class="t">MOSI / SDA / DIN</text>
+    <rect x="680" y="390" width="320" height="34" rx="6" class="pin"/><text x="692" y="413" class="t">CS</text>
+    <rect x="680" y="435" width="320" height="34" rx="6" class="pin"/><text x="692" y="458" class="t">DC / A0</text>
+    <rect x="680" y="480" width="320" height="34" rx="6" class="pin"/><text x="692" y="503" class="t">RST / RES</text>
+    <rect x="680" y="525" width="320" height="34" rx="6" class="pin"/><text x="692" y="548" class="t">BL / LED (optional)</text>
+  </g>
+
+  <!-- Wires -->
+  <!-- 3V to VCC -->
+  <path class="wire wVCC" d="M260 227 C 420 227, 520 227, 680 227" />
+  <text x="470" y="215" class="note">3.3V</text>
+
+  <!-- GND to GND -->
+  <path class="wire wGND" d="M260 272 C 420 272, 520 272, 680 272" />
+  <text x="470" y="260" class="note">GND</text>
+
+  <!-- SCK to SCK -->
+  <path class="wire wSCK" d="M260 317 C 430 317, 520 317, 680 317" />
+  <text x="470" y="305" class="note">SCK</text>
+
+  <!-- MOSI to MOSI -->
+  <path class="wire wMOSI" d="M260 362 C 430 362, 520 362, 680 362" />
+  <text x="470" y="350" class="note">MOSI</text>
+
+  <!-- TX to CS -->
+  <path class="wire wCS" d="M260 467 C 430 467, 520 407, 680 407" />
+  <text x="470" y="432" class="note">CS (any digital pin)</text>
+
+  <!-- A3 to DC -->
+  <path class="wire wDC" d="M260 512 C 430 512, 520 452, 680 452" />
+  <text x="470" y="477" class="note">DC/A0</text>
+
+  <!-- A2 to RST -->
+  <path class="wire wRST" d="M260 557 C 430 557, 520 497, 680 497" />
+  <text x="470" y="522" class="note">RST/RES</text>
+
+  <!-- Optional backlight note -->
+  <text x="650" y="610" class="note">Optional: BL/LED → 3.3V for always-on backlight, or to a PWM pin via transistor if the breakout needs more current.</text>
+
+  <!-- Legend -->
+  <rect x="60" y="620" width="980" height="60" rx="12" class="box"/>
+  <text x="80" y="655" class="t">Legend:</text>
+  <line x1="150" y1="650" x2="210" y2="650" class="wire wVCC"/><text x="220" y="655" class="t">VCC</text>
+  <line x1="300" y1="650" x2="360" y2="650" class="wire wGND"/><text x="370" y="655" class="t">GND</text>
+  <line x1="440" y1="650" x2="500" y2="650" class="wire wSCK"/><text x="510" y="655" class="t">SCK</text>
+  <line x1="580" y1="650" x2="640" y2="650" class="wire wMOSI"/><text x="650" y="655" class="t">MOSI</text>
+  <line x1="740" y1="650" x2="800" y2="650" class="wire wCS"/><text x="810" y="655" class="t">CS</text>
+  <line x1="860" y1="650" x2="920" y2="650" class="wire wDC"/><text x="930" y="655" class="t">DC</text>
+</svg>

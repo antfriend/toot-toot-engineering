@@ -1,0 +1,36 @@
+{
+  "units": "mm",
+  "height_mm": 100,
+  "pot": {
+    "outer_radius_mm": 28,
+    "wall_thickness_mm": 2.4,
+    "height_mm": 22,
+    "base_thickness_mm": 2.8,
+    "lip_height_mm": 2.0,
+    "fillet_radius_mm": 1.6
+  },
+  "trunk": {
+    "base_radius_mm": 8.5,
+    "top_radius_mm": 3.8,
+    "height_mm": 55,
+    "curve_amount": 0.55,
+    "root_flare": 0.35
+  },
+  "canopy": {
+    "radius_mm": 26,
+    "lobes": 4,
+    "lobe_offset_mm": 9,
+    "vertical_offset_mm": 18
+  },
+  "style": {
+    "marioland_chunky": true,
+    "texture_depth_mm": 0.45
+  },
+  "mesh": {
+    "segments": 64,
+    "seed": 1337
+  },
+  "output": {
+    "stl_name": "bonsai_marioland.stl"
+  }
+}

@@ -9,7 +9,7 @@ We need a *printable* 3D model (STL) of a “lovely bonsai tree” with a playfu
 Because this repo is plain-text-first and we can generate assets programmatically, the most reliable path is:
 - author a parametric mesh generator (Python) that creates a stylized trunk + canopy + pot,
 - export to STL,
-- validate manifoldness and printability basics (watertight, normals, scale, minimum thickness),
+- validate basic manifoldness/printability,
 - package with notes.
 
 ## Definition of done (cycle-01)
@@ -17,7 +17,7 @@ Because this repo is plain-text-first and we can generate assets programmaticall
 - The STL is watertight/manifold (or best-effort with validation notes).
 - Model is oriented for printing (flat base), with sane scale (e.g., 80–120 mm tall), and no razor-thin parts.
 - Delivery notes explain how it was generated and how to tweak parameters.
-- Includes a small Toot-Toot Engineering logo as a companion asset in the cycle folder (already available in `tte/toot-toot-logo.*`; delivery step will copy into cycle output).
+- Includes a small Toot-Toot Engineering logo as a companion asset in the cycle folder.
 
 ## Proposed team (roles)
 Required:
@@ -30,20 +30,38 @@ Optional / add if needed:
 - **Image producer**: render preview images (PNG) from STL for quick review.
 
 ## Recommended plan adjustments
-1. Add an explicit **“Validation + preview render”** sub-step before review (or as part of review) using `trimesh` (already typical in Python ecosystems) if available; otherwise implement a simple sanity report.
+1. Add an explicit “Validation + preview render” sub-step before review (or as part of review) using `trimesh` if available; otherwise implement a simple sanity report.
 2. Ensure we produce not only an STL but also:
    - a parameter file (`PARAMS.json`) and
    - a short build script (`generate_bonsai.py`) in the cycle folder for reproducibility.
 3. Constrain style translation (“Marioland”) into concrete geometry choices:
    - chunky silhouette, exaggerated roots, rounded blobs for foliage,
-   - shallow noise/scale texture on trunk and canopy,
+   - shallow texture on trunk and canopy,
    - avoid micro-detail that won’t print.
 
 ## Open questions / assumptions
-- “Marioland” is interpreted as *playful, rounded, high-contrast forms*; we will avoid copying any trademarked characters/logos.
-- Printing assumptions: FDM-friendly (supports minimized); we will design a single-piece tree + pot with gentle overhangs.
+- “Marioland” is interpreted as *playful, rounded, high-contrast forms*; we avoid copying any trademarked characters/logos.
+- Printing assumptions: FDM-friendly (supports minimized); we design a single-piece tree + pot with gentle overhangs.
 
-## Next-cycle prompt suggestions (choose 1 after cycle-01 completes)
-1. “Make three variant bonsai STLs (small/medium/large canopy) and arrange them on a single printable build plate STL.”
-2. “Create a matching Marioland-style garden base (rocks + path) that the bonsai pot slots into, with keyed connectors.”
-3. “Generate a ‘season set’ of four bonsai canopies (spring/summer/fall/winter) as swappable parts with a twist-lock joint.”
+---
+
+## Retrospective (end of cycle-01)
+
+### What went well
+- Delivered a reproducible pipeline: `PARAMS.json` + generator script + generated STL.
+- The model meets the prompt at a “toy-like game prop” level and includes shallow texture.
+- Orientation/scale are sane for a small desk print (~99 mm tall).
+
+### What didn’t / risks
+- Geometry is assembled via intersecting primitives (concatenated triangle soups). This can introduce internal faces and non-manifold intersections. Many slicers repair this, but it’s not guaranteed.
+- No preview renders were produced in-repo, so reviewers must load the STL in a slicer/mesh viewer.
+
+### Recommended plan/role improvements for next cycle
+1. Add a dedicated **Mesh validation & repair** step using `trimesh` (if available) and/or a Blender/MeshLab export pass to perform boolean union and ensure manifoldness.
+2. Add an **Image producer** step to render 2–3 orthographic PNG previews for quick review.
+3. Consider binary STL export (smaller and more conventional) once validation is in place.
+
+## Next-cycle prompt suggestions (choose 1)
+1. “Repair/boolean-union the generated bonsai into a strictly manifold mesh, export as binary STL, and add 3 preview renders.”
+2. “Generate three variant bonsai STLs (small/medium/large canopy) and arrange them on a single printable build plate STL.”
+3. “Create a ‘season set’ of four swappable canopies (spring/summer/fall/winter) with a simple twist-lock joint, plus a storage base.”

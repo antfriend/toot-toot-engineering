@@ -239,7 +239,7 @@ def main():
         {"role": "user", "content": f"Start in workspace: {WORKSPACE.name}. The README file is {readme_name}."},
     ]
 
-    max_steps = 25
+    max_steps = 100
     for step in range(1, max_steps + 1):
         resp = client.responses.create(
             model=model,

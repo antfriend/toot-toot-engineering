@@ -1,19 +1,23 @@
 # Toot Toot Engineering (Runner)
 
-This repo includes a local agent runner that executes the Toot Toot Engineering workflow.
+This repo includes a local agent runner for the Toot Toot Engineering workflow.
 
 ## Quick start
-1. Install dependencies (at least `openai` for Python).
+1. Install dependencies.
    - `pip install -r requirements.txt`
    - or `pip install openai`
 2. Set your API key:
    - `export OPENAI_API_KEY="..."` (macOS/Linux)
    - `setx OPENAI_API_KEY "..."` (Windows PowerShell)
 3. Run the agent:
-   - `python tte_agent.py`
+   - `python tte_agent.py` (or `python3 tte_agent.py`)
+4. Run monitor + agent together (monitor logs to `%TEMP%\tte_monitor.log` on Windows or `/tmp/tte_monitor.log` on macOS/Linux):
+   - `./run_tte.sh` (macOS/Linux)
+   - `run_tte.bat` (Windows cmd)
+   - `.\run_tte.ps1` (Windows PowerShell)
 
 ## Notes
-- The workflow instructions live in `tte/README.md`.
+- The workflow instructions live in `README.md` and `AGENTS.md`.
 - The agent reads and operates inside the repo workspace.
 
 ## Troubleshooting

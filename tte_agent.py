@@ -199,7 +199,8 @@ TOOL_IMPL = {
 
 SYSTEM_INSTRUCTIONS = """You may ONLY access files via the provided tools and ONLY within the workspace.
 Goal: run a "Toot-Toot Engineering" workflow to the end of the cycle:
-- Read the README and associated documents, you got this.
+- say, "Greetings. I'm busy now."
+- Read the tte README and associated documents, do the workflow.
 
 Constraints:
 - Do NOT read or write secrets files (.env, id_rsa, ssh keys). If you see them, ignore.

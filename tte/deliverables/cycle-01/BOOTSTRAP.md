@@ -53,9 +53,22 @@ This trades perfect analytic surfaces for robustness and printability.
 - Delivery packager includes a small TTE logo as a companion asset in the delivery folder (since embedding a logo in a mesh is optional and can complicate geometry)
 
 ## Next-cycle prompt suggestions (grounded in this cycle)
+(Choose 1 for cycle-02)
 1. “Create **three variant** Marioland bonsai STLs (small/medium/large canopy styles) from the same generator, with a parameter guide.”
 2. “Generate a **print-ready diorama base** (grass + path + coins vibe) that the bonsai pot can snap into, with toleranced connectors.”
 3. “Optimize the bonsai STL for **supportless FDM printing**, including overhang constraints and a built-in brim-friendly base.”
 
-## Retrospective placeholder
-At the end of the cycle, update this BOOTSTRAP with what worked/didn’t and what to change next time.
+## Retrospective (end of cycle-01)
+### What worked
+- Voxel + marching-cubes approach produced a robust, reproducible, watertight STL without fragile boolean operations.
+- Marioland-inspired shape language came through via chunky forms (pot/roots/trunk) and readable canopy “puffs” with dimples.
+- Deterministic seed-based generation made regeneration and iteration straightforward.
+
+### What didn’t / risks
+- `trimesh` may report multiple components despite watertightness; this can be confusing and merits a quick slicer import check.
+- Canopy cavities/dimples are the most likely place for thin local walls if the model is scaled down.
+
+### Improvements for next cycle
+- Add an automated “island” report (e.g., number of connected components + min component volume) to the generator output.
+- Optionally export a second STL with “reduced dimples” for ultra-supportless printing.
+- Consider adding a small, embossed pot medallion detail (kept thick) for extra Marioland charm.

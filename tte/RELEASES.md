@@ -10,16 +10,17 @@ How to update:
 - Status: in progress
 - Prompt source: `README.md`
 - Deliverables root: `deliverables/cycle-01/`
-- Primary artifacts: none yet.
+- Primary artifacts:
+  - `deliverables/cycle-01/output/bonsai_marioland.stl`
 - Other deliverables:
   - `deliverables/cycle-01/BOOTSTRAP.md`
   - `deliverables/cycle-01/STORYTELLER.md`
-  - `deliverables/cycle-01/assets/` (if any)
-  - `deliverables/cycle-01/PRINT_PDF.md` (if any)
-  - `deliverables/cycle-01/output/` (print-ready PDF, if any)
+  - `deliverables/cycle-01/SOLUTION.md`
+  - `deliverables/cycle-01/src/generate_bonsai.py`
+  - `deliverables/cycle-01/src/requirements.txt`
   - `deliverables/cycle-01/REVIEW.md`
   - `deliverables/cycle-01/DELIVERY.md`
-  - Small Toot Toot Engineering logo included in final deliverables (embedded or companion asset).
+  - `deliverables/cycle-01/toot-toot-logo.svg`
 
 ## Templates
 ### Cycle XX (template)

@@ -21,3 +21,17 @@
 - Decisions: Folded print notes into the Core worker step; added `output/validation/` as a place for any manifold/scale reports produced during review.
 - Open questions: None.
 - Next step: Core worker
+
+- Step: 4 (cycle-01)
+- Role: Core worker
+- Summary: Implemented a minimal-dependency procedural bonsai generator in Python and generated the initial STL output (pot + rim + S-curve trunk + thick branches + puffy canopy lobes). Added regeneration instructions and print notes.
+- Decisions: Avoided external mesh libs (e.g., trimesh) and wrote a binary STL exporter directly; accepted overlapping solids without boolean union as a first-pass deliverable, documented as a known caveat.
+- Open questions: Do we want to add true bark/leaf texturing (risking non-manifold without robust boolean/mesh tooling), or keep the smooth variant only? Should we add CLI parameters for size/shape variants now or defer to next cycle?
+- Next step: Reviewer
+
+- Step: 5 (cycle-01)
+- Role: Reviewer
+- Summary: Verified STL structural integrity (binary STL; triangle count matches file size), confirmed generator can regenerate outputs, and documented manifold/watertightness risk due to intentional overlapping solids without boolean union. Created a lightweight validation note under `output/validation/`.
+- Decisions: Treated lack of boolean union as an acceptable first-pass for FDM with repair guidance; noted that “surface texturing” is not implemented in geometry.
+- Open questions: Should we require a repaired/watertight STL as part of delivery (e.g., via 3D Builder repair), or keep the current approach and document repair as optional?
+- Next step: Delivery packager

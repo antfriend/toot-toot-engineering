@@ -1,0 +1,8 @@
+STL header/size sanity check
+
+File: deliverables/cycle-01/output/bonsai_marioland_smooth.stl
+Type: binary STL
+Triangle count (from header): 11640
+File size (bytes): 582084
+Expected size formula: 84 + 50*N = 84 + 50*11640 = 582084
+Status: PASS

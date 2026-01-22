@@ -4,7 +4,7 @@
 - cycle-01
 
 ## Current step
-- [ ] Step 4 (cycle-01): Core worker implements procedural model generation and produces the primary STL + source + print notes. (`deliverables/cycle-01/source/`, `deliverables/cycle-01/output/`)
+- [ ] Step 6 (cycle-01): Delivery packager assembles final assets and notes; updates `RELEASES.md`. (`deliverables/cycle-01/DELIVERY.md`)
 
 ## Inputs for this cycle
 - `README.md` (cycle-01 prompt source)
@@ -20,13 +20,13 @@
 - [x] 1. Bootstrap interprets the prompt, proposes team composition, and recommends plan adjustments. (`deliverables/cycle-01/BOOTSTRAP.md`)
 - [x] 2. Storyteller defines art direction + printable style constraints for the bonsai (silhouette, proportions, “platformer world” cues, minimum feature thickness). (`deliverables/cycle-01/STORYTELLER.md`)
 - [x] 3. Orchestrator updates the plan for 3D/STL production, adds concrete validation + packaging artifacts, and marks any irrelevant steps as skipped. (`PLAN.md`)
-- [ ] 4. Core worker implements procedural model generation and produces the primary STL + source + print notes.
+- [x] 4. Core worker implements procedural model generation and produces the primary STL + source + print notes.
   - Outputs:
     - `deliverables/cycle-01/source/` (generator code)
     - `deliverables/cycle-01/output/` (STL(s))
     - `deliverables/cycle-01/SOLUTION.md` (how to run/regenerate; parameters)
     - `deliverables/cycle-01/PRINT_NOTES.md` (recommended print settings)
-- [ ] 5. Reviewer validates manifoldness/printability + style match; documents issues/fixes.
+- [x] 5. Reviewer validates manifoldness/printability + style match; documents issues/fixes.
   - Outputs:
     - `deliverables/cycle-01/REVIEW.md`
     - `deliverables/cycle-01/output/validation/` (reports/screenshots if available)

@@ -11,9 +11,13 @@ from openai import OpenAI
 # Sandbox + file helpers
 # ---------------------------
 
-WORKSPACE = Path.cwd().resolve()
+WORKSPACE = Path(__file__).resolve().parent
 TTE_DIR = WORKSPACE / "tte"
-README_CANDIDATES = ["README.md", "readme.md", "Readme.md"]
+README_CANDIDATES = [
+    "tte/README.md",
+    "tte/readme.md",
+    "tte/Readme.md",
+]
 
 
 def _safe_path(rel_path: str) -> Path:
@@ -227,7 +231,7 @@ def main():
 
     readme_name = find_readme()
     if not readme_name:
-        print("No README.md found in this folder. Create one, or rename to README.md.", file=sys.stderr)
+        print("No README.md found in tte/. Create one, or rename to README.md.", file=sys.stderr)
         sys.exit(1)
 
     # Conversation state: we’ll keep feeding prior tool outputs back to the model

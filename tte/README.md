@@ -15,7 +15,7 @@ We are all mortal engines here.
 
 ### prompt:
 
-    Create an STL file suitable for 3D printing which depicts a lovely bonsai tree, grown in 3 dimensions, in the style of Marioland with surface texturing.
+    Create an STL file suitable for 3D printing which depicts a lovely bonsai tree, grown in 3 dimensions with deep surface texturing in the style of Marioland.
 
 ## Human Mortal
 this is the point where you can tell your AI to read this readme and go. Or just say "you got this". Your agent will figure it out and start working.

@@ -35,3 +35,10 @@
 - Decisions: Treated lack of boolean union as an acceptable first-pass for FDM with repair guidance; noted that “surface texturing” is not implemented in geometry.
 - Open questions: Should we require a repaired/watertight STL as part of delivery (e.g., via 3D Builder repair), or keep the current approach and document repair as optional?
 - Next step: Delivery packager
+
+- Step: 6 (cycle-01)
+- Role: Delivery packager
+- Summary: Assembled the cycle-01 package documentation (`DELIVERY.md`) and updated `RELEASES.md` to list the primary STL and generator source alongside supporting notes.
+- Decisions: Treated logo inclusion as a companion asset (repo root SVG/PNG) rather than embedding it into the geometry; documented optional repair workflows for watertightness.
+- Open questions: Should the next cycle add a “repaired/watertight” STL variant as an explicit deliverable? Should we implement geometric surface texturing (bark/noise) while preserving minimum thickness?
+- Next step: Retrospective

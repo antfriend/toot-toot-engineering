@@ -4,7 +4,7 @@
 - cycle-01
 
 ## Current step
-- [ ] Step 6 (cycle-01): Delivery packager assembles final assets and notes; updates `RELEASES.md`. (`deliverables/cycle-01/DELIVERY.md`)
+- [ ] Step 7 (cycle-01): Retrospective recommends workflow improvements and proposes next-cycle prompt selection. (update `deliverables/cycle-01/BOOTSTRAP.md`)
 
 ## Inputs for this cycle
 - `README.md` (cycle-01 prompt source)
@@ -30,7 +30,7 @@
   - Outputs:
     - `deliverables/cycle-01/REVIEW.md`
     - `deliverables/cycle-01/output/validation/` (reports/screenshots if available)
-- [ ] 6. Delivery packager assembles final assets and notes; updates `RELEASES.md`.
+- [x] 6. Delivery packager assembles final assets and notes; updates `RELEASES.md`.
   - Outputs:
     - `deliverables/cycle-01/DELIVERY.md`
     - update `RELEASES.md`

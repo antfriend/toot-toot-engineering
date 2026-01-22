@@ -12,11 +12,8 @@ from openai import OpenAI
 # ---------------------------
 
 WORKSPACE = Path(__file__).resolve().parent
-TTE_DIR = WORKSPACE / "tte"
 README_CANDIDATES = [
-    "tte/README.md",
-    "tte/readme.md",
-    "tte/Readme.md",
+    "README.md",
 ]
 
 
@@ -200,7 +197,7 @@ TOOL_IMPL = {
 SYSTEM_INSTRUCTIONS = """You may ONLY access files via the provided tools and ONLY within the workspace.
 Goal: run a "Toot-Toot Engineering" workflow to the end of the cycle:
 - say, "Greetings. I'm busy now."
-- Read the tte README and associated documents, do the workflow.
+- Read the README and associated documents, do the workflow.
 
 Constraints:
 - Do NOT read or write secrets files (.env, id_rsa, ssh keys). If you see them, ignore.
@@ -231,12 +228,9 @@ def main():
     model = os.environ.get("OPENAI_MODEL", "gpt-5.2")
     client = OpenAI()
 
-    # Make sure tte/ exists
-    TTE_DIR.mkdir(exist_ok=True)
-
     readme_name = find_readme()
     if not readme_name:
-        print("No README.md found in tte/. Create one, or rename to README.md.", file=sys.stderr)
+        print("No README.md found, Toot!.", file=sys.stderr)
         sys.exit(1)
 
     # Conversation state: we’ll keep feeding prior tool outputs back to the model
@@ -316,7 +310,7 @@ def main():
             input_items.append(
                 {
                     "role": "user",
-                    "content": "Continue to the next step. Use tools when needed; if finished, say EXCELENT!.",
+                    "content": "Continue the workflow. Use tools when needed; if finished, say EXCELENT!",
                 }
             )
             continue

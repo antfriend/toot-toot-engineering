@@ -4,7 +4,7 @@
 - cycle-01
 
 ## Current step
-- [ ] Step 2 (cycle-01): Storyteller refines the central story or creative thread and elevates narrative excellence. (`deliverables/cycle-01/STORYTELLER.md`)
+- [ ] Step 4 (cycle-01): Core worker produces primary solution assets: STL + generator script + notes (cycle-01). (`deliverables/cycle-01/output/bonsai_marioland.stl`, `deliverables/cycle-01/src/`, `deliverables/cycle-01/SOLUTION.md`)
 
 ## Inputs for this cycle
 - `README.md` (cycle-01 prompt source)
@@ -14,11 +14,31 @@
 - `RELEASES.md`
 - `MORTAL-ENGINES-FRAMEWORK-RELEASES.md`
 - `deliverables/cycle-01/BOOTSTRAP.md`
+- `deliverables/cycle-01/STORYTELLER.md`
+
+## Orchestrator notes (cycle-01)
+Goal: produce a deterministic, single-piece, 3D-printable STL depicting a lovely bonsai with deep, Mario-land-inspired surface language.
+
+### Technical approach (deterministic + robust)
+- Generate an implicit/voxel density field for: pot + soil mound + root flare + twisting trunk + canopy “cloud puffs”.
+- Convert to watertight mesh via marching cubes.
+- Export as STL.
+
+### Printability constraints (default FDM-friendly)
+- Single mesh, manifold, watertight.
+- No separate floating islands.
+- Minimum feature thickness: target >= 1.2–1.6 mm.
+- Avoid extreme overhangs; prefer chunky silhouette.
+- Default size: ~80 mm tall; scaleable.
+
+### Validation (automatable)
+- Load STL and check manifold/watertight (via `trimesh`).
+- Report bounds, estimated volume, and simple self-intersection/manifold checks.
 
 ## Critical path
 - [x] 1. Bootstrap interprets the prompt, proposes team composition, and recommends plan adjustments. (`deliverables/cycle-01/BOOTSTRAP.md`)
-- [ ] 2. Storyteller refines the central story or creative thread and elevates narrative excellence. (`deliverables/cycle-01/STORYTELLER.md`)
-- [ ] 3. Orchestrator bootstraps/updates the plan for deterministic STL generation + validation (cycle-01). (Updates: `PLAN.md`, `LOG.md`)
+- [x] 2. Storyteller refines the central story or creative thread and elevates narrative excellence. (`deliverables/cycle-01/STORYTELLER.md`)
+- [x] 3. Orchestrator bootstraps/updates the plan for deterministic STL generation + validation (cycle-01). (Updates: `PLAN.md`, `LOG.md`)
 - [ ] 4. Core worker produces primary solution assets: STL + generator script + notes (cycle-01). (`deliverables/cycle-01/output/bonsai_marioland.stl`, `deliverables/cycle-01/src/`, `deliverables/cycle-01/SOLUTION.md`)
 - [ ] 5. Reviewer checks for correctness and gaps; validates STL manifoldness and printability notes (cycle-01). (`deliverables/cycle-01/REVIEW.md`)
 - [ ] 6. Delivery packager assembles final assets and export notes; includes small TTE logo as companion asset; updates releases (cycle-01). (`deliverables/cycle-01/DELIVERY.md`, `RELEASES.md`)

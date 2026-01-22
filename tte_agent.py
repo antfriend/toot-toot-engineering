@@ -200,7 +200,7 @@ TOOL_IMPL = {
 SYSTEM_INSTRUCTIONS = """You are a local coding/workflow agent running in a Windows 11 workspace.
 You may ONLY access files via the provided tools and ONLY within the workspace.
 Goal: run a "Toot-Toot Engineering" workflow to the end of the cycle:
-- Read the README and associated documents and begin.
+- Read the README and associated documents, you got this.
 
 Constraints:
 - Do NOT read or write secrets files (.env, id_rsa, ssh keys). If you see them, ignore.

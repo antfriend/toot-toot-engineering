@@ -197,15 +197,14 @@ TOOL_IMPL = {
 # TTE agent loop
 # ---------------------------
 
-SYSTEM_INSTRUCTIONS = """You are a local coding/workflow agent running in a Windows 11 workspace.
-You may ONLY access files via the provided tools and ONLY within the workspace.
+SYSTEM_INSTRUCTIONS = """You may ONLY access files via the provided tools and ONLY within the workspace.
 Goal: run a "Toot-Toot Engineering" workflow to the end of the cycle:
-- Read the README and associated documents and begin.
+- Read the README and associated documents, you got this.
 
 Constraints:
 - Do NOT read or write secrets files (.env, id_rsa, ssh keys). If you see them, ignore.
 - Prefer small, safe changes.
-When finished, output a concise summary and include the word DONE.
+When finished, output a concise summary and include the word EXCELENT!.
 """
 
 
@@ -240,7 +239,7 @@ def main():
         {"role": "user", "content": f"Start in workspace: {WORKSPACE.name}. The README file is {readme_name}."},
     ]
 
-    max_steps = 25
+    max_steps = 100
     for step in range(1, max_steps + 1):
         resp = client.responses.create(
             model=model,
@@ -296,12 +295,21 @@ def main():
         if assistant_texts:
             print("\n".join(t.strip() for t in assistant_texts if t.strip()))
 
-        if not tool_calls:
-            # No tool calls requested: we assume the model is done.
-            return
-
         # Add assistant outputs (including tool calls) to the conversation state.
         input_items.extend(output_items)
+
+        if not tool_calls:
+            # No tool calls requested: continue unless the model signaled completion.
+            combined_text = "\n".join(assistant_texts)
+            if any(line.strip() == "EXCELENT!" for line in combined_text.splitlines()):
+                return
+            input_items.append(
+                {
+                    "role": "user",
+                    "content": "Continue to the next step. Use tools when needed; if finished, say EXCELENT!.",
+                }
+            )
+            continue
 
         # Execute tool calls and append outputs as function_call_output items
         for call_id, name, args in tool_calls:

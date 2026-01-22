@@ -15,7 +15,7 @@ We are all mortal engines here.
 
 ### prompt:
 
-    Create an STL file suitable for 3D printing which depicts a lovely bonsai tree, grown in 3 dimensions,  with deep surface texturing, in the style of Marioland. Create a 3D zoetrope platform of them in progressive stages of growth.
+    Create a 3D zoetrope STL file suitable for 3D printing which depicts a lovely bonsai tree, grown in 3 dimensions in different stages of growth, from a seed to a sprout, and progressively to a tree, with deep surface texturing and in the style of Marioland. Design the lower parts of the tree to branch and support the upper parts, considering 3D printability. Also apply light brick or mosaic texturing to the base.
 
 
 ## Who This Is For

@@ -6,8 +6,8 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import font as tkfont
 
-PLAN_PATH = Path("PLAN.md")
-LOG_PATH = Path("LOG.md")
+PLAN_PATH = Path("tte/PLAN.md")
+LOG_PATH = Path("tte/LOG.md")
 DB_PATH = Path("tte/MyMentalPalaceDB.md")
 
 REFRESH_MS = 1500

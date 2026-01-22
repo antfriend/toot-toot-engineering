@@ -216,6 +216,11 @@ def find_readme() -> Optional[str]:
     return None
 
 
+def needs_user_choice(text: str) -> bool:
+    lowered = text.lower()
+    return "next cycle" in lowered and "prompt" in lowered and ("choose" in lowered or "select" in lowered)
+
+
 def main():
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
@@ -294,6 +299,10 @@ def main():
 
         if assistant_texts:
             print("\n".join(t.strip() for t in assistant_texts if t.strip()))
+
+        if needs_user_choice("\n".join(assistant_texts)):
+            print("\nUser choice required: select a next-cycle prompt and rerun the agent.", file=sys.stderr)
+            return
 
         # Add assistant outputs (including tool calls) to the conversation state.
         input_items.extend(output_items)

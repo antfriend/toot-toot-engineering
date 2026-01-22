@@ -15,7 +15,7 @@ We are all mortal engines here.
 
 ### prompt:
 
-    Create an STL file suitable for 3D printing which depicts a lovely bonsai tree, grown in 3 dimensions,  with deep surface texturing, in the style of Marioland. Create a 3D zoetrope platform of them in progressive stages of growth.
+    Please make a build guide with a fritzing diagram and steps to run a micro/circuit python hello world for an Adafruit QT Py RP2040 and a ST7735S 128 x 160.
 
 
 ## Who This Is For

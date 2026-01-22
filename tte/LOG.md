@@ -21,3 +21,17 @@
 - Decisions: Default to FDM-friendly constraints (>=1.2–1.6mm features; ~80mm height) and use `trimesh` for basic manifold/watertight checks.
 - Open questions: Exact library choices for marching cubes (e.g., `skimage` vs `PyMCubes`) to be decided by Core worker based on available deps.
 - Next step: Core worker
+
+- Step: 4 (cycle-01)
+- Role: Core worker
+- Summary: Implemented deterministic voxel + marching-cubes generator and produced the primary deliverables: `deliverables/cycle-01/output/bonsai_marioland.stl`, generator script under `deliverables/cycle-01/src/`, and `deliverables/cycle-01/SOLUTION.md` with regeneration + print notes.
+- Decisions: Used scikit-image marching cubes on a padded voxel volume to improve watertightness; removed stray islands by keeping the largest connected component; added stylized bark grooves and canopy dimples for “Marioland” surface language.
+- Open questions: Trimesh reports watertightness but also multiple components; reviewer should confirm in a slicer and decide if further fusion is needed.
+- Next step: Reviewer
+
+- Step: 5 (cycle-01)
+- Role: Reviewer
+- Summary: Verified prompt coverage and performed basic mesh checks; `trimesh` reports the exported STL as watertight. Documented printability notes and a small risk around tiny stray components requiring slicer confirmation.
+- Decisions: Accept as meeting the prompt and proceed to packaging; treat trimesh component-count oddities as likely benign unless slicer shows islands.
+- Open questions: None blocking; optional: add a slicer screenshot or island-check report in future cycles.
+- Next step: Delivery packager

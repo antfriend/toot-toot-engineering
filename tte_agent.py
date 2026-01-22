@@ -197,8 +197,7 @@ TOOL_IMPL = {
 # TTE agent loop
 # ---------------------------
 
-SYSTEM_INSTRUCTIONS = """You are a local coding/workflow agent running in a Windows 11 workspace.
-You may ONLY access files via the provided tools and ONLY within the workspace.
+SYSTEM_INSTRUCTIONS = """You may ONLY access files via the provided tools and ONLY within the workspace.
 Goal: run a "Toot-Toot Engineering" workflow to the end of the cycle:
 - Read the README and associated documents, you got this.
 

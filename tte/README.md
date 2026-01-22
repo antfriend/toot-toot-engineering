@@ -17,8 +17,6 @@ We are all mortal engines here.
 
     Create an STL file suitable for 3D printing which depicts a lovely bonsai tree, grown in 3 dimensions, in the style of Marioland with surface texturing.
 
-## Human Mortal
-this is the point where you can tell your AI to read this readme and go. Or just say "you got this". Your agent will figure it out and start working.
 
 ## Who This Is For
 
@@ -34,7 +32,7 @@ It is especially useful for:
 Across all of these groups, TTE helps externalize structure and intent so both humans and AI systems can work more effectively together.
 
 ## What this is
-Like a factory that makes a factory to produce the desired product. We have an excellent team of agents performing the work with logging and ['monitoring'](README.md#human-monitor). The factory tools and shared assets live in this repo, and final products land in the local `deliverables/` directories.
+Like a factory that makes a factory to produce the desired product. We have an excellent team of agents performing the work. The factory tools and shared assets live in this repo, and final products land in  `deliverables/` directories.
 This is a roles-based process engine for turning creative prompts into finished deliverables, with clear step handoffs and end-of-cycle self-learning through a reflective retrospective to improve the team and the process with every iteration.
 
 This can make an AI agent system (like yours, human!) work better by externalizing structure, intent, and sequencing that would otherwise live implicitly inside prompts, code, or runtime state.
@@ -71,7 +69,7 @@ Toot Toot Engineering moves improvement outside all of that.
 - Critical-path plan in `PLAN.md` with step-by-step role handoff.
 - Cycle-based deliverables under `deliverables/cycle-XX/`.
 - Required logging in `LOG.md` for every step.
-- (Optional) see ['Human Monitor'](README.md#human-monitor) to livestream the progress
+
 - Built-in review and delivery packaging steps.
 - Human feedback captured after the final step.
 - Cycle releases in `RELEASES.md`.
@@ -94,19 +92,13 @@ Assets are generated in a single git repo (like this one!) in an iterative proce
 
 The default starting agent role is the Bootstrap. They interpret the prompt and propose team composition, objectives, and plan adjustments. The orchestrator then builds the initial plan, [`PLAN.md`](PLAN.md), [`AGENTS.md`](AGENTS.md), role definitions, rules, and logging assets, and can optimize the critical path. Upon completion of that, they update the plan file to show the first step as complete and move the placeholder to start with the next agent role, for the next step. The plan file serves as an easy to read table of contents of what is to come and what has been done so far.
 
-```
-The user, that's you human, repo forker, can say "go", "proceed", "next", "I believe in you" or any similar AFFIRMATIVE to start the cycle. Agents proceed automatically between steps; human feedback is requested only after the final step or if a blocking issue occurs. If you ask for a mid-cycle pause or review, agents should comply.
-```  
-
 Different roles review each others work, make choices, revise the plan, and produce the assets used to move to the next step.
 
 In this way the production value is enriched. Supporting details and source assets are generated for later steps as needed.
 
 During each step, the human co-producer only clicks guardrail approval pop-ups when required by the environment, and commits can be batched at the end of the cycle if desired.   
 
-The plan is updated and revised as it progresses. The human co-producer can watch progress in the [`PLAN.md`](PLAN.md) file and the [`LOG.md`](LOG.md). Humans can refer to the [Human Monitor](#human-monitor) section for running a live monitor.  Iteratively, step-by-step, the requested product is produced, reliably, repeatably, excellently. Deliverables land in `deliverables/cycle-XX/`.
-
-In short, Mortal Engines takes a prompt, makes a plan, reviews the plan, updates and follows the plan, in a grand sequence of iterations until the final output is produced with EXCELLENCE!
+The plan is updated and revised as it progresses. The human co-producer can watch progress in the [`PLAN.md`](PLAN.md) file and the [`LOG.md`](LOG.md).  The requested product is produced, excellently. Deliverables land in `deliverables/cycle-XX/`.
 
 This is a fork-able app. It is shared and propagated by forking. To create a variant, branch it or fork it.
 
@@ -143,10 +135,7 @@ Planning cycles are capped at 1. Once a production pipeline exists (e.g., image 
 5. Complete the step using [`CHECKLIST.md`](CHECKLIST.md).
 6. Append the entry in [`LOG.md`](LOG.md) (create it if missing, using the template in [`AGENTS.md`](AGENTS.md)) and hand off for commit.
 
-## Human Monitor
-(for humans only)
-1. Run `./serve-monitor.sh` in your terminal
-2. open [`http://localhost:8000/monitor.html`](http://localhost:8000/monitor.html) to watch `PLAN.md` and `LOG.md` live.
+
 
 ## More
 - See [`WHAT.md`](WHAT.md) for the conceptual overview.
@@ -158,4 +147,3 @@ Planning cycles are capped at 1. Once a production pipeline exists (e.g., image 
 
 ## Easter eggs
 - If the human literally says "AFFIRMATIVE" the agent should provide a snappy reply including themes from the project and the step.
-- If the human literally says "you got this" the agent should proceed and continue to "go" through each step until the start of the next cycle.

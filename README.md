@@ -1,5 +1,5 @@
 ﻿# Mortal Engines
-![Toot Toot Engineering](time-foundry.svg)
+![Toot Toot Engineering](HUMANS/time-foundry.svg)
 Toot Toot Engineering
 
 ![Release](https://img.shields.io/github/v/release/antfriend/toot-toot-engineering)
@@ -37,7 +37,7 @@ This is a roles-based process engine for turning creative prompts into finished 
 
 This can make an AI agent system (like yours, human!) work better by externalizing structure, intent, and sequencing that would otherwise live implicitly inside prompts, code, or runtime state.
 
-![feature-side-by-side](feature-side-by-side.png)
+![feature-side-by-side](HUMANS/feature-side-by-side.png)
 
 
 ## What is different
@@ -64,7 +64,7 @@ inside orchestration layers
 
 Toot Toot Engineering moves improvement outside all of that.   
 
-![how toot toot engineering helps AI agents](how-toot-toot-engineering-helps.png)
+![how toot toot engineering helps AI agents](HUMANS/how-toot-toot-engineering-helps.png)
 ## Main features
 - Critical-path plan in `PLAN.md` with step-by-step role handoff.
 - Cycle-based deliverables under `deliverables/cycle-XX/`.

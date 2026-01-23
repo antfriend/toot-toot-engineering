@@ -4,7 +4,7 @@
 - cycle-01
 
 ## Current step
-- [ ] Step 1 (cycle-01): Bootstrap interprets the prompt, proposes team composition, and recommends plan adjustments. (`deliverables/cycle-01/BOOTSTRAP.md`)
+- [x] Step 2 (cycle-01): Storyteller refines the central story or creative thread and elevates narrative excellence. (`deliverables/cycle-01/STORYTELLER.md`)
 
 ## Inputs for this cycle
 - `README.md` (cycle-01 prompt source)
@@ -15,8 +15,8 @@
 - `MORTAL-ENGINES-FRAMEWORK-RELEASES.md`
 
 ## Critical path
-- [ ] 1. Bootstrap interprets the prompt, proposes team composition, and recommends plan adjustments. (`deliverables/cycle-01/BOOTSTRAP.md`)
-- [ ] 2. Storyteller refines the central story or creative thread and elevates narrative excellence. (`deliverables/cycle-01/STORYTELLER.md`)
+- [x] 1. Bootstrap interprets the prompt, proposes team composition, and recommends plan adjustments. (`deliverables/cycle-01/BOOTSTRAP.md`)
+- [x] 2. Storyteller refines the central story or creative thread and elevates narrative excellence. (`deliverables/cycle-01/STORYTELLER.md`)
 - [ ] 3. (Optional) SVG engineer documents SVG constraints and coordinates with Storyteller when the prompt centers on SVG output. (`deliverables/cycle-01/SVG_ENGINEER.md`)
 - [ ] 4. Orchestrator bootstraps the repo and sets the plan (cycle-01).
 - [ ] 5. Core worker produces primary solution assets (cycle-01).

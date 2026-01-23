@@ -28,6 +28,7 @@ Workflow version: 3.8
 
 ## Rules
 - If you haven't read the readme then read the readme.
+- Do not read or reference anything under `HUMANS/` unless the human explicitly requests it.
 - One step, one agent, one role.
 - Each step produces named assets and updates [`PLAN.md`](PLAN.md).
 - The Bootstrap role must propose 3 next-cycle prompts grounded in the previous cycle and require the human to select one.

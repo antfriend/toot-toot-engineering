@@ -225,7 +225,7 @@ def main():
         print("Missing OPENAI_API_KEY environment variable.", file=sys.stderr)
         sys.exit(1)
 
-    model = os.environ.get("OPENAI_MODEL", "gpt-5.2")
+    model = "gpt-4o"
     client = OpenAI()
 
     readme_name = find_readme()

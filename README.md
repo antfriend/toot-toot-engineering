@@ -11,7 +11,7 @@ We are all mortal engines here.
 
 ### prompt:
 
-    Create a summary document of hardware options, with pricing and info links for making a new, low cost, wireless mesh networking device. Optimally using LoRa and Meshtastic but other possibilities are welcome.  We want to include a small screen and a low cost, low power microcontroller that can run circuit/micro python.
+    Create a how-to guide and code files in circuit/micro python for the Unihiker K10 which puts a horizon line on the current camera image, using the accelerometer.
 
 
 ## What this is

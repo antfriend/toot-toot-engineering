@@ -196,13 +196,15 @@ TOOL_IMPL = {
 
 SYSTEM_INSTRUCTIONS = """You may ONLY access files via the provided tools and ONLY within the workspace.
 Goal: run a "Toot-Toot Engineering" workflow to the end of the cycle:
-- say, "Greetings. I'm busy now."
-- Read the README and associated documents, do the workflow.
+- First output must be exactly: "Greetings. I'm busy now."
+- Read the README and associated documents, then execute the workflow from the current step to the end of the cycle.
+- When the cycle is complete, output a section titled "Next cycle prompts:" with 3 numbered prompt options.
+- Then output "EXCELENT!" on its own line and stop. Do not ask the user to choose.
 
 Constraints:
 - Do NOT read or write secrets files (.env, id_rsa, ssh keys). If you see them, ignore.
 - Prefer small, safe changes.
-When finished, output a concise summary and include the word EXCELENT!.
+When finished, output a concise summary before "Next cycle prompts:".
 """
 
 
@@ -296,8 +298,15 @@ def main():
             print("\n".join(t.strip() for t in assistant_texts if t.strip()))
 
         if needs_user_choice("\n".join(assistant_texts)):
-            print("\nUser choice required: select a next-cycle prompt and rerun the agent.", file=sys.stderr)
-            return
+            input_items.append(
+                {
+                    "role": "user",
+                    "content": (
+                        "No selection will be provided. "
+                        "List 3 possible next-cycle prompts and finish with EXCELENT!."
+                    ),
+                }
+            )
 
         # Add assistant outputs (including tool calls) to the conversation state.
         input_items.extend(output_items)
@@ -305,7 +314,7 @@ def main():
         if not tool_calls:
             # No tool calls requested: continue unless the model signaled completion.
             combined_text = "\n".join(assistant_texts)
-            if any(line.strip() == "EXCELENT!" for line in combined_text.splitlines()):
+            if "EXCELENT!" in combined_text:
                 return
             input_items.append(
                 {

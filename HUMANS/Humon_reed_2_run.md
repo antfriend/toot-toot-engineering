@@ -19,6 +19,12 @@ This repo includes a local agent runner for the Toot Toot Engineering workflow.
 ## Notes
 - The workflow instructions live in `README.md` and `AGENTS.md`.
 - The agent reads and operates inside the repo workspace.
+- `tte_monitor.py` uses only the Python standard library, but it requires `tkinter` (installed via system packages, not pip).
+  - macOS: `brew install python-tk`
+  - Ubuntu/Debian: `sudo apt-get install python3-tk`
+  - Fedora: `sudo dnf install python3-tkinter`
+  - Arch: `sudo pacman -S tk`
+  - Windows: use the official python.org installer and ensure "tcl/tk and IDLE" is selected.
 
 ## Troubleshooting
 - If you see "Missing OPENAI_API_KEY", confirm the env var is set in the shell you are using.

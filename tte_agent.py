@@ -191,20 +191,23 @@ TOOL_IMPL = {
 
 
 # ---------------------------
+# ---------------------------
+# ---------------------------
 # TTE agent loop
+# ---------------------------
+# ---------------------------
 # ---------------------------
 
 SYSTEM_INSTRUCTIONS = """You may ONLY access files via the provided tools and ONLY within the workspace.
-Goal: run a "Toot-Toot Engineering" workflow to the end of the cycle:
+Goal: run a "Toot-Toot Engineering" workflow to the end of the PLAN:
 - First output must be exactly: "Greetings. I'm busy now."
-- Read the README and associated documents, then execute the workflow from the current step to the end of the cycle.
-- When the cycle is complete, output a section titled "Next cycle prompts:" with 3 numbered prompt options.
-- Then output "EXCELENT!" on its own line and stop. Do not ask the user to choose.
+- Read the README and associated documents, then execute the workflow from the current step to the end of the PLAN.
+- Do the current step in the workflow then begin the next step until the PLAN is completed.
+- Then output "Processing Completed!"
+- Then output "EXCELENT!" on its own line and stop.
 
 Constraints:
 - Do NOT read or write secrets files (.env, id_rsa, ssh keys). If you see them, ignore.
-- Prefer small, safe changes.
-When finished, output a concise summary before "Next cycle prompts:".
 """
 
 
@@ -222,6 +225,7 @@ def needs_user_choice(text: str) -> bool:
 
 
 def main():
+    print("TOOT TOOT ENGINEERING is leaving the station.")
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
         print("Missing OPENAI_API_KEY environment variable.", file=sys.stderr)

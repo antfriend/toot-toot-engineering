@@ -1,70 +1,23 @@
-﻿# Mortal Engines
+﻿# Toot Toot Engineering Workflow
 ![Toot Toot Engineering](HUMANS/time-foundry.svg)
-Toot Toot Engineering
 
 ![Release](https://img.shields.io/github/v/release/antfriend/toot-toot-engineering)
 
 Workflow version: 3.8
 
-## You, the reader,
-are either a human or an agent.   
-Welcome!
-### 🔥 You have entered the program. 🔥
-
+## Welcome!
 We are all mortal engines here. 
+### 🔥 You have entered the program. 🔥
 
 ### prompt:
 
-    Create a 3D zoetrope STL file suitable for 3D printing which depicts a lovely bonsai tree, grown in 3 dimensions in different stages of growth, from a seed to a sprout, and progressively to a tree, with deep surface texturing and in the style of Marioland. Design the lower parts of the tree to branch and support the upper parts, considering 3D printability. Also apply light brick or mosaic texturing to the base. And give the base a 3 cm center hole.
+    Create a summary document of hardware options, with pricing and info links for making a new, low cost, wireless mesh networking device. Optimally using LoRa and Meshtastic but other possibilities are welcome.  We want to include a small screen and a low cost, low power microcontroller that can run circuit/micro python.
 
-
-## Who This Is For
-
-Toot-Toot Engineering is designed for people working in multi-step, intention-heavy processes who want clarity, reliability, and repeatability when collaborating with AI systems.
-
-It is especially useful for:
-
-- [Engineers](./AUDIENCE.md#engineers) building reviewable, Git-native workflows  
-- [Researchers](./AUDIENCE.md#researchers) designing reproducible AI-assisted methods  
-- [Makers](./AUDIENCE.md#makers) iterating across experiments and build sessions  
-- [Storytellers](./AUDIENCE.md#storytellers) maintaining continuity across creative phases  
-
-Across all of these groups, TTE helps externalize structure and intent so both humans and AI systems can work more effectively together.
 
 ## What this is
-Like a factory that makes a factory to produce the desired product. We have an excellent team of agents performing the work. The factory tools and shared assets live in this repo, and final products land in  `deliverables/` directories.
+Like a factory that makes a factory to produce the desired product. The factory tools and shared assets live in this repo, and final products land in  `deliverables/` directories.
 This is a roles-based process engine for turning creative prompts into finished deliverables, with clear step handoffs and end-of-cycle self-learning through a reflective retrospective to improve the team and the process with every iteration.
 
-This can make an AI agent system (like yours, human!) work better by externalizing structure, intent, and sequencing that would otherwise live implicitly inside prompts, code, or runtime state.
-
-![feature-side-by-side](HUMANS/feature-side-by-side.png)
-
-
-## What is different
- about toot-toot engineering is that it is
- - free
- - open-source
- - plain text files in English
-   
- No runtime dependencies, no libraries. Just this, you are looking at it.   
- The magic is that there is no magic to this, just read the whole thing as a human or an agent, and you'll understand everything.
-
-## What’s novel is not the components.
-It’s the placement.
-
-Most AI tooling tries to improve things:
-
-inside the model
-
-inside prompts
-
-inside agents
-
-inside orchestration layers
-
-Toot Toot Engineering moves improvement outside all of that.   
-
-![how toot toot engineering helps AI agents](HUMANS/how-toot-toot-engineering-helps.png)
 ## Main features
 - Critical-path plan in `PLAN.md` with step-by-step role handoff.
 - Cycle-based deliverables under `deliverables/cycle-XX/`.
@@ -88,7 +41,7 @@ We break the prompt down into the different roles and tasks of a critical path o
 
 At a simple level, the framing is just about getting from point A to point B: from a prompt to a complete solution. The Bootstrap estimates the complexity and the roles needed to build the team to complete the job with excellence.
 
-Assets are generated in a single git repo (like this one!) in an iterative process following the critical path in [`PLAN.md`](PLAN.md). Iterations consist of a single step performed by a single agent in a single role. Deliverable outputs are stored under `deliverables/cycle-XX/`.
+ssets are generated in a single repository (this one!) in an iterative process following the critical path in [`PLAN.md`](PLAN.md). Iterations consist of a single step performed by a single agent in a single role. Deliverable outputs are stored under `deliverables/cycle-XX/`.
 
 The default starting agent role is the Bootstrap. They interpret the prompt and propose team composition, objectives, and plan adjustments. The orchestrator then builds the initial plan, [`PLAN.md`](PLAN.md), [`AGENTS.md`](AGENTS.md), role definitions, rules, and logging assets, and can optimize the critical path. Upon completion of that, they update the plan file to show the first step as complete and move the placeholder to start with the next agent role, for the next step. The plan file serves as an easy to read table of contents of what is to come and what has been done so far.
 

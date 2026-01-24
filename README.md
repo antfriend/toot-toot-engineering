@@ -7,7 +7,7 @@ Workflow version: 3.8
 
 ### prompt:
 
-    Humon rite good prompt here!
+    Create a .wav file of primitively synthesized speech saying, "Humon rite good prompt!"
 
 
 ## What this is

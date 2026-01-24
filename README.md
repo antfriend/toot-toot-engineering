@@ -5,10 +5,6 @@
 
 Workflow version: 3.8
 
-## Welcome!
-We are all mortal engines here. 
-### 🔥 You have entered the program. 🔥
-
 ### prompt:
 
     Create a how-to guide and code files in circuit/micro python for the Unihiker K10 which puts a horizon line on the current camera image, using the accelerometer.
@@ -26,7 +22,7 @@ This is a roles-based process engine for turning creative prompts into finished 
 - Built-in review and delivery packaging steps.
 - Human feedback captured after the final step.
 - Cycle releases in `RELEASES.md`.
-- Framework releases in `MORTAL-ENGINES-FRAMEWORK-RELEASES.md`.
+
 
 ## Delivery focus (definition of done)
 A cycle is done only when the primary deliverable exists and is validated. For comics and other documents that means:
@@ -41,9 +37,9 @@ We break the prompt down into the different roles and tasks of a critical path o
 
 At a simple level, the framing is just about getting from point A to point B: from a prompt to a complete solution. The Bootstrap estimates the complexity and the roles needed to build the team to complete the job with excellence.
 
-ssets are generated in a single repository (this one!) in an iterative process following the critical path in [`PLAN.md`](PLAN.md). Iterations consist of a single step performed by a single agent in a single role. Deliverable outputs are stored under `deliverables/cycle-XX/`.
+Assets are generated in a single repository (this one!) in an iterative process following the critical path in [`PLAN.md`](PLAN.md). Iterations consist of a single step performed by a single agent in a single role. Deliverable outputs are stored under `deliverables/cycle-XX/`.
 
-The default starting agent role is the Bootstrap. They interpret the prompt and propose team composition, objectives, and plan adjustments. The orchestrator then builds the initial plan, [`PLAN.md`](PLAN.md), [`AGENTS.md`](AGENTS.md), role definitions, rules, and logging assets, and can optimize the critical path. Upon completion of that, they update the plan file to show the first step as complete and move the placeholder to start with the next agent role, for the next step. The plan file serves as an easy to read table of contents of what is to come and what has been done so far.
+The default starting agent role is the Bootstrap. They interpret the prompt and propose team composition, objectives, and plan adjustments. The orchestrator can optimize the critical path. Upon completion of that, they update the plan file to show the first step as complete and move the placeholder to start with the next agent role, for the next step. The plan file serves as an easy to read table of contents of what is to come and what has been done so far.
 
 Different roles review each others work, make choices, revise the plan, and produce the assets used to move to the next step.
 
@@ -51,9 +47,7 @@ In this way the production value is enriched. Supporting details and source asse
 
 During each step, the human co-producer only clicks guardrail approval pop-ups when required by the environment, and commits can be batched at the end of the cycle if desired.   
 
-The plan is updated and revised as it progresses. The human co-producer can watch progress in the [`PLAN.md`](PLAN.md) file and the [`LOG.md`](LOG.md).  The requested product is produced, excellently. Deliverables land in `deliverables/cycle-XX/`.
-
-This is a fork-able app. It is shared and propagated by forking. To create a variant, branch it or fork it.
+The plan is updated and revised as it progresses with changes saved in the [`PLAN.md`](PLAN.md) file and the [`LOG.md`](LOG.md) and other files as needed, step by step.  At the end of the cycle, the requested product is produced, excellently. Deliverables land in `deliverables/cycle-XX/`.
 
 
 ## Plan file

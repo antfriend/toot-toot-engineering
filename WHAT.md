@@ -12,11 +12,6 @@ Producing concrete outputs that persist, not just ephemeral chat.
 ## Cycle memory
 Respecting iterations, logs, checklists, and definitions of done.
 
-These are not exotic capabilities. They’re behavioral constraints.
-
-This is an application seed pod of behavioral logic files.   
-
-
 
 It is the job of the Bootstrap to estimate the complexity and all the roles needed to complete the job with excellence.
 
@@ -48,6 +43,5 @@ When a step forks to multiple roles for what-would-be-parallel execution along t
 
 ```
 It's an evolving process with save points.   
-Mortal Engines propagate by forking.   
-We are all mortal engines here. 
+It propagate by forking.  
 ```

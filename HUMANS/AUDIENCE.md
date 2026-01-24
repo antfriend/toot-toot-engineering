@@ -1,3 +1,5 @@
+This document is intended for humans and should be ignored by agents unless a human explicitly requests it.
+
 # Who Toot-Toot Engineering Is For
 
 Toot-Toot Engineering (TTE) is designed for people who work in multi-step, intention-heavy processes and want those processes to remain clear, reviewable, and reproducible over time.

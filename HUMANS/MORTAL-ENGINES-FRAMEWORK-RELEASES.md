@@ -1,4 +1,6 @@
-# Mortal Engines Framework Releases
+This document is intended for humans and should be ignored by agents unless a human explicitly requests it.
+ 
+ # Mortal Engines Framework Releases
 
 ## v3.8
 - Status: current

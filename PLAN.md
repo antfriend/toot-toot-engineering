@@ -4,7 +4,7 @@
 - cycle-01
 
 ## Current step
-- [x] Step 1 (cycle-01): Bootstrap interprets the prompt, proposes team composition, and recommends plan adjustments. (`deliverables/cycle-01/BOOTSTRAP.md`)
+ 
 
 ## Inputs for this cycle
 - `README.md` (cycle-01 prompt source)
@@ -29,5 +29,4 @@
 - `LOG.md`
 - `PLAN.md`
 - `RELEASES.md`
-- `MORTAL-ENGINES-FRAMEWORK-RELEASES.md`
 - `deliverables/cycle-XX/`

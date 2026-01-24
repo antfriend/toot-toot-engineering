@@ -1,5 +1,5 @@
-
-
+This document is intended for humans and should be ignored by agents unless a human explicitly requests it.
+ 
 ## Toot Toot Engineering
 is AI-native.
 It does three things AI systems desperately need:
@@ -8,6 +8,9 @@ It does three things AI systems desperately need:
 - Forces them to leave artifacts behind
   
 TTE can make an AI agent system (like yours, human!) work better by externalizing structure, intent, and sequencing that would otherwise live implicitly inside prompts, code, or runtime state.
+
+### TTE is Semantic Engineering
+It's a factory that makes what you mean.
 
 ![feature-side-by-side](feature-side-by-side.png)
 
@@ -52,6 +55,7 @@ It is especially useful for:
 
 Across all of these groups, TTE helps externalize structure and intent so both humans and AI systems can work more effectively together.
 
+This is a fork-able workshop. It is shared and propagated by forking. To create a variant, branch it or fork it.
 
 
 # Toot Toot Engineering (Runner)

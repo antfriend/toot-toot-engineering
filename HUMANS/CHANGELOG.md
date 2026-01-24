@@ -1,3 +1,5 @@
+This document is intended for humans and should be ignored by agents unless a human explicitly requests it.
+
 ## v0.1.0
 - Initial public release
 - Established core workflow structure

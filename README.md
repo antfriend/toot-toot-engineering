@@ -29,7 +29,6 @@ A cycle is done only when the primary deliverable exists and is validated. For c
 - A print-ready PDF exists in the cycle output.
 - Source assets and build notes exist alongside the PDF.
 - Review confirms print specs (trim/bleed/safe area) and narrative coherence.
-Final deliverables include a small Toot Toot Engineering logo appropriate for the media (embedded or as a companion asset based on `toot-toot-logo.png` or `toot-toot-logo.svg`).
 Do not start a new cycle unless the deliverable exists or a blocker is logged in `LOG.md`.
 
 ### prompt-continued:

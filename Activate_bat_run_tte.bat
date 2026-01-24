@@ -2,6 +2,7 @@
 setlocal
 
 set "ROOT=%~dp0"
+mode con: cols=80 lines=25
 
 where py >nul 2>&1
 if errorlevel 1 (

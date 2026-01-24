@@ -13,7 +13,6 @@
 - Humans only need to start the run; agents proceed automatically and only request feedback if blocked.
 - Delivery gate: do not start a new cycle until the primary deliverable exists or a blocking issue is logged in `LOG.md`.
 - When production steps exist (image/PDF), the cycle must produce at least one production artifact (e.g., PDF or image assets), not just documents.
-- Final deliverables include a small Toot Toot Engineering logo appropriate for the media (embedded or as a companion asset based on `toot-toot-logo.png` or `toot-toot-logo.svg`).
 
 ## Consistency
 - Workflow version is aligned across docs.

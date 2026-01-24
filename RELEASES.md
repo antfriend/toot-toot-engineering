@@ -12,7 +12,6 @@ How to update:
 - Prompt source: `deliverables/cycle-XX/BOOTSTRAP.md`
 - Deliverables root: `deliverables/cycle-XX/`
 - Primary artifacts:
-  - `[Toot Toot Logo](deliverables/cycle-XX/toot-toot-logo.svg)`
 - Other deliverables:
   - `deliverables/cycle-XX/BOOTSTRAP.md`
   - `deliverables/cycle-XX/STORYTELLER.md`
@@ -21,4 +20,3 @@ How to update:
   - `deliverables/cycle-XX/output/` (print-ready PDF, if any)
   - `deliverables/cycle-XX/REVIEW.md`
   - `deliverables/cycle-XX/DELIVERY.md`
-  - Small Toot Toot Engineering logo included in final deliverables (embedded or companion asset).

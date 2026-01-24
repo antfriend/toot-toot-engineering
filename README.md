@@ -7,7 +7,7 @@ Workflow version: 3.8
 
 ### prompt:
 
-    Create a how-to guide and code files in circuit/micro python for the Unihiker K10 which puts a horizon line on the current camera image, using the accelerometer.
+    Humon rite good prompt here!
 
 
 ## What this is
@@ -89,8 +89,6 @@ Planning cycles are capped at 1. Once a production pipeline exists (e.g., image 
 - See [`AGENTS.md`](AGENTS.md) for expected asset names per role.
 - See [`CHECKLIST.md`](CHECKLIST.md) for step completion and consistency checks.
 - See [`RELEASES.md`](RELEASES.md) for cycle summaries.
-- See [`MORTAL-ENGINES-FRAMEWORK-RELEASES.md`](MORTAL-ENGINES-FRAMEWORK-RELEASES.md) for framework releases.
-- See [`ONBOARDING.md`](ONBOARDING.md) for a beginner-friendly guide.
 
 ## Easter eggs
 - If the human literally says "AFFIRMATIVE" the agent should provide a snappy reply including themes from the project and the step.

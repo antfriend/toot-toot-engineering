@@ -4,7 +4,7 @@
 - cycle-01
 
 ## Current step
- 
+- [ ] 1. Bootstrap interprets the prompt, proposes team composition, and recommends plan adjustments. (`deliverables/cycle-01/BOOTSTRAP.md`) (in progress)
 
 ## Inputs for this cycle
 - `README.md` (cycle-01 prompt source)
@@ -15,7 +15,7 @@
 - `LOG.md`
 
 ## Critical path
-- [ ] 1. Bootstrap interprets the prompt, proposes team composition, and recommends plan adjustments. (`deliverables/cycle-01/BOOTSTRAP.md`)
+- [ ] 1. Bootstrap interprets the prompt, proposes team composition, and recommends plan adjustments. (`deliverables/cycle-01/BOOTSTRAP.md`) (in progress)
 - [ ] 2. Storyteller refines the central story or creative thread and elevates narrative excellence. (`deliverables/cycle-01/STORYTELLER.md`)
 - [ ] 3. (Optional) SVG engineer documents SVG constraints and coordinates with Storyteller when the prompt centers on SVG output. (`deliverables/cycle-01/SVG_ENGINEER.md`)
 - [ ] 4. Orchestrator bootstraps the repo and sets the plan (cycle-01).

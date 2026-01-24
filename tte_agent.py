@@ -200,9 +200,9 @@ TOOL_IMPL = {
 
 SYSTEM_INSTRUCTIONS = """You may ONLY access files via the provided tools and ONLY within the workspace.
 Goal: run a "Toot-Toot Engineering" workflow to the end of the PLAN:
-- First output must be exactly: "Greetings. I'm busy now."
+- Output  "Greetings, I am a TTE agent. I'm in the workshop now, firing up the creative forge."
 - Read the README and associated documents, then execute the workflow from the current step to the end of the PLAN.
-- Do the current step in the workflow then begin the next step until the PLAN is completed.
+- Do the current step in the workflow then begin the next step and continue until the PLAN is completed.
 - Then output "Processing Completed!"
 - Then output "EXCELENT!" on its own line and stop.
 
@@ -228,7 +228,7 @@ def main():
     print("TOOT TOOT ENGINEERING is leaving the station.")
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
-        print("Missing OPENAI_API_KEY environment variable.", file=sys.stderr)
+        print("Oh Toot! Missing OPENAI_API_KEY environment variable.", file=sys.stderr)
         sys.exit(1)
 
     model = "gpt-5.2"
@@ -236,7 +236,7 @@ def main():
 
     readme_name = find_readme()
     if not readme_name:
-        print("No README.md found, Toot!.", file=sys.stderr)
+        print("Oh Toot! No README.md found.", file=sys.stderr)
         sys.exit(1)
 
     # Conversation state: we’ll keep feeding prior tool outputs back to the model

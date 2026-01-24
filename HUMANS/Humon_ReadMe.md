@@ -1,7 +1,13 @@
 
 
 ## Toot Toot Engineering
- can make an AI agent system (like yours, human!) work better by externalizing structure, intent, and sequencing that would otherwise live implicitly inside prompts, code, or runtime state.
+is AI-native.
+It does three things AI systems desperately need:
+- Slows them down
+- Makes them explain themselves
+- Forces them to leave artifacts behind
+  
+TTE can make an AI agent system (like yours, human!) work better by externalizing structure, intent, and sequencing that would otherwise live implicitly inside prompts, code, or runtime state.
 
 ![feature-side-by-side](feature-side-by-side.png)
 

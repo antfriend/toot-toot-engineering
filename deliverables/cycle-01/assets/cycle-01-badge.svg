@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="300" viewBox="0 0 800 300">
+  <title>TTE cycle-01 badge</title>
+  <desc>Generated badge for Toot-Toot Engineering cycle-01. Motto: One step. One role. One artifact.</desc>
+
+  <rect x="0" y="0" width="800" height="300" rx="28" fill="#0b1020" />
+  <rect x="24" y="24" width="752" height="252" rx="22" fill="none" stroke="#66d9ef" stroke-width="3" opacity="0.9" />
+
+  <!-- Rails -->
+  <g opacity="0.9">
+    <rect x="90" y="210" width="620" height="10" rx="5" fill="#e8eefc" opacity="0.18" />
+    <rect x="90" y="235" width="620" height="10" rx="5" fill="#e8eefc" opacity="0.18" />
+    <g fill="#e8eefc" opacity="0.22">
+      <rect x="140" y="205" width="8" height="45" rx="3" />
+      <rect x="220" y="205" width="8" height="45" rx="3" />
+      <rect x="300" y="205" width="8" height="45" rx="3" />
+      <rect x="380" y="205" width="8" height="45" rx="3" />
+      <rect x="460" y="205" width="8" height="45" rx="3" />
+      <rect x="540" y="205" width="8" height="45" rx="3" />
+      <rect x="620" y="205" width="8" height="45" rx="3" />
+    </g>
+  </g>
+
+  <!-- Gear-ish ring -->
+  <g transform="translate(120,110)">
+    <circle cx="0" cy="0" r="54" fill="none" stroke="#f4b942" stroke-width="10" opacity="0.95" />
+    <circle cx="0" cy="0" r="28" fill="none" stroke="#66d9ef" stroke-width="6" opacity="0.95" />
+    <circle cx="0" cy="0" r="6" fill="#e8eefc" opacity="0.85" />
+  </g>
+
+  <!-- Text -->
+  <g font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" fill="#e8eefc">
+    <text x="430" y="110" font-size="46" font-weight="700" text-anchor="middle">TTE cycle-01</text>
+    <text x="430" y="155" font-size="18" opacity="0.92" text-anchor="middle">Toot-Toot Engineering • Workshop Run</text>
+    <text x="430" y="192" font-size="20" fill="#66d9ef" text-anchor="middle">One step. One role. One artifact.</text>
+  </g>
+</svg>

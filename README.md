@@ -6,8 +6,7 @@
 Workflow version: 3.8
 
 ### prompt:
-
-    Create a .wav file of a crisp, deep, robotic synthesized voice saying, "Toot Toot Engineering" in 4/4 time, 65 bpm, emphasis on the 9th beat, heavy dub style echo.
+See [TTE_PROMPT.md](TTE_PROMPT.md)
 
 
 ## What this is

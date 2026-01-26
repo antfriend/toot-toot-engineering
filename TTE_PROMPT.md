@@ -97,24 +97,28 @@ Store each BBS message as a node record and use typed edges for relationships:
 
 - reply_to>@NODE_ID
 - thread_root>@NODE_ID
-- in_area>@NODE_ID
+- in_area>@AREA_NODE_ID
 - next_in_area>@NODE_ID (optional link for paging)
 
 Nodes must include message metadata as plain fields:
 
 - id (MMPDB coordinate-style id)
 - author
-- timestamp (unix_utc)
-- area
+- timestamp (unix_utc, can mirror created)
+- area_name (human-readable string)
 - body (length-limited, ASCII)
+
+Areas are nodes too. Use `in_area>@AREA_NODE_ID` for canonical linkage and keep `area_name` for quick display.
 
 Reading supports offsets for partial retrieval, but data is stored as nodes/edges.
 
 Export a MicroPython-reduced DB file (mpdb-lite) that follows the MMPDB spirit:
 
 - single-file, markdown-like records or a compact structured format
-- typed edges preserved
+- typed edges preserved using `relates:` with `type>@TARGET_ID` tokens
 - minimal fields and parsing for MicroPython constraints
+
+If `created`/`updated` headers are present, keep them in sync with `timestamp` (for messages, `timestamp` may mirror `created`).
 
 Provide MicroPython data-access methods for:
 
@@ -124,26 +128,35 @@ Provide MicroPython data-access methods for:
 - update_node(node)
 - add_edge(src, edge_type, dst)
 - list_edges(src, edge_type=None)
-- list_messages_in_area(area)
+- list_messages_in_area(area_id, area_name=None)
 - list_thread(root_id)
 
 Minimal example (mpdb-lite):
 
 ```mmpdb
+@LAT0LON1 | created:1700001900 | updated:1700001900
+
+id: @LAT0LON1
+area_name: general
+```
+
+```mmpdb
 @LAT10LON5 | created:1700002000 | updated:1700002000 | relates:in_area>@LAT0LON1,thread_root>@LAT10LON5
 
+id: @LAT10LON5
 author: dan
 timestamp: 1700002000
-area: general
+area_name: general
 body: Hello from the modem era.
 ```
 
 ```mmpdb
 @LAT10LON6 | created:1700002100 | updated:1700002100 | relates:in_area>@LAT0LON1,reply_to>@LAT10LON5,thread_root>@LAT10LON5
 
+id: @LAT10LON6
 author: bee
 timestamp: 1700002100
-area: general
+area_name: general
 body: Copy that, loud and clear.
 ```
 

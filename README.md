@@ -31,11 +31,6 @@ A cycle is done only when the primary deliverable exists and is validated. For c
 - Review confirms print specs (trim/bleed/safe area) and narrative coherence.
 Do not start a new cycle unless the deliverable exists or a blocker is logged in `LOG.md`.
 
-### prompt-continued:
-We break the prompt down into the different roles and tasks of a critical path of all the steps in the process of building a solution. All the best roles of every appropriate type are engaged, and new ones added if needed, for excellent production value.
-
-At a simple level, the framing is just about getting from point A to point B: from a prompt to a complete solution. The Bootstrap estimates the complexity and the roles needed to build the team to complete the job with excellence.
-
 Assets are generated in a single repository (this one!) in an iterative process following the critical path in [`PLAN.md`](PLAN.md). Iterations consist of a single step performed by a single agent in a single role. Deliverable outputs are stored under `deliverables/cycle-XX/`.
 
 The default starting agent role is the Bootstrap. They interpret the prompt and propose team composition, objectives, and plan adjustments. The orchestrator can optimize the critical path. Upon completion of that, they update the plan file to show the first step as complete and move the placeholder to start with the next agent role, for the next step. The plan file serves as an easy to read table of contents of what is to come and what has been done so far.

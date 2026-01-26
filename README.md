@@ -1,6 +1,7 @@
 ﻿# Toot Toot Engineering Workflow
+TTE is free, open-source software licensed under the MIT License.
 ![Toot Toot Engineering](HUMANS/time-foundry.svg)
-
+TTE is free, open-source software licensed under the MIT License.   
 ![Release](https://img.shields.io/github/v/release/antfriend/toot-toot-engineering)
 
 Workflow version: 3.8

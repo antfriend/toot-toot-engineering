@@ -1,0 +1,26 @@
+@LAT0LON1 | created:1700001900 | updated:1700001900
+
+id: @LAT0LON1
+area_name: general
+
+---
+
+@LAT10LON5 | created:1700002000 | updated:1700002000 | relates:in_area>@LAT0LON1,thread_root>@LAT10LON5
+
+id: @LAT10LON5
+author: dan
+timestamp: 1700002000
+area_name: general
+body: Hello from the modem era.
+
+---
+
+@LAT10LON6 | created:1700002100 | updated:1700002100 | relates:in_area>@LAT0LON1,reply_to>@LAT10LON5,thread_root>@LAT10LON5
+
+id: @LAT10LON6
+author: bee
+timestamp: 1700002100
+area_name: general
+body: Copy that, loud and clear.
+
+---

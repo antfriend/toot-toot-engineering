@@ -7,7 +7,7 @@ TTE is free, open-source software licensed under the MIT License.
 Workflow version: 3.8
 
 ### prompt:
-See [TTE_PROMPT.md](TTE_PROMPT.md)
+Use the contents of TTE_PROMPT.md as the prompt.
 
 
 ## What this is

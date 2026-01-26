@@ -2,7 +2,8 @@
 
 Project: MicroPython TCP BBS for UNIHIKER K10
 Mode: Option A – Wi-Fi Raw TCP (Telnet-style)
-Philosophy: Low-bandwidth, resilient, modem-era inspired systems
+Philosophy: Low-bandwidth, resilient, modem-era inspired systems   
+Deliverables: end user how-to documentation, including how to set up the K10 for MicroPython and all .py files and how to load them. Include source files, tests, and supporting documentation.
 
 ## 🎯 Objective
 
@@ -55,6 +56,7 @@ The system should feel like a classic landline modem BBS: deliberate pacing, con
 ## 🔌 Transport: Wi-Fi TCP
 
 - UNIHIKER runs as Wi-Fi Access Point.
+- output Wi-Fi server activity to the K10 screen, console style
 - TCP server listens on a configurable port (ex: 2323).
 - Clients connect using:
   - Windows: PuTTY (Raw), telnet, netcat

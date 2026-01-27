@@ -1,201 +1,284 @@
 🧭 TOOT-TOOT ENGINEERING PROMPT
+# Meshtastic + MQTT + Semantic Bridge for **LILYGO T-Deck Plus (H737-03Mesh)**
 
-Project: MicroPython TCP BBS for UNIHIKER K10
-Mode: Option A – Wi-Fi Raw TCP (Telnet-style)
-Philosophy: Low-bandwidth, resilient, modem-era inspired systems   
-Deliverables: end user how-to documentation, including how to set up the K10 for MicroPython and all .py files and how to load them. Include source files, tests, and supporting documentation.
+Design and build a complete system that turns Meshtastic messages into **typed semantic events**, publishes them to **MQTT**, stores them in **MyMentalPalaceDB.md**, renders them in an offline **monitor.html**, and adds an AI “librarian” that listens on MQTT and only speaks on the mesh when explicitly invoked.
 
-## 🎯 Objective
+This version is tailored for the **LILYGO T‑Deck Plus (H737‑03Mesh)** as your primary field device.
 
-Design and implement a MicroPython-based Bulletin Board System (BBS) running on a UNIHIKER K10 that accepts raw TCP socket connections over Wi-Fi, optimized for slow, unreliable, and low-bandwidth links, with architecture intentionally shaped to later support Meshtastic-class transports.
+---
 
-The system should feel like a classic landline modem BBS: deliberate pacing, concise text, server-driven flow, and minimal assumptions about client capabilities.
+## Assumptions and Hardware Notes (Tailored)
+Treat the **T‑Deck Plus** as a **Meshtastic-capable ESP32-class handheld** with:
+- **LoRa radio** supported by Meshtastic (commonly SX1262-class on many LILYGO boards)
+- **Wi‑Fi** (for MQTT uplink when available)
+- **BLE** (for phone pairing/config and optional local control)
+- **Keyboard + display** (useful for local status + “gateway mode” controls)
+- **Battery power** (support low-power behaviors)
 
-## 🧠 Core Principles (Non-Negotiable)
+**Do not hardcode pin mappings** in your first implementation. Instead:
+- Use Meshtastic’s board support / device profile for the T‑Deck Plus variant.
+- If you must set pins, implement them in one config file (e.g., `hardware_profile.py`) and keep the rest of the system generic.
 
-- Transport-agnostic core
-  - Separate the BBS engine from the transport layer.
-  - TCP is the first "modem," not the last.
-  - All I/O passes through a narrow interface:
-    - send(bytes)
-    - recv()
-    - close()
-- Bandwidth respect
-  - No large screens dumped blindly.
-  - All output is chunked, paged, or explicitly requested.
-  - Server decides pagination boundaries.
-- Deterministic text UI
-  - Plain ASCII.
-  - \r\n line endings.
-  - No ANSI assumptions (optional later).
-  - Backspace handling is minimal and forgiving.
-- Session-centric design
-  - Each connection is a session with:
-    - session ID
-    - username/handle
-    - last activity timestamp
-  - Multiple sessions may exist concurrently.
-- Graceful degradation
-  - If a client disconnects mid-read or mid-post, state is recoverable.
-  - Reads can resume via offsets.
-  - Writes are atomic or explicitly chunked.
+---
 
-## 🏗️ System Architecture (Desired)
+## High-Level Goal
+Build a **TTE-style semantic bridge** where:
 
-```
-/bbs
-  ├── main.py              # boot + Wi-Fi AP + socket server
-  ├── transport_tcp.py     # raw TCP accept/read/write
-  ├── session.py           # session lifecycle + state
-  ├── protocol.py          # command parsing + responses
-  ├── screens.py           # menu text generators
-  ├── storage.py           # message persistence
-  └── config.py            # ports, limits, banner text
-```
+**Meshtastic transport** → **meaning extraction** → **typed events + stable IDs** → **MQTT distribution** → **MyMentalPalaceDB graph memory** → **Monitor UI** → optional **AI librarian**
 
-## 🔌 Transport: Wi-Fi TCP
+The bridge should work in two modes:
 
-- UNIHIKER runs as Wi-Fi Access Point.
-- output Wi-Fi server activity to the K10 screen, console style
-- TCP server listens on a configurable port (ex: 2323).
-- Clients connect using:
-  - Windows: PuTTY (Raw), telnet, netcat
-  - Anything capable of raw TCP text
-- No encryption assumed at this stage.
+1. **T‑Deck Plus as a Gateway Node (Preferred)**
+   - The T‑Deck Plus runs Meshtastic + a local “semantic bridge agent”
+   - When Wi‑Fi is available, it publishes semantic events to MQTT
+   - When Wi‑Fi is unavailable, it buffers events locally and forwards later
 
-## 📜 Protocol Expectations
+2. **T‑Deck Plus as a Standard Node**
+   - A separate PC/RPi gateway listens to Meshtastic (serial/BLE/TCP)
+   - The gateway does semantics + MQTT + DB + monitor
+   - The T‑Deck Plus is just a rich UI node on the mesh
 
-Commands are line-based, human-readable, and short.
+Design everything so the only difference is the **receiver transport** and **where the bridge runs**.
 
-Examples:
+---
 
-```
-HELLO
-LOGIN dan
-MENU
-LIST AREAS
-READ 12
-READ 12 OFFSET 400
-POST general 128
-<128 bytes follow>
-BYE
-```
+## Deliverables
+Produce a repo-style project with:
 
-Responses are concise and structured:
+1. `README.md` with setup for:
+   - T‑Deck Plus gateway mode
+   - External gateway mode (PC/RPi)
+2. A running semantic bridge:
+   - Meshtastic in
+   - Semantic events out
+3. MQTT topic taxonomy + sample payloads
+4. `MyMentalPalaceDB.md` generated by the demo
+5. Offline `monitor.html` that visualizes:
+   - cursor panel
+   - node graph + typed edges
+   - filters
+6. A simulation/demo generator that replays a “day on the mesh”
+7. `ai_librarian/` service that subscribes via MQTT
 
-```
-OK LOGIN
-SCR MENU MAIN
-TXT 312
-<bytes>
-END
-```
+Use **Python 3.10** for the gateway-side implementation.
+For on-device (if you implement gateway mode directly on the T‑Deck), you may use:
+- **ESP-IDF / Arduino / MicroPython** as feasible, but keep the semantic core portable and testable in Python first.
 
-## 🗂️ Message Model
+---
 
-Use TTE MyMentalPalaceDB (MMPDB) records as the canonical message model and storage.
+## System Architecture (What to Build)
+### Data Flow
+Meshtastic packet → Receiver → Normalizer → Semantic Interpreter → Stable ID assignment → MQTT publish → MyMentalPalaceDB write → Monitor render → Optional AI librarian
 
-Store each BBS message as a node record and use typed edges for relationships:
+### Modules
+Create these modules/folders:
 
-- reply_to>@NODE_ID
-- thread_root>@NODE_ID
-- in_area>@AREA_NODE_ID
-- next_in_area>@NODE_ID (optional link for paging)
+#### A) `receiver/`
+Implement pluggable receivers:
 
-Nodes must include message metadata as plain fields:
+- `receiver_meshtastic_tcp.py`  
+  Connects to Meshtastic TCP API when available (good for gateway host or some networked setups).
 
-- id (MMPDB coordinate-style id)
-- author
-- timestamp (unix_utc, can mirror created)
-- area_name (human-readable string)
-- body (length-limited, ASCII)
+- `receiver_meshtastic_serial.py`  
+  Serial connection to a Meshtastic device (common for a PC/RPi gateway).
 
-Areas are nodes too. Use `in_area>@AREA_NODE_ID` for canonical linkage and keep `area_name` for quick display.
+- `receiver_meshtastic_ble.py` (optional)  
+  Useful if the T‑Deck is physically near the gateway host and BLE is easiest.
 
-Reading supports offsets for partial retrieval, but data is stored as nodes/edges.
-
-Export a MicroPython-reduced DB file (mpdb-lite) that follows the MMPDB spirit:
-
-- single-file, markdown-like records or a compact structured format
-- typed edges preserved using `relates:` with `type>@TARGET_ID` tokens
-- minimal fields and parsing for MicroPython constraints
-
-If `created`/`updated` headers are present, keep them in sync with `timestamp` (for messages, `timestamp` may mirror `created`).
-
-Provide MicroPython data-access methods for:
-
-- load_db()
-- find_node(id)
-- insert_node(node)
-- update_node(node)
-- add_edge(src, edge_type, dst)
-- list_edges(src, edge_type=None)
-- list_messages_in_area(area_id, area_name=None)
-- list_thread(root_id)
-
-Minimal example (mpdb-lite):
-
-```mmpdb
-@LAT0LON1 | created:1700001900 | updated:1700001900
-
-id: @LAT0LON1
-area_name: general
+Each receiver must output a **NormalizedPacket**:
+```json
+{
+  "from_id": "node:ridge-07",
+  "to_id": "broadcast|node:xyz",
+  "channel": "primary|secondary|…",
+  "text": "TEMP 17.4",
+  "ts": "2026-01-27T18:14:02Z",
+  "rssi": -112,
+  "snr": 6.5,
+  "hop_count": 2,
+  "location": {"lat": 43.6, "lon": -116.2, "alt": 800},
+  "device_id": "…"
+}
 ```
 
-```mmpdb
-@LAT10LON5 | created:1700002000 | updated:1700002000 | relates:in_area>@LAT0LON1,thread_root>@LAT10LON5
+#### B) `semantic/`
+Build a deterministic semantic interpreter with 2 modes:
 
-id: @LAT10LON5
-author: dan
-timestamp: 1700002000
-area_name: general
-body: Hello from the modem era.
+1) `semantic_rules.py` (required)  
+Table-driven intent grammar. Example patterns:
+- `PING` → `presence_probe`
+- `STATUS?` → `status_request`
+- `OK` → `acknowledgement`
+- `TEMP <num>` → `sensor_reading.temperature`
+- `HELP MEDICAL` → `emergency_medical`
+- `@<node> <cmd>` → `directed_command`
+- `#broadcast <msg>` → `bulletin_post`
+
+2) `semantic_ai_enricher.py` (optional)  
+Enriches classification and entities, but **never edits the raw message** and must output confidence + rationale fields.
+
+Output a **SemanticEvent**:
+```json
+{
+  "event_id": "44.1234,-116.2011",
+  "event_type": "sensor_reading",
+  "intent": "sensor_reading.temperature",
+  "confidence": 0.92,
+  "ts": "2026-01-27T18:14:02Z",
+  "reported_by": "node:ridge-07",
+  "addressed_to": "broadcast",
+  "mesh_meta": {"rssi": -112, "snr": 6.5, "hop_count": 2, "channel": "primary"},
+  "entities": [
+    {"type": "node", "id": "node:ridge-07"},
+    {"type": "sensor", "id": "sensor:temp"}
+  ],
+  "payload": {"value": 17.4, "unit": "C"},
+  "edges": [
+    {"edge_type": "reports_sensor", "from": "node:ridge-07", "to": "sensor:temp"}
+  ],
+  "raw_ref": "raw:sha256:…"
+}
 ```
 
-```mmpdb
-@LAT10LON6 | created:1700002100 | updated:1700002100 | relates:in_area>@LAT0LON1,reply_to>@LAT10LON5,thread_root>@LAT10LON5
+#### C) `addressing/`
+Implement stable IDs and collision avoidance.
 
-id: @LAT10LON6
-author: bee
-timestamp: 1700002100
-area_name: general
-body: Copy that, loud and clear.
-```
+- Configure increments in DB prefix:
+  - `ID_STEP_LAT`
+  - `ID_STEP_LON`
+- Collision rule:
+  - If event_id exists, move South-East by one step repeatedly until unique.
+- Provide a function:
+  - `assign_event_id(normalized_packet, semantic_event) -> event_id`
 
-## 🧪 Initial MVP Capabilities
+#### D) `mqtt/`
+Implement an MQTT semantic bus.
 
-- Accept TCP connections.
-- Show banner + login prompt.
-- Main menu with numbered choices.
-- Read existing messages.
-- Post a short message.
-- Clean disconnect.
+- Publish semantic events to:
+  - `tte/event/<category>/<subcategory>`
+- Also publish raw packets to:
+  - `tte/raw/meshtastic`
+- Publish node online/offline state:
+  - `tte/state/node/<node_id>`
 
-## 🚦 Explicit Non-Goals (for now)
+Example topic lanes (must implement):
+- `tte/event/presence`
+- `tte/event/sensor/temperature`
+- `tte/event/emergency/medical`
+- `tte/event/logistics/request`
+- `tte/event/logistics/offer`
+- `tte/event/bulletin/post`
+- `tte/event/bulletin/reply`
 
-- No ANSI art.
-- No file transfers.
-- No authentication security.
-- No rich formatting.
-- No web UI.
-- No Meshtastic yet (but design as if it’s coming).
+Include a `topic_map.md` showing:
+- topics
+- payload schemas
+- example messages
 
-## 🔮 Future Compatibility Signal
+#### E) `db/`
+Write semantic events to **MyMentalPalaceDB.md** with:
+- Prefix settings (ID increments, collision rules)
+- Records section
+- Cursor section (auto-updatable)
+- Typed edges glossary
 
-All protocol decisions should assume:
+Each record must include:
+- Event ID
+- Type + intent
+- Who/where
+- Raw reference
+- Compact structured payload
+- Typed edges
 
-- Packet sizes under 200 bytes.
-- Latency measured in seconds.
-- Opportunistic delivery.
-- Store-and-forward transport.
+#### F) `monitor/`
+Produce **offline** `monitor.html` that:
+- Loads `MyMentalPalaceDB.md`
+- Shows a cursor panel (selected record)
+- Shows a graph (dot-style rendering acceptable)
+- Filters by:
+  - node
+  - event_type
+  - time range
+- Highlights “story trails” (paths via typed edges)
 
-If a design choice would fail under those conditions, reconsider it now.
+#### G) `ai_librarian/` (optional)
+A service that subscribes to MQTT topics and can:
+- Summarize last N hours
+- Detect anomalies:
+  - node silent
+  - repeated SOS
+  - sensor drift
+- Answer questions by querying the DB
 
-## 🧩 Output Expectations from the Agent
+**Hard rule: AI only transmits to Meshtastic when invoked.**  
+Invocation messages must be explicit and mesh-short:
+- `@AI summarize 6h`
+- `@AI status ridge-07`
+- `@AI triage`
 
-- Clear MicroPython code.
-- Minimal dependencies.
-- Explicit comments explaining why, not just what.
-- Preference for clarity over cleverness.
-- Systems thinking over features.
-- Include a micro Python reduced MMPDB export file and its reader/writer helpers, demonstrating node/edge storage for BBS messages.
+AI outputs must be compressed for mesh bandwidth.
+
+---
+
+## T‑Deck Plus Specific UX (Use the keyboard + display)
+If the T‑Deck Plus is in gateway mode, implement a tiny “operator console” concept:
+
+- Show current mode:
+  - `NODE` (normal)
+  - `GATEWAY` (MQTT uplink)
+  - `BUFFERING` (offline store-and-forward)
+- Key bindings (example, adapt freely):
+  - `G` toggles gateway mode
+  - `B` shows buffer depth
+  - `S` shows mesh stats (RSSI/SNR/hops)
+  - `M` shows MQTT connection status
+
+Do not make the semantic bridge depend on UI. UI is optional garnish.
+
+---
+
+## Demonstration Scenario (Must Generate)
+Create a simulated “day on the mesh” with 5 nodes, including one named `node:tdeck-plus`:
+- Presence pings
+- 10 temperature readings
+- 1 sensor alert
+- 1 logistics request + offer
+- 1 emergency medical event + acknowledgements
+- 1 bulletin post thread with replies
+
+Run it through the full pipeline and output:
+- MQTT events (documented)
+- `MyMentalPalaceDB.md`
+- `monitor.html` that displays the graph
+
+---
+
+## Constraints
+- Keep mesh-side deterministic and short.
+- Be store-and-forward friendly.
+- Pluggable transports.
+- Python 3.10 for gateway code.
+- Avoid hardcoding hardware pins; isolate in one config.
+
+---
+
+## Output Format Requested From the Agent
+Return:
+1. Design overview
+2. Folder/module layout
+3. Key schemas (NormalizedPacket, SemanticEvent)
+4. MQTT taxonomy and topic map
+5. MyMentalPalaceDB record template + typed edges glossary
+6. Minimal runnable demo steps
+7. Gateway mode plan for the T‑Deck Plus (Wi‑Fi uplink + buffering)
+
+---
+
+## “Definition of Done”
+I can:
+- Use the T‑Deck Plus on the mesh normally, and optionally as a gateway node when Wi‑Fi is available.
+- See semantic events arrive in MQTT.
+- Open monitor.html offline and browse a graph of events and nodes.
+- Query the DB and update the cursor panel.
+- Ask @AI for summaries without spamming the mesh.
+

@@ -1,0 +1,15 @@
+@AREA_GENERAL | created:1700001900 | updated:1700001900
+
+id: @AREA_GENERAL
+kind: area
+area_name: general
+
+
+@MSG_WELCOME | created:1700002000 | updated:1700002000 | relates:in_area>@AREA_GENERAL,thread_root>@MSG_WELCOME
+
+id: @MSG_WELCOME
+kind: message
+author: sysop
+timestamp: 1700002000
+area_name: general
+body: Welcome to TOOT-TOOT BBS. Keep it short. Keep it kind.

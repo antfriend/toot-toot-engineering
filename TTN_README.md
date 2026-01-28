@@ -1,4 +1,4 @@
-# TTN (Toot-Toot Network) — Minimal 3-Node Messaging over UDP
+﻿# TTN (Toot-Toot Network) — Minimal 3-Node Messaging over UDP
 
 This repo contains a minimal, runnable **3-node IP messaging network** (TTN) where nodes can:
 - Send **direct** messages to a specific node

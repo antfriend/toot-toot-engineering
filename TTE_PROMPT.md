@@ -1,4 +1,4 @@
-🧭 TOOT-TOOT ENGINEERING PROMPT
+
 # Meshtastic + MQTT + TTN/TTDB Semantic Bridge for a 3-Node Field Network
 
 Design a minimal, complete system that:

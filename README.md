@@ -7,18 +7,13 @@ TTE is free, open-source software licensed under the MIT License.
 Workflow version: 3.8
 
 ### prompt:
-Use the contents of TTE_PROMPT.md as the prompt.
+Read TTE_PROMPT.md and make that.
 
-
-## What this is
-Like a factory that makes a factory to produce the desired product. The factory tools and shared assets live in this repo, and final products land in  `deliverables/` directories.
-This is a roles-based process engine for turning creative prompts into finished deliverables, with clear step handoffs and end-of-cycle self-learning through a reflective retrospective to improve the team and the process with every iteration.
 
 ## Main features
 - Critical-path plan in `PLAN.md` with step-by-step role handoff.
 - Cycle-based deliverables under `deliverables/cycle-XX/`.
 - Required logging in `LOG.md` for every step.
-
 - Built-in review and delivery packaging steps.
 - Human feedback captured after the final step.
 - Cycle releases in `RELEASES.md`.
@@ -39,8 +34,6 @@ Different roles review each others work, make choices, revise the plan, and prod
 
 In this way the production value is enriched. Supporting details and source assets are generated for later steps as needed.
 
-During each step, the human co-producer only clicks guardrail approval pop-ups when required by the environment, and commits can be batched at the end of the cycle if desired.   
-
 The plan is updated and revised as it progresses with changes saved in the [`PLAN.md`](PLAN.md) file and the [`LOG.md`](LOG.md) and other files as needed, step by step.  At the end of the cycle, the requested product is produced, excellently. Deliverables land in `deliverables/cycle-XX/`.
 
 
@@ -58,7 +51,7 @@ The plan is updated and revised as it progresses with changes saved in the [`PLA
 7. The reviewer checks for correctness and gaps, producing `deliverables/cycle-XX/REVIEW.md`.
 8. The delivery packager assembles final assets and export notes in `deliverables/cycle-XX/DELIVERY.md`.
 9. The retrospective suggests role/plan changes to prevent issues or improve outcomes, and updates `deliverables/cycle-XX/BOOTSTRAP.md`.
-10. The human co-producer approves guardrail pop-ups only when required and commits changes, if desired, after the final step. Agents proceed automatically between steps unless a blocking issue requires feedback.
+10. The cycle ends.
 
 ## Execution rule
 Planning cycles are capped at 1. Once a production pipeline exists (e.g., image generation + PDF assembly), the next cycle must execute it unless a blocking issue is logged.

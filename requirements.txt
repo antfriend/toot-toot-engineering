@@ -1,1 +1,1 @@
-openai
+# No external dependencies required for the minimal UDP TTN

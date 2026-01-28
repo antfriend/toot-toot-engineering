@@ -1,83 +1,134 @@
-﻿# Toot Toot Engineering Workflow
-TTE is free, open-source software licensed under the MIT License.
-![Toot Toot Engineering](HUMANS/time-foundry.svg)
-TTE is free, open-source software licensed under the MIT License.   
-![Release](https://img.shields.io/github/v/release/antfriend/toot-toot-engineering)
+# TTN (Toot-Toot Network) — Minimal 3-Node Messaging over UDP
 
-Workflow version: 3.8
+This repo contains a minimal, runnable **3-node IP messaging network** (TTN) where nodes can:
+- Send **direct** messages to a specific node
+- **Broadcast to the group** (implemented as UDP multicast, with a peer fanout fallback)
+- Use end-user configured **node name** and **IP address**
 
-### prompt:
-Read TTE_PROMPT.md and make that.
+Target nodes (conceptually):
+- Node A: Unihiker K10
+- Node B: Lilygo T-Deck Plus
+- Node C: Windows 11 PC
 
+The implementation is **Python 3.10** and is designed to run locally on one subnet.
 
-## Main features
-- Critical-path plan in `PLAN.md` with step-by-step role handoff.
-- Cycle-based deliverables under `deliverables/cycle-XX/`.
-- Required logging in `LOG.md` for every step.
-- Built-in review and delivery packaging steps.
-- Human feedback captured after the final step.
-- Cycle releases in `RELEASES.md`.
+## Transport choice
+**UDP**
+- **Direct:** UDP unicast to a peer’s IP/port.
+- **Group/broadcast:** UDP multicast to `GROUP_IP:GROUP_PORT`.
 
+No broker, no extra services.
 
-## Delivery focus (definition of done)
-A cycle is done only when the primary deliverable exists and is validated. For comics and other documents that means:
-- A print-ready PDF exists in the cycle output.
-- Source assets and build notes exist alongside the PDF.
-- Review confirms print specs (trim/bleed/safe area) and narrative coherence.
-Do not start a new cycle unless the deliverable exists or a blocker is logged in `LOG.md`.
+## Folder layout
+```
+/ttn/
+  config.py          # loads .env-style config
+  message.py         # TTN message schema (JSON)
+  transport_udp.py   # UDP unicast + multicast helpers
+  node.py            # CLI entrypoint: listen/direct/broadcast
+/config/
+  node_a.env
+  node_b.env
+  node_c.env
+/scripts/
+  run_three_nodes.py # prints commands for the demo scenario
+```
 
-Assets are generated in a single repository (this one!) in an iterative process following the critical path in [`PLAN.md`](PLAN.md). Iterations consist of a single step performed by a single agent in a single role. Deliverable outputs are stored under `deliverables/cycle-XX/`.
+## TTN message schema
+JSON object:
+```json
+{
+  "msg_id": "uuid",
+  "from_name": "node-alpha",
+  "from_ip": "192.168.1.10",
+  "to": "node-beta|broadcast",
+  "ts": "2026-01-27T18:14:02Z",
+  "text": "Hello team"
+}
+```
 
-The default starting agent role is the Bootstrap. They interpret the prompt and propose team composition, objectives, and plan adjustments. The orchestrator can optimize the critical path. Upon completion of that, they update the plan file to show the first step as complete and move the placeholder to start with the next agent role, for the next step. The plan file serves as an easy to read table of contents of what is to come and what has been done so far.
+## Configuration (node name + IP address)
+Each node uses a simple config file like `config/node_a.env`:
 
-Different roles review each others work, make choices, revise the plan, and produce the assets used to move to the next step.
+Required keys:
+- `NODE_NAME` — friendly unique name (e.g., `node-a`)
+- `NODE_IP` — the node’s own IP address (e.g., `192.168.1.10`)
 
-In this way the production value is enriched. Supporting details and source assets are generated for later steps as needed.
+Also used:
+- `NODE_PORT` — UDP port to listen on (default `5005`)
+- `GROUP_IP`, `GROUP_PORT` — multicast group for “broadcast” (defaults `239.255.0.1:5006`)
+- `NODE_PEERS` — comma-separated `name@ip` entries for direct messaging
 
-The plan is updated and revised as it progresses with changes saved in the [`PLAN.md`](PLAN.md) file and the [`LOG.md`](LOG.md) and other files as needed, step by step.  At the end of the cycle, the requested product is produced, excellently. Deliverables land in `deliverables/cycle-XX/`.
+### 1) Pick a unique NODE_NAME
+Choose any short unique label. Recommendation:
+- lowercase
+- dashes
+- no spaces
 
+Examples: `node-a`, `k10`, `tdeck`, `workshop-pc`
 
-## Plan file
-- The plan file name is fixed: [`PLAN.md`](PLAN.md).
-- [`PLAN.md`](PLAN.md) is the authoritative table of contents for the critical path and all generated deliverable assets.
+### 2) Assign or reserve a static IP (NODE_IP)
+You need stable IPs so peers can reach each other.
 
-## How it works
-1. Provide a prompt (cycle-01 uses [`TTE_PROMPT.md`](TTE_PROMPT.md); later cycles use the prompt specified in the previous cycle's `deliverables/cycle-XX/BOOTSTRAP.md`).
-2. The bootstrap role creates `deliverables/cycle-XX/BOOTSTRAP.md` with team, objectives, recommended plan adjustments, and 3 suggested next-cycle prompts grounded in the latest deliveries (human chooses one).
-3. The storyteller refines and elevates the central story or creative thread, producing `deliverables/cycle-XX/STORYTELLER.md`.
-4. If the prompt centers on SVG output, the SVG engineer documents SVG-specific strengths/constraints and coordinates with the Storyteller (`deliverables/cycle-XX/SVG_ENGINEER.md`).
-5. The orchestrator creates (or modifies) [`PLAN.md`](PLAN.md), [`AGENTS.md`](AGENTS.md), and [`LOG.md`](LOG.md), and optimizes the plan.
-6. The core worker produces the primary solution assets.
-7. The reviewer checks for correctness and gaps, producing `deliverables/cycle-XX/REVIEW.md`.
-8. The delivery packager assembles final assets and export notes in `deliverables/cycle-XX/DELIVERY.md`.
-9. The retrospective suggests role/plan changes to prevent issues or improve outcomes, and updates `deliverables/cycle-XX/BOOTSTRAP.md`.
-10. The cycle ends.
+Options:
+1. **DHCP reservation (recommended):** in your router’s admin UI, reserve an IP per device MAC address.
+2. **Static IP:** configure the device network settings manually.
 
-## Execution rule
-Planning cycles are capped at 1. Once a production pipeline exists (e.g., image generation + PDF assembly), the next cycle must execute it unless a blocking issue is logged.
+Pick three IPs on the same subnet, for example:
+- Node A: `192.168.1.10`
+- Node B: `192.168.1.11`
+- Node C: `192.168.1.12`
 
+### 3) Edit each node’s config
+Update `NODE_NAME`, `NODE_IP`, and `NODE_PEERS` to match your network.
 
-## Quality bar
-- Factual claims include sources when relevant; uncertainties are labeled and deferred.
-- Third-party assets include owner/source, status, and any usage constraints or substitutes.
+Example `NODE_PEERS`:
+```
+NODE_PEERS=node-b@192.168.1.11,node-c@192.168.1.12
+```
 
-## Quick start
-1. Read [`README.md`](README.md) and [`WHAT.md`](WHAT.md) for intent and scope.
-2. Use [`TTE_PROMPT.md`](TTE_PROMPT.md) as the cycle-01 prompt. For later cycles, use the prompt specified in the previous cycle's `deliverables/cycle-XX/BOOTSTRAP.md`.
-3. Review the RFC documents in [`RFCs/`](RFCs/) and follow them to conform to the TTE standard.
-4. Open [`PLAN.md`](PLAN.md) to see the current step.
-5. Create a `deliverables/cycle-XX/` folder for this cycle’s outputs.
-6. Execute the current role using [`AGENTS.md`](AGENTS.md) and produce the named assets in `deliverables/cycle-XX/` unless exempted.
-7. Complete the step using [`CHECKLIST.md`](CHECKLIST.md).
-8. Append the entry in [`LOG.md`](LOG.md) (create it if missing, using the template in [`AGENTS.md`](AGENTS.md)) and hand off for commit.
+## How to run
+### Requirements
+- Python 3.10+
+- No external pip dependencies (see `requirements.txt`)
 
+### Start three listeners
+Open **three terminals** (or three SSH sessions) and run:
 
+Terminal A:
+```bash
+python -m ttn.node --config config/node_a.env listen
+```
+Terminal B:
+```bash
+python -m ttn.node --config config/node_b.env listen
+```
+Terminal C:
+```bash
+python -m ttn.node --config config/node_c.env listen
+```
 
-## More
-- See [`WHAT.md`](WHAT.md) for the conceptual overview.
-- See [`AGENTS.md`](AGENTS.md) for expected asset names per role.
-- See [`CHECKLIST.md`](CHECKLIST.md) for step completion and consistency checks.
-- See [`RELEASES.md`](RELEASES.md) for cycle summaries.
+### Send direct messages
+From any terminal:
+```bash
+python -m ttn.node --config config/node_a.env direct node-b "Hello node-b"
+python -m ttn.node --config config/node_b.env direct node-a "Hi node-a"
+```
 
-## Easter eggs
-- If the human literally says "AFFIRMATIVE" the agent should provide a snappy reply including themes from the project and the step.
+### Send a broadcast to the group
+```bash
+python -m ttn.node --config config/node_c.env broadcast "Hello everyone"
+```
+
+### Demo helper
+This prints the exact commands:
+```bash
+python scripts/run_three_nodes.py
+```
+
+## Troubleshooting
+- **Windows Firewall:** allow Python to receive UDP on your chosen port.
+- **Multicast not working:** some networks block multicast. Broadcast will fall back to “send to all peers” if `NODE_PEERS` is set.
+
+## Notes for real devices
+- If a device can’t use CPython, keep the schema and CLI concepts and port the same UDP behavior.

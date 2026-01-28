@@ -6,6 +6,24 @@ How to update:
 - Add or update the current cycle section whenever deliverables are produced.
 - Mark status as in progress or complete, and keep the deliverables list accurate.
 
+## Cycle 01
+- Status: complete
+- Prompt source: `TTE_PROMPT.md`
+- Deliverables root: `deliverables/cycle-01/`
+- Primary artifacts:
+  - `ttn/` (Python package: node runtime + schema + UDP transport)
+  - `README.md` (setup + configuration + run instructions)
+- Other deliverables:
+  - `deliverables/cycle-01/BOOTSTRAP.md`
+  - `deliverables/cycle-01/STORYTELLER.md`
+  - `deliverables/cycle-01/SOLUTION.md`
+  - `deliverables/cycle-01/REVIEW.md`
+  - `deliverables/cycle-01/DELIVERY.md`
+  - `config/node_a.env`
+  - `config/node_b.env`
+  - `config/node_c.env`
+  - `scripts/run_three_nodes.py`
+
 ## Templates
 ### Cycle XX (template)
 - Status: in progress

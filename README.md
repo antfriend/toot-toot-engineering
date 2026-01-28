@@ -42,7 +42,7 @@ The plan is updated and revised as it progresses with changes saved in the [`PLA
 - [`PLAN.md`](PLAN.md) is the authoritative table of contents for the critical path and all generated deliverable assets.
 
 ## How it works
-1. Provide a prompt (cycle 01 uses the prompt in this README; later cycles define the prompt in their `BOOTSTRAP.md`).
+1. Provide a prompt (cycle-01 uses [`TTE_PROMPT.md`](TTE_PROMPT.md); later cycles use the prompt specified in the previous cycle's `deliverables/cycle-XX/BOOTSTRAP.md`).
 2. The bootstrap role creates `deliverables/cycle-XX/BOOTSTRAP.md` with team, objectives, recommended plan adjustments, and 3 suggested next-cycle prompts grounded in the latest deliveries (human chooses one).
 3. The storyteller refines and elevates the central story or creative thread, producing `deliverables/cycle-XX/STORYTELLER.md`.
 4. If the prompt centers on SVG output, the SVG engineer documents SVG-specific strengths/constraints and coordinates with the Storyteller (`deliverables/cycle-XX/SVG_ENGINEER.md`).
@@ -63,11 +63,13 @@ Planning cycles are capped at 1. Once a production pipeline exists (e.g., image 
 
 ## Quick start
 1. Read [`README.md`](README.md) and [`WHAT.md`](WHAT.md) for intent and scope.
-2. Open [`PLAN.md`](PLAN.md) to see the current step.
-3. Create a `deliverables/cycle-XX/` folder for this cycle’s outputs.
-4. Execute the current role using [`AGENTS.md`](AGENTS.md) and produce the named assets in `deliverables/cycle-XX/` unless exempted.
-5. Complete the step using [`CHECKLIST.md`](CHECKLIST.md).
-6. Append the entry in [`LOG.md`](LOG.md) (create it if missing, using the template in [`AGENTS.md`](AGENTS.md)) and hand off for commit.
+2. Use [`TTE_PROMPT.md`](TTE_PROMPT.md) as the cycle-01 prompt. For later cycles, use the prompt specified in the previous cycle's `deliverables/cycle-XX/BOOTSTRAP.md`.
+3. Review the RFC documents in [`RFCs/`](RFCs/) and follow them to conform to the TTE standard.
+4. Open [`PLAN.md`](PLAN.md) to see the current step.
+5. Create a `deliverables/cycle-XX/` folder for this cycle’s outputs.
+6. Execute the current role using [`AGENTS.md`](AGENTS.md) and produce the named assets in `deliverables/cycle-XX/` unless exempted.
+7. Complete the step using [`CHECKLIST.md`](CHECKLIST.md).
+8. Append the entry in [`LOG.md`](LOG.md) (create it if missing, using the template in [`AGENTS.md`](AGENTS.md)) and hand off for commit.
 
 
 

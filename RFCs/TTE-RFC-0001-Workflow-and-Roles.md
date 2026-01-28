@@ -33,8 +33,8 @@ The following roles are defined:
 
 ## 3. Cycle Rules
 - Deliverables MUST be written to `deliverables/cycle-XX/`.
-- Cycle 01 uses the prompt in `README.md`; later cycles use the
-  prompt in that cycle's `BOOTSTRAP.md`.
+- cycle-01 uses `TTE_PROMPT.md`; later cycles use the prompt
+  specified in the previous cycle's `deliverables/cycle-XX/BOOTSTRAP.md`.
 - A step cannot be marked complete if its outputs contain placeholders.
 
 End TTE-RFC-0001

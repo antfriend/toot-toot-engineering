@@ -39,7 +39,7 @@ Workflow version: 3.8
 - Promoted artifacts intended for reuse are copied into `library/` or `standards/` with an updated name/version.
 - [`PLAN.md`](PLAN.md) includes an "Inputs for this cycle" list of allowed references.
 - Cycle-only files use a `-draft` or `-cycle` suffix to discourage cross-cycle reuse without promotion.
-- Cycle 01 uses the prompt in [`README.md`](README.md); subsequent cycles define their prompt in that cycle's `BOOTSTRAP.md`.
+- cycle-01 uses [`TTE_PROMPT.md`](TTE_PROMPT.md); later cycles use the prompt specified in the previous cycle's `deliverables/cycle-XX/BOOTSTRAP.md`.
 - The bootstrap role proposes team composition and plan adjustments; the orchestrator finalizes them in [`PLAN.md`](PLAN.md).
 - A step may not be marked complete in [`PLAN.md`](PLAN.md) if its output contains placeholders (e.g., `<to verify>`, `<source>`, `ƒ?`).
 - Placeholder files are created at the step they are needed, not upfront.

@@ -7,7 +7,7 @@
 - [ ] 1. Bootstrap interprets the prompt, proposes team composition, and recommends plan adjustments. (`deliverables/cycle-01/BOOTSTRAP.md`) (in progress)
 
 ## Inputs for this cycle
-- `README.md` (cycle-01 prompt source)
+- `TTE_PROMPT.md` (cycle-01 prompt source)
 - `WHAT.md`
 - `AGENTS.md`
 - `CHECKLIST.md`

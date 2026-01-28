@@ -7,6 +7,7 @@ Design a minimal, complete system that:
 - Stores them in **MyMentalPalaceDB.md** (TTDB-aligned, with umwelt + globe semantics).
 - Renders them in an offline **monitor.html**.
 - Adds an AI “librarian” that listens on MQTT and only speaks on the mesh when explicitly invoked.
+- For technical clarifications, refer to the RFCs in the `RFCs/` folder.
 
 This version targets a **3-node network** plus a Windows 11 gateway PC:
 - **Node A (mesh):** LILYGO T‑Deck Plus (H737‑03Mesh)
@@ -22,6 +23,7 @@ This version targets a **3-node network** plus a Windows 11 gateway PC:
 - The **Unihiker K10** and **ESP32 node** are IP/Wi‑Fi devices that do **not** run Meshtastic or LoRa.
 - They communicate with the Windows 11 PC over IP (MQTT/HTTP/UDP), and the PC bridges their events into TTN.
 - The Windows 11 PC is the primary **gateway** and MQTT host.
+- LoRa setting for the T‑Deck (Step 1): **US LONG FAST** with center frequency **906.875 MHz**.
 
 ---
 
@@ -270,6 +272,7 @@ Run it through the full pipeline and output:
 - Pluggable transports.
 - Python 3.10 for gateway code.
 - Avoid hardcoding hardware pins; isolate in one config.
+- If adding LoRa-only nodes, use `RFCs/TTN-RFC-0006-LoRa-Packet-Framing.md`.
 
 ---
 

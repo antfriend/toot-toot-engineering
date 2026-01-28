@@ -7,6 +7,8 @@ This index lists RFCs included in the TTE 1.0 bundle.
 - TTN-RFC-0002-Typed-Edges.md: Typed Edge Taxonomy
 - TTN-RFC-0003-Reference-Implementation.md: Reference Implementation Checklist
 - TTN-RFC-0004-Semantic-Compression.md: Semantic Compression and Token Dictionary
+- TTN-RFC-0005-Trust-and-Reputation.md: Trust and Reputation Signals
+- TTN-RFC-0006-LoRa-Packet-Framing.md: Minimal LoRa Packet Framing
 
 ## TTDB (My Mental Palace DB)
 - TTDB-RFC-0001-File-Format.md: File Format and Sections

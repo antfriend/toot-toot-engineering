@@ -1,28 +1,45 @@
 🧭 TOOT-TOOT ENGINEERING PROMPT
-# Meshtastic + MQTT + Semantic Bridge for **LILYGO T-Deck Plus (H737-03Mesh)**
+# Meshtastic + MQTT + TTN/TTDB Semantic Bridge for a 3-Node Field Network
 
-Design and build a complete system that turns Meshtastic messages into **typed semantic events**, publishes them to **MQTT**, stores them in **MyMentalPalaceDB.md**, renders them in an offline **monitor.html**, and adds an AI “librarian” that listens on MQTT and only speaks on the mesh when explicitly invoked.
+Design a minimal, complete system that:
+- Turns Meshtastic messages into **typed semantic events** (TTN-aligned).
+- Publishes them to **MQTT**.
+- Stores them in **MyMentalPalaceDB.md** (TTDB-aligned, with umwelt + globe semantics).
+- Renders them in an offline **monitor.html**.
+- Adds an AI “librarian” that listens on MQTT and only speaks on the mesh when explicitly invoked.
 
-This version is tailored for the **LILYGO T‑Deck Plus (H737‑03Mesh)** as your primary field device.
+This version targets a **3-node network** plus a Windows 11 gateway PC:
+- **Node A (mesh):** LILYGO T‑Deck Plus (H737‑03Mesh)
+- **Node B (non-mesh):** Unihiker K10 (IP/Wi‑Fi device)
+- **Node C (non-mesh):** Any ESP32-class device (IP/Wi‑Fi device)
+- **Gateway/host:** Windows 11 PC running MQTT + TTN/TTDB pipeline
 
 ---
 
-## Assumptions and Hardware Notes (Tailored)
-Treat the **T‑Deck Plus** as a **Meshtastic-capable ESP32-class handheld** with:
-- **LoRa radio** supported by Meshtastic (commonly SX1262-class on many LILYGO boards)
-- **Wi‑Fi** (for MQTT uplink when available)
-- **BLE** (for phone pairing/config and optional local control)
-- **Keyboard + display** (useful for local status + “gateway mode” controls)
-- **Battery power** (support low-power behaviors)
+## Assumptions and Hardware Notes (Minimal)
+- Do not hardcode pin mappings; isolate hardware pins in one config if required.
+- Only the **T‑Deck Plus** is Meshtastic-capable and participates in the mesh.
+- The **Unihiker K10** and **ESP32 node** are IP/Wi‑Fi devices that do **not** run Meshtastic or LoRa.
+- They communicate with the Windows 11 PC over IP (MQTT/HTTP/UDP), and the PC bridges their events into TTN.
+- The Windows 11 PC is the primary **gateway** and MQTT host.
 
-**Do not hardcode pin mappings** in your first implementation. Instead:
-- Use Meshtastic’s board support / device profile for the T‑Deck Plus variant.
-- If you must set pins, implement them in one config file (e.g., `hardware_profile.py`) and keep the rest of the system generic.
+---
+
+## Network Topology (Must Build)
+1. **Windows 11 PC** runs:
+   - MQTT broker
+   - TTN semantic bridge (receiver + interpreter + MQTT publisher)
+   - TTDB writer and offline monitor
+   - AI librarian service
+2. **T‑Deck Plus** runs Meshtastic and is the *only* mesh node.
+3. **Unihiker K10** and **ESP32 node** connect to the Windows 11 PC over IP (Wi‑Fi/Ethernet/USB).
+4. The gateway PC ingests mesh packets from the T‑Deck via Meshtastic (serial/BLE/TCP as available).
+5. The system bridges **IP → TTN** and **TTN → IP** via the gateway PC.
 
 ---
 
 ## High-Level Goal
-Build a **TTE-style semantic bridge** where:
+Build a **TTN/TTDB semantic bridge** where:
 
 **Meshtastic transport** → **meaning extraction** → **typed events + stable IDs** → **MQTT distribution** → **MyMentalPalaceDB graph memory** → **Monitor UI** → optional **AI librarian**
 
@@ -59,6 +76,7 @@ Produce a repo-style project with:
    - filters
 6. A simulation/demo generator that replays a “day on the mesh”
 7. `ai_librarian/` service that subscribes via MQTT
+8. TTN deployment instructions for the 3-node network + Windows 11 PC
 
 Use **Python 3.10** for the gateway-side implementation.
 For on-device (if you implement gateway mode directly on the T‑Deck), you may use:
@@ -66,7 +84,7 @@ For on-device (if you implement gateway mode directly on the T‑Deck), you may 
 
 ---
 
-## System Architecture (What to Build)
+## System Architecture (Minimal)
 ### Data Flow
 Meshtastic packet → Receiver → Normalizer → Semantic Interpreter → Stable ID assignment → MQTT publish → MyMentalPalaceDB write → Monitor render → Optional AI librarian
 
@@ -181,6 +199,8 @@ Write semantic events to **MyMentalPalaceDB.md** with:
 - Records section
 - Cursor section (auto-updatable)
 - Typed edges glossary
+- Umwelt block (librarian perspective + globe mapping)
+- Librarian primitive query settings
 
 Each record must include:
 - Event ID
@@ -220,25 +240,16 @@ AI outputs must be compressed for mesh bandwidth.
 
 ---
 
-## T‑Deck Plus Specific UX (Use the keyboard + display)
-If the T‑Deck Plus is in gateway mode, implement a tiny “operator console” concept:
-
-- Show current mode:
-  - `NODE` (normal)
-  - `GATEWAY` (MQTT uplink)
-  - `BUFFERING` (offline store-and-forward)
-- Key bindings (example, adapt freely):
-  - `G` toggles gateway mode
-  - `B` shows buffer depth
-  - `S` shows mesh stats (RSSI/SNR/hops)
-  - `M` shows MQTT connection status
-
-Do not make the semantic bridge depend on UI. UI is optional garnish.
+## Minimal Device UX (Optional)
+UI is optional garnish; the semantic bridge must not depend on device UI.
 
 ---
 
 ## Demonstration Scenario (Must Generate)
-Create a simulated “day on the mesh” with 5 nodes, including one named `node:tdeck-plus`:
+Create a simulated “day on the mesh” with 3 nodes (hybrid):
+- `node:tdeck-plus`
+- `node:unihiker-k10`
+- `node:esp32-field`
 - Presence pings
 - 10 temperature readings
 - 1 sensor alert
@@ -271,6 +282,7 @@ Return:
 5. MyMentalPalaceDB record template + typed edges glossary
 6. Minimal runnable demo steps
 7. Gateway mode plan for the T‑Deck Plus (Wi‑Fi uplink + buffering)
+8. TTN deployment steps for Windows 11 PC + 3-node hybrid mesh/IP network
 
 ---
 
@@ -281,4 +293,3 @@ I can:
 - Open monitor.html offline and browse a graph of events and nodes.
 - Query the DB and update the cursor panel.
 - Ask @AI for summaries without spamming the mesh.
-

@@ -1,6 +1,6 @@
 # TTDB-RFC-0001
 ## My Mental Palace DB File Format and Sections
-### Version 0.1
+### Version 0.2
 
 Status: Draft
 
@@ -34,6 +34,17 @@ The `mmpdb` fenced block MUST be valid YAML with these keys:
   - `lon` (integer, required)
 - `collision_policy` (string, required)
 - `timestamp_kind` (string, required)
+- `umwelt` (object, required)
+  - `umwelt_id` (string, required)
+  - `role` (string, required)
+  - `perspective` (string, required)
+  - `scope` (string, required)
+  - `constraints` (list of strings, optional)
+  - `globe` (object, required)
+    - `frame` (string, required)
+    - `origin` (string, required)
+    - `mapping` (string, required)
+    - `note` (string, optional)
 - `cursor_policy` (object, required)
   - `max_preview_chars` (integer, required)
   - `max_nodes` (integer, required)
@@ -41,6 +52,11 @@ The `mmpdb` fenced block MUST be valid YAML with these keys:
   - `enabled` (boolean, required)
   - `syntax` (string, required)
   - `note` (string, optional)
+- `librarian` (object, optional)
+  - `enabled` (boolean, required if present)
+  - `primitive_queries` (list of strings, required if present)
+  - `max_reply_chars` (integer, optional)
+  - `invocation_prefix` (string, optional)
 
 Parsers MUST treat unknown keys as extensions.
 
@@ -63,7 +79,21 @@ Rules:
 
 ---
 
-## 4. Compatibility
+## 4. Umwelt and Globe Semantics
+- Each TTDB instance represents a single umwelt: a subjective worldview of an
+  AI librarian.
+- All semantic edges in the file are interpreted within this umwelt; there is
+  no implied global or objective frame beyond what the umwelt asserts.
+- The TTDB "globe" uses `@LATxLONy` coordinates as a knowledge map. The lat/lon
+  positions MUST encode what the umwelt knows (or believes) about nodes on the
+  TTN and the wider world.
+- The `umwelt.globe` mapping describes how external observations are projected
+  into this knowledge map. Implementations SHOULD document any projection or
+  quantization in `umwelt.globe.mapping`.
+
+---
+
+## 5. Compatibility
 - Implementations MUST preserve unknown content when updating the file.
 - Implementations SHOULD use stable ordering when re-serializing.
 

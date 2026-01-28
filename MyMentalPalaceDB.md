@@ -1,5 +1,5 @@
 # My Mental Palace DB
-A single-file semantic story database. It stores records as markdown nodes in a network graph of semantic links. The ID of each record is a latitudinal and longitudinal point on a globe.    
+A single-file semantic story database. It stores records as markdown nodes in a network graph of semantic links. The ID of each record is a latitudinal and longitudinal point on a knowledge globe, defined by the librarian's umwelt.    
 Agent note: users may refer to this DB and its actions (e.g., "select", "update", "insert", "delete", "upsert") using data-user parlance; interpret those requests as edits to this file's current cursor selection, DB properties, or records. If a request is ambiguous (e.g., multiple possible records), ask a short clarification or select the most recently updated matching record and state the assumption.
 
 ```mmpdb
@@ -10,6 +10,19 @@ coord_increment:
   lon: 1
 collision_policy: southeast_step
 timestamp_kind: unix_utc
+umwelt:
+  umwelt_id: umwelt:palace:stroll
+  role: ai_librarian
+  perspective: "A narrative cartographer who records only what is walked and observed."
+  scope: "Local story nodes, their edges, and the implied paths between them."
+  constraints:
+    - "No claims beyond the walked path."
+    - "Edges reflect felt meaning, not objective geography."
+  globe:
+    frame: "knowledge_map"
+    origin: "North Pole of meaning at @LAT0LON0"
+    mapping: "Story events are projected into a lattice of remembered steps."
+    note: "Coordinates encode remembered relationships, not physical positions."
 cursor_policy:
   max_preview_chars: 280
   max_nodes: 25
@@ -17,6 +30,16 @@ typed_edges:
   enabled: true
   syntax: "type>@TARGET_ID"
   note: "Types are free-form tokens; edges remain directional."
+librarian:
+  enabled: true
+  primitive_queries:
+    - "SELECT <record_id>"
+    - "FIND <token>"
+    - "EDGES <record_id>"
+    - "LAST <n>"
+    - "STATUS"
+  max_reply_chars: 240
+  invocation_prefix: "@AI"
 ```
 
 ```cursor

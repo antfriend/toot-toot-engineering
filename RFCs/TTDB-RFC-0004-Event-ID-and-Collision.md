@@ -1,6 +1,6 @@
 # TTDB-RFC-0004
 ## Event ID Assignment and Collision Handling
-### Version 0.1
+### Version 0.2
 
 Status: Draft
 
@@ -27,6 +27,16 @@ Where `LAT` and `LON` are integer coordinates based on the configured
 
 ---
 
+## 2.1 Globe as Knowledge Map
+- Record IDs are positions on the TTDB "globe," which represents the librarian's
+  knowledge map as defined by `mmpdb.umwelt.globe`.
+- Implementations MUST treat lat/lon as coordinates in this subjective map,
+  not necessarily a physical geolocation.
+- If an external coordinate is used, it MUST be projected through the
+  `umwelt.globe.mapping` function or note before assignment.
+
+---
+
 ## 3. Collision Policy
 The configured `collision_policy` defines resolution behavior.
 The `southeast_step` policy means:
@@ -37,5 +47,8 @@ The `southeast_step` policy means:
 
 ## 4. Preservation
 - Once assigned, an ID MUST NOT change for the same record.
+- If the umwelt changes materially, implementations SHOULD create a new record
+  and link to the previous one using a typed edge (e.g., `revises@<old_id>`),
+  rather than mutating the original ID.
 
 End TTDB-RFC-0004

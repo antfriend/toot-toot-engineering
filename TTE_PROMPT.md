@@ -59,7 +59,7 @@ Provide clear, step-by-step instructions that explain:
 
 ## Deliverables
 Produce a repo-style project with:
-1. `README.md` that includes:
+1. `TTN_README.md` that includes:
    - Network setup requirements
    - Step-by-step configuration for each node
    - How to run the nodes

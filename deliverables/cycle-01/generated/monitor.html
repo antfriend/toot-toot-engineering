@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>TTE Monitor</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 0; display: grid; grid-template-columns: 360px 1fr; height: 100vh; }
+    #left { border-right: 1px solid #ddd; padding: 12px; overflow: auto; }
+    #right { padding: 12px; overflow: auto; }
+    .event { padding: 8px; border: 1px solid #eee; margin: 6px 0; cursor: pointer; }
+    .event:hover { background: #fafafa; }
+    .muted { color: #666; }
+    #graph pre { background: #111; color: #eee; padding: 10px; overflow: auto; }
+    label { display:block; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div id="left">
+    <h2>Cursor</h2>
+    <div id="cursor" class="muted">(select an event)</div>
+
+    <h2>Filters</h2>
+    <label>Node
+      <input id="nodeFilter" placeholder="node:..." style="width: 100%"/>
+    </label>
+    <label>Event type
+      <input id="typeFilter" placeholder="presence|sensor|..." style="width: 100%"/>
+    </label>
+    <label>Time contains (YYYY-MM-DDTHH)
+      <input id="timeFilter" placeholder="2026-01-27T08" style="width: 100%"/>
+    </label>
+    <button id="apply">Apply</button>
+
+    <h2>Events</h2>
+    <div id="events"></div>
+  </div>
+  <div id="right">
+    <h1>Offline Monitor</h1>
+    <div class="muted">Loads <code>MyMentalPalaceDB.md</code> from the same folder.</div>
+
+    <h2>Graph (dot-style)</h2>
+    <div id="graph"></div>
+
+    <h2>Selected record</h2>
+    <pre id="record"></pre>
+  </div>
+
+<script>
+const DB_FILE = 'MyMentalPalaceDB.md';
+
+function parseDB(md) {
+  const blocks = md.split(/\n### Event /g);
+  blocks.shift();
+  const events = [];
+  for (const b of blocks) {
+    const lines = b.split('\n');
+    const id = lines[0].trim();
+    events.push({id, raw: '### Event ' + b});
+  }
+  return events;
+}
+
+function dotGraph(events) {
+  const edges = [];
+  for (const e of events) {
+    e.raw.split('\n').forEach(l => {
+      const m = l.match(/^\s*\-\s+([a-zA-Z_]+):\s+(.*)\s+\-\>\s+(.*)$/);
+      if (m) edges.push({t:m[1], a:m[2], b:m[3]});
+    });
+  }
+  let out = "digraph tte {\n";
+  out += "  rankdir=LR;\n";
+  for (const ed of edges) {
+    out += '  "' + ed.a + '" -> "' + ed.b + '" [label="' + ed.t + '"] ;\n';
+  }
+  out += "}\n";
+  return out;
+}
+
+function renderList(events) {
+  const el = document.getElementById('events');
+  el.innerHTML = '';
+  for (const e of events) {
+    const div = document.createElement('div');
+    div.className = 'event';
+    div.textContent = e.id;
+    div.onclick = () => selectEvent(e);
+    el.appendChild(div);
+  }
+}
+
+function selectEvent(e) {
+  document.getElementById('cursor').textContent = e.id;
+  document.getElementById('record').textContent = e.raw;
+}
+
+async function load() {
+  const resp = await fetch(DB_FILE);
+  const md = await resp.text();
+  const events = parseDB(md);
+  window._events = events;
+  renderList(events);
+  document.getElementById('graph').innerHTML = '<pre>' + dotGraph(events).replace(/</g,'&lt;') + '</pre>';
+}
+
+function applyFilters() {
+  const node = document.getElementById('nodeFilter').value.trim();
+  const typ = document.getElementById('typeFilter').value.trim();
+  const tim = document.getElementById('timeFilter').value.trim();
+
+  let evs = window._events || [];
+  if (node) evs = evs.filter(e => e.raw.includes('reported_by: ' + node));
+  if (typ) evs = evs.filter(e => e.raw.includes('event_type: ' + typ));
+  if (tim) evs = evs.filter(e => e.raw.includes('ts: ' + tim));
+  renderList(evs);
+  document.getElementById('graph').innerHTML = '<pre>' + dotGraph(evs).replace(/</g,'&lt;') + '</pre>';
+}
+
+document.getElementById('apply').onclick = applyFilters;
+load();
+</script>
+</body>
+</html>

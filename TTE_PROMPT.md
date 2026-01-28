@@ -1,278 +1,110 @@
+# TTN 3-Node Messaging Network 
 
-# Meshtastic + MQTT + TTN/TTDB Semantic Bridge for a 3-Node Field Network
-
-Design a minimal, complete system that:
-- Turns Meshtastic messages into **typed semantic events** (TTN-aligned).
-- Publishes them to **MQTT**.
-- Stores them in **MyMentalPalaceDB.md** (TTDB-aligned, with umwelt + globe semantics).
-- Renders them in an offline **monitor.html**.
-- Adds an AI “librarian” that listens on MQTT and only speaks on the mesh when explicitly invoked.
+Design a minimal, complete system that builds a **simple 3-node TTN** where devices can:
+- Send direct messages to each other.
+- Broadcast to the whole group.
+- Use end-user configured **node name** and **IP address**.
+- Provide clear instructions for users to configure those values.
 - For technical clarifications, refer to the RFCs in the `RFCs/` folder.
 
-This version targets a **3-node network** plus a Windows 11 gateway PC:
-- **Node A (mesh):** LILYGO T‑Deck Plus (H737‑03Mesh)
-- **Node B (non-mesh):** Unihiker K10 (IP/Wi‑Fi device)
-- **Node C (non-mesh):** Any ESP32-class device (IP/Wi‑Fi device)
-- **Gateway/host:** Windows 11 PC running MQTT + TTN/TTDB pipeline
+This version targets a **3-node IP network** plus an optional Windows 11 host for tooling:
+- **Node A:** Unihiker K10
+- **Node B:** Lilygo T-Deck Plus
+- **Node C:** Windows 11 PC
+- **Optional host:** Windows 11 PC for simulation, testing, or monitoring
 
----
-
-## Assumptions and Hardware Notes (Minimal)
-- Do not hardcode pin mappings; isolate hardware pins in one config if required.
-- Only the **T‑Deck Plus** is Meshtastic-capable and participates in the mesh.
-- The **Unihiker K10** and **ESP32 node** are IP/Wi‑Fi devices that do **not** run Meshtastic or LoRa.
-- They communicate with the Windows 11 PC over IP (MQTT/HTTP/UDP), and the PC bridges their events into TTN.
-- The Windows 11 PC is the primary **gateway** and MQTT host.
-- LoRa setting for the T‑Deck (Step 1): **US LONG FAST** with center frequency **906.875 MHz**.
-
----
-
-## Network Topology (Must Build)
-1. **Windows 11 PC** runs:
-   - MQTT broker
-   - TTN semantic bridge (receiver + interpreter + MQTT publisher)
-   - TTDB writer and offline monitor
-   - AI librarian service
-2. **T‑Deck Plus** runs Meshtastic and is the *only* mesh node.
-3. **Unihiker K10** and **ESP32 node** connect to the Windows 11 PC over IP (Wi‑Fi/Ethernet/USB).
-4. The gateway PC ingests mesh packets from the T‑Deck via Meshtastic (serial/BLE/TCP as available).
-5. The system bridges **IP → TTN** and **TTN → IP** via the gateway PC.
+No Meshtastic, no LoRa, no radio-specific requirements.
 
 ---
 
 ## High-Level Goal
-Build a **TTN/TTDB semantic bridge** where:
+Build a **simple TTN** where:
 
-**Meshtastic transport** → **meaning extraction** → **typed events + stable IDs** → **MQTT distribution** → **MyMentalPalaceDB graph memory** → **Monitor UI** → optional **AI librarian**
+**Node message** → **TTN message format** → **direct or broadcast delivery** → **group receipt**
 
-The bridge should work in two modes:
+The system must be easy to run locally on a single subnet and easy to configure by non-experts.
 
-1. **T‑Deck Plus as a Gateway Node (Preferred)**
-   - The T‑Deck Plus runs Meshtastic + a local “semantic bridge agent”
-   - When Wi‑Fi is available, it publishes semantic events to MQTT
-   - When Wi‑Fi is unavailable, it buffers events locally and forwards later
+---
 
-2. **T‑Deck Plus as a Standard Node**
-   - A separate PC/RPi gateway listens to Meshtastic (serial/BLE/TCP)
-   - The gateway does semantics + MQTT + DB + monitor
-   - The T‑Deck Plus is just a rich UI node on the mesh
+## Network Topology (Must Build)
+1. All three nodes are on the same IP network.
+2. Each node has:
+   - A user-configured **display name**
+   - A user-configured **static IP address** (or a reserved DHCP lease)
+3. Nodes send messages over the network using a **single transport** (choose one):
+   - UDP (simplest, no broker)
+   - TCP (simple, direct)
+   - MQTT (if a broker is used)
 
-Design everything so the only difference is the **receiver transport** and **where the bridge runs**.
+Pick one transport and keep it consistent across all nodes.
+
+---
+
+## User Configuration (Must Include)
+Each node must expose a simple config file (or environment variables) with:
+- `NODE_NAME` (user-friendly display name)
+- `NODE_IP` (the node's own IP address)
+- `NODE_PORT` (port to listen on)
+- `GROUP_IP` and `GROUP_PORT` (for broadcast or group messaging)
+- `NODE_PEERS` (list of the other node IPs, if direct messaging is needed)
+
+Provide clear, step-by-step instructions that explain:
+1. How to pick and set a unique `NODE_NAME`.
+2. How to assign or reserve a static IP address.
+3. How to edit the config file.
+4. How to start each node.
+5. How to test direct and broadcast messages.
 
 ---
 
 ## Deliverables
 Produce a repo-style project with:
+1. `README.md` that includes:
+   - Network setup requirements
+   - Step-by-step configuration for each node
+   - How to run the nodes
+   - How to send direct and broadcast messages
+2. A minimal runnable implementation for the 3 nodes
+3. A simple message format spec (TTN message schema)
+4. A demo script that:
+   - Starts or simulates 3 nodes
+   - Sends direct messages between nodes
+   - Broadcasts to the group
+5. Optional: a lightweight monitor view or log output to confirm message flow
 
-1. `README.md` with setup for:
-   - T‑Deck Plus gateway mode
-   - External gateway mode (PC/RPi)
-2. A running semantic bridge:
-   - Meshtastic in
-   - Semantic events out
-3. MQTT topic taxonomy + sample payloads
-4. `MyMentalPalaceDB.md` generated by the demo
-5. Offline `monitor.html` that visualizes:
-   - cursor panel
-   - node graph + typed edges
-   - filters
-6. A simulation/demo generator that replays a “day on the mesh”
-7. `ai_librarian/` service that subscribes via MQTT
-8. TTN deployment instructions for the 3-node network + Windows 11 PC
-
-Use **Python 3.10** for the gateway-side implementation.
-For on-device (if you implement gateway mode directly on the T‑Deck), you may use:
-- **ESP-IDF / Arduino / MicroPython** as feasible, but keep the semantic core portable and testable in Python first.
+Use **Python 3.10** as the default implementation language unless a smaller, clearer option is better for the target devices.
 
 ---
 
-## System Architecture (Minimal)
-### Data Flow
-Meshtastic packet → Receiver → Normalizer → Semantic Interpreter → Stable ID assignment → MQTT publish → MyMentalPalaceDB write → Monitor render → Optional AI librarian
-
-### Modules
-Create these modules/folders:
-
-#### A) `receiver/`
-Implement pluggable receivers:
-
-- `receiver_meshtastic_tcp.py`  
-  Connects to Meshtastic TCP API when available (good for gateway host or some networked setups).
-
-- `receiver_meshtastic_serial.py`  
-  Serial connection to a Meshtastic device (common for a PC/RPi gateway).
-
-- `receiver_meshtastic_ble.py` (optional)  
-  Useful if the T‑Deck is physically near the gateway host and BLE is easiest.
-
-Each receiver must output a **NormalizedPacket**:
+## Minimal Message Format (TTN)
+Define a simple JSON message with these fields:
 ```json
 {
-  "from_id": "node:ridge-07",
-  "to_id": "broadcast|node:xyz",
-  "channel": "primary|secondary|…",
-  "text": "TEMP 17.4",
+  "msg_id": "uuid",
+  "from_name": "node-alpha",
+  "from_ip": "192.168.1.10",
+  "to": "node-beta|broadcast",
   "ts": "2026-01-27T18:14:02Z",
-  "rssi": -112,
-  "snr": 6.5,
-  "hop_count": 2,
-  "location": {"lat": 43.6, "lon": -116.2, "alt": 800},
-  "device_id": "…"
+  "text": "Hello team"
 }
 ```
 
-#### B) `semantic/`
-Build a deterministic semantic interpreter with 2 modes:
-
-1) `semantic_rules.py` (required)  
-Table-driven intent grammar. Example patterns:
-- `PING` → `presence_probe`
-- `STATUS?` → `status_request`
-- `OK` → `acknowledgement`
-- `TEMP <num>` → `sensor_reading.temperature`
-- `HELP MEDICAL` → `emergency_medical`
-- `@<node> <cmd>` → `directed_command`
-- `#broadcast <msg>` → `bulletin_post`
-
-2) `semantic_ai_enricher.py` (optional)  
-Enriches classification and entities, but **never edits the raw message** and must output confidence + rationale fields.
-
-Output a **SemanticEvent**:
-```json
-{
-  "event_id": "44.1234,-116.2011",
-  "event_type": "sensor_reading",
-  "intent": "sensor_reading.temperature",
-  "confidence": 0.92,
-  "ts": "2026-01-27T18:14:02Z",
-  "reported_by": "node:ridge-07",
-  "addressed_to": "broadcast",
-  "mesh_meta": {"rssi": -112, "snr": 6.5, "hop_count": 2, "channel": "primary"},
-  "entities": [
-    {"type": "node", "id": "node:ridge-07"},
-    {"type": "sensor", "id": "sensor:temp"}
-  ],
-  "payload": {"value": 17.4, "unit": "C"},
-  "edges": [
-    {"edge_type": "reports_sensor", "from": "node:ridge-07", "to": "sensor:temp"}
-  ],
-  "raw_ref": "raw:sha256:…"
-}
-```
-
-#### C) `addressing/`
-Implement stable IDs and collision avoidance.
-
-- Configure increments in DB prefix:
-  - `ID_STEP_LAT`
-  - `ID_STEP_LON`
-- Collision rule:
-  - If event_id exists, move South-East by one step repeatedly until unique.
-- Provide a function:
-  - `assign_event_id(normalized_packet, semantic_event) -> event_id`
-
-#### D) `mqtt/`
-Implement an MQTT semantic bus.
-
-- Publish semantic events to:
-  - `tte/event/<category>/<subcategory>`
-- Also publish raw packets to:
-  - `tte/raw/meshtastic`
-- Publish node online/offline state:
-  - `tte/state/node/<node_id>`
-
-Example topic lanes (must implement):
-- `tte/event/presence`
-- `tte/event/sensor/temperature`
-- `tte/event/emergency/medical`
-- `tte/event/logistics/request`
-- `tte/event/logistics/offer`
-- `tte/event/bulletin/post`
-- `tte/event/bulletin/reply`
-
-Include a `topic_map.md` showing:
-- topics
-- payload schemas
-- example messages
-
-#### E) `db/`
-Write semantic events to **MyMentalPalaceDB.md** with:
-- Prefix settings (ID increments, collision rules)
-- Records section
-- Cursor section (auto-updatable)
-- Typed edges glossary
-- Umwelt block (librarian perspective + globe mapping)
-- Librarian primitive query settings
-
-Each record must include:
-- Event ID
-- Type + intent
-- Who/where
-- Raw reference
-- Compact structured payload
-- Typed edges
-
-#### F) `monitor/`
-Produce **offline** `monitor.html` that:
-- Loads `MyMentalPalaceDB.md`
-- Shows a cursor panel (selected record)
-- Shows a graph (dot-style rendering acceptable)
-- Filters by:
-  - node
-  - event_type
-  - time range
-- Highlights “story trails” (paths via typed edges)
-
-#### G) `ai_librarian/` (optional)
-A service that subscribes to MQTT topics and can:
-- Summarize last N hours
-- Detect anomalies:
-  - node silent
-  - repeated SOS
-  - sensor drift
-- Answer questions by querying the DB
-
-**Hard rule: AI only transmits to Meshtastic when invoked.**  
-Invocation messages must be explicit and mesh-short:
-- `@AI summarize 6h`
-- `@AI status ridge-07`
-- `@AI triage`
-
-AI outputs must be compressed for mesh bandwidth.
-
 ---
 
-## Minimal Device UX (Optional)
-UI is optional garnish; the semantic bridge must not depend on device UI.
-
----
-
-## Demonstration Scenario (Must Generate)
-Create a simulated “day on the mesh” with 3 nodes (hybrid):
-- `node:tdeck-plus`
-- `node:unihiker-k10`
-- `node:esp32-field`
-- Presence pings
-- 10 temperature readings
-- 1 sensor alert
-- 1 logistics request + offer
-- 1 emergency medical event + acknowledgements
-- 1 bulletin post thread with replies
-
-Run it through the full pipeline and output:
-- MQTT events (documented)
-- `MyMentalPalaceDB.md`
-- `monitor.html` that displays the graph
+## Demo Scenario (Must Generate)
+Demonstrate:
+- Node A sends a direct message to Node B
+- Node B replies to Node A
+- Node C sends a broadcast to all nodes
+- All nodes log received messages
 
 ---
 
 ## Constraints
-- Keep mesh-side deterministic and short.
-- Be store-and-forward friendly.
-- Pluggable transports.
-- Python 3.10 for gateway code.
-- Avoid hardcoding hardware pins; isolate in one config.
-- If adding LoRa-only nodes, use `RFCs/TTN-RFC-0006-LoRa-Packet-Framing.md`.
+- Keep the system as simple as possible.
+- Avoid unnecessary dependencies.
+- No Meshtastic or LoRa references or requirements.
+- Provide clear config and run instructions for non-experts.
 
 ---
 
@@ -280,19 +112,16 @@ Run it through the full pipeline and output:
 Return:
 1. Design overview
 2. Folder/module layout
-3. Key schemas (NormalizedPacket, SemanticEvent)
-4. MQTT taxonomy and topic map
-5. MyMentalPalaceDB record template + typed edges glossary
+3. TTN message schema
+4. Transport choice and rationale
+5. Configuration instructions for node name and IP address
 6. Minimal runnable demo steps
-7. Gateway mode plan for the T‑Deck Plus (Wi‑Fi uplink + buffering)
-8. TTN deployment steps for Windows 11 PC + 3-node hybrid mesh/IP network
 
 ---
 
-## “Definition of Done”
+## Definition of Done
 I can:
-- Use the T‑Deck Plus on the mesh normally, and optionally as a gateway node when Wi‑Fi is available.
-- See semantic events arrive in MQTT.
-- Open monitor.html offline and browse a graph of events and nodes.
-- Query the DB and update the cursor panel.
-- Ask @AI for summaries without spamming the mesh.
+- Configure unique names and IPs for three nodes.
+- Start all three nodes.
+- Send direct messages between any two nodes.
+- Broadcast a message that all nodes receive.

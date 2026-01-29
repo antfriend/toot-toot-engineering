@@ -12,7 +12,7 @@ class UDPTransport:
     group_ip: str
     group_port: int
 
-    def open_socket(self) -> socket.socket:
+    def open_socket(self) -> Tuple[socket.socket, bool]:
         """Open a UDP socket bound to listen_port and (best-effort) joined to group_ip."""
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -21,14 +21,16 @@ class UDPTransport:
         sock.bind(("", self.listen_port))
 
         # Join multicast group for group receive.
+        multicast_ok = False
         try:
             mreq = struct.pack("4sl", socket.inet_aton(self.group_ip), socket.INADDR_ANY)
             sock.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mreq)
+            multicast_ok = True
         except OSError:
             # Some environments may not support multicast; node can still do direct.
             pass
 
-        return sock
+        return sock, multicast_ok
 
     def send_unicast(self, data: bytes, to_ip: str, to_port: Optional[int] = None) -> None:
         port = self.listen_port if to_port is None else to_port

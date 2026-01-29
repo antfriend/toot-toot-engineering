@@ -49,3 +49,150 @@
 - Decisions: Recommend adding an automated demo harness and clearer multicast capability signaling next cycle.
 - Open questions: Human: choose one of the three proposed cycle-02 prompts in BOOTSTRAP.md.
 - Next step: Human feedback / select cycle-02 prompt.
+
+- Step: 9
+- Role: Bootstrap
+- Summary: Interpreted cycle-02 hardening prompt; set objectives for structured logging, clearer CLI UX, and explicit multicast fallback visibility.
+- Decisions: Add a small logging utility; introduce an info subcommand for config visibility; keep stdout logging dependency-free.
+- Open questions: None blocking.
+- Next step: Storyteller produces deliverables/cycle-02/STORYTELLER.md
+
+- Step: 10
+- Role: Storyteller
+- Summary: Defined the UX narrative for explicit event logging, multicast visibility, and consistent CLI output.
+- Decisions: Use named events (tx/rx/multicast_failed) to keep logs machine-friendly and readable.
+- Open questions: None.
+- Next step: Orchestrator updates PLAN/LOG scaffolding for cycle-02.
+
+- Step: 11
+- Role: Orchestrator
+- Summary: Updated plan and logging scaffolding for cycle-02; prepared paths for new deliverables.
+- Decisions: Keep roles consistent; skip SVG engineer.
+- Open questions: None.
+- Next step: Core worker implements CLI/logging hardening.
+
+- Step: 12
+- Role: Core worker
+- Summary: Added structured logging, log-level controls, multicast join visibility, and improved CLI (info subcommand); updated docs.
+- Decisions: Keep logging stdout-based; emit JSON on demand; surface multicast failure before fallback.
+- Open questions: Consider automated demo harness in a future cycle.
+- Next step: Reviewer validates cycle-02 requirements.
+
+- Step: 13
+- Role: Reviewer
+- Summary: Verified CLI UX improvements, structured logging, and explicit multicast fallback behavior; no dependency regressions.
+- Decisions: Keep runtime dependency-free.
+- Open questions: None.
+- Next step: Delivery packager assembles cycle-02 release notes.
+
+- Step: 14
+- Role: Delivery packager
+- Summary: Packaged cycle-02 deliverables and updated release notes.
+- Decisions: Highlight structured logging and multicast visibility in delivery notes.
+- Open questions: None.
+- Next step: Retrospective recommends next-cycle prompts.
+
+- Step: 15
+- Role: Retrospective
+- Summary: Documented cycle-02 learnings and proposed device-targeting, observability, and automation prompts.
+- Decisions: Recommend device-targeting as the next priority.
+- Open questions: None.
+- Next step: Bootstrap cycle-03.
+
+- Step: 16
+- Role: Bootstrap
+- Summary: Interpreted cycle-03 device-targeting prompt; planned device guides and MicroPython reference implementation.
+- Decisions: Add docs/DEVICE_GUIDES.md and ttn_mpy/ without altering CPython runtime.
+- Open questions: None.
+- Next step: Storyteller produces deliverables/cycle-03/STORYTELLER.md
+
+- Step: 17
+- Role: Storyteller
+- Summary: Framed device guidance as a consistent, schema-preserving story across CPython and MicroPython.
+- Decisions: Emphasize config-first setup and schema consistency.
+- Open questions: None.
+- Next step: Orchestrator updates PLAN/LOG scaffolding for cycle-03.
+
+- Step: 18
+- Role: Orchestrator
+- Summary: Updated plan and logging scaffolding for cycle-03; prepared new deliverable paths.
+- Decisions: Keep roles consistent; skip SVG engineer.
+- Open questions: None.
+- Next step: Core worker implements device guides and MicroPython reference.
+
+- Step: 19
+- Role: Core worker
+- Summary: Added device-specific guides and MicroPython-friendly reference implementation; updated README pointers.
+- Decisions: Provide MicroPython implementation in separate ttn_mpy/ folder to avoid CPython changes.
+- Open questions: None.
+- Next step: Reviewer validates device guidance and schema consistency.
+
+- Step: 20
+- Role: Reviewer
+- Summary: Verified device guides and MicroPython reference align with TTN schema and prompt requirements.
+- Decisions: Keep guidance assumption-based with explicit notes.
+- Open questions: None.
+- Next step: Delivery packager assembles cycle-03 release notes.
+
+- Step: 21
+- Role: Delivery packager
+- Summary: Packaged cycle-03 deliverables and updated release notes.
+- Decisions: Highlight MicroPython reference and device guides.
+- Open questions: None.
+- Next step: Retrospective recommends next-cycle prompts.
+
+- Step: 22
+- Role: Retrospective
+- Summary: Documented cycle-03 learnings; proposed observability, automation, and interop testing prompts.
+- Decisions: Recommend observability as the next priority.
+- Open questions: None.
+- Next step: Bootstrap cycle-04.
+
+- Step: 23
+- Role: Bootstrap
+- Summary: Interpreted cycle-04 observability prompt; planned monitor module and export option.
+- Decisions: Implement monitor as a lightweight module and CLI subcommand; reuse logging utilities.
+- Open questions: None.
+- Next step: Storyteller produces deliverables/cycle-04/STORYTELLER.md
+
+- Step: 24
+- Role: Storyteller
+- Summary: Framed monitor as a control-tower view of group traffic with periodic summaries and optional exports.
+- Decisions: Avoid terminal UI dependencies; keep summary heartbeat.
+- Open questions: None.
+- Next step: Orchestrator updates PLAN/LOG scaffolding for cycle-04.
+
+- Step: 25
+- Role: Orchestrator
+- Summary: Updated plan and logging scaffolding for cycle-04; prepared new deliverable paths.
+- Decisions: Keep roles consistent; skip SVG engineer.
+- Open questions: None.
+- Next step: Core worker implements monitor.
+
+- Step: 26
+- Role: Core worker
+- Summary: Implemented monitor module, wired CLI subcommand, and updated README usage.
+- Decisions: Use periodic summaries and optional JSON-lines export to avoid dependencies.
+- Open questions: None.
+- Next step: Reviewer validates monitor behavior.
+
+- Step: 27
+- Role: Reviewer
+- Summary: Verified monitor functionality, export behavior, and documentation updates.
+- Decisions: Accept monitor scope limited to group traffic.
+- Open questions: None.
+- Next step: Delivery packager assembles cycle-04 release notes.
+
+- Step: 28
+- Role: Delivery packager
+- Summary: Packaged cycle-04 deliverables and updated release notes.
+- Decisions: Highlight monitor usage and export format in delivery notes.
+- Open questions: None.
+- Next step: Retrospective finalizes cycle-04.
+
+- Step: 29
+- Role: Retrospective
+- Summary: Documented cycle-04 learnings and proposed automation, interop testing, and diagnostics prompts.
+- Decisions: Recommend automation as the next priority.
+- Open questions: None.
+- Next step: Human selects next-cycle prompt.

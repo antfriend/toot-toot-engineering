@@ -7,6 +7,8 @@ from typing import Dict, Tuple
 
 def _parse_env_file(path: Path) -> Dict[str, str]:
     """Parse a simple KEY=VALUE env file. Lines starting with # are ignored."""
+    if not path.exists():
+        raise FileNotFoundError(f"Config file not found: {path}")
     out: Dict[str, str] = {}
     for raw_line in path.read_text(encoding="utf-8").splitlines():
         line = raw_line.strip()
@@ -49,6 +51,9 @@ class NodeConfig:
     def load(path: str) -> "NodeConfig":
         p = Path(path)
         env = _parse_env_file(p)
+        missing = [k for k in ("NODE_NAME", "NODE_IP") if k not in env]
+        if missing:
+            raise ValueError(f"Missing required keys in {p}: {missing}")
         return NodeConfig(
             node_name=env["NODE_NAME"],
             node_ip=env["NODE_IP"],

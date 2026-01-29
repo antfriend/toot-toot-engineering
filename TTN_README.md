@@ -92,6 +92,16 @@ NODE_PEERS=node-b@192.168.1.11,node-c@192.168.1.12
 - Python 3.10+
 - No external pip dependencies (see `requirements.txt`)
 
+### Logging and CLI UX
+All CLI commands support:
+- `--log-format text|json` (default: `text`)
+- `--log-level debug|info|warning|error` (default: `info`)
+
+Use `info` to verify parsed config quickly:
+```bash
+python -m ttn.node --config config/node_a.env info
+```
+
 ### Start three listeners
 Open **three terminals** (or three SSH sessions) and run:
 
@@ -120,6 +130,21 @@ python -m ttn.node --config config/node_b.env direct node-a "Hi node-a"
 python -m ttn.node --config config/node_c.env broadcast "Hello everyone"
 ```
 
+### Monitor group traffic (observability)
+Run a simple text monitor that subscribes to the multicast group:
+```bash
+python -m ttn.node --config config/node_a.env monitor --summary-seconds 5
+```
+
+Optional JSON-lines export:
+```bash
+python -m ttn.node --config config/node_a.env monitor --export monitor.log
+```
+
+### Multicast fallback visibility
+Listener startup logs include `multicast_joined=true|false`. If multicast send fails, the sender logs
+`multicast_failed` and then falls back to peer fanout when `NODE_PEERS` is set.
+
 ### Demo helper
 This prints the exact commands:
 ```bash
@@ -132,3 +157,4 @@ python scripts/run_three_nodes.py
 
 ## Notes for real devices
 - If a device can’t use CPython, keep the schema and CLI concepts and port the same UDP behavior.
+- See `docs/DEVICE_GUIDES.md` for device-specific guidance and the `ttn_mpy/` MicroPython-friendly reference.

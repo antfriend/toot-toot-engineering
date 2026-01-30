@@ -1,0 +1,14 @@
+{
+  "NODE_NAME": "k10-alpha",
+  "NODE_IP": "192.168.1.10",
+  "NODE_PORT": 5005,
+
+  "GROUP_MODE": "multicast",
+  "GROUP_IP": "224.1.1.1",
+  "GROUP_PORT": 5005,
+
+  "NODE_PEERS": {
+    "tdeck-beta": "192.168.1.11",
+    "pc-charlie": "192.168.1.12"
+  }
+}

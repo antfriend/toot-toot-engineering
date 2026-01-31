@@ -50,3 +50,10 @@
 - Decisions: Focus next improvements on K10 UI certainty, typed-edge syntax clarity, and implementing the advertised primitive-query librarian loop.
 - Open questions: Human choice needed for next-cycle prompt selection.
 - Next step: Human selects next-cycle prompt
+
+- Step: ad-hoc
+- Role: Core worker
+- Summary: Created a standalone force-directed graph HTML view of the TTDB dungeon database with typed-edge labels and missing-node placeholders (deliverables/cycle-01/ttdb_dungeon_graph-cycle.html).
+- Decisions: Rendered edges exactly as declared in ttdb_dungeon_db.md, including missing @6x0y/@7x0y nodes for visibility.
+- Open questions: Should missing node records be added to the DB or removed from the relates list?
+- Next step: Human review

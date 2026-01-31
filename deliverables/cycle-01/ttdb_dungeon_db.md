@@ -112,6 +112,22 @@ mmpdb can help with:
 
 ---
 
+@6x0y | created:1730000006 | updated:1730000006 | relates:applies>@5x0y
+## Quest Planner
+Use a record per quest with typed edges like:
+- depends_on>@<quest_id>
+- rewards>@<treasure_id>
+
+---
+
+@7x0y | created:1730000007 | updated:1730000007 | relates:applies>@5x0y
+## Research Notes
+Keep a trail of ideas by linking:
+- cites>@<source_id>
+- extends>@<concept_id>
+
+---
+
 @0x1y | created:1730000010 | updated:1730000010 | relates:yearns>@1x1y,adores>@2x1y
 ## Eyeball Node Sea
 A cosmic dimension where eyeball nodes cast longing gazes at one another.

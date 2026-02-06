@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TTN Monitor</title>
+  <style>
+    body { font-family: "Trebuchet MS", Verdana, sans-serif; margin: 24px; }
+    h1 { margin-bottom: 8px; }
+    .section { margin-top: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+    .card { border: 1px solid #ddd; padding: 12px; border-radius: 8px; background: #fafafa; }
+    code { background: #f0f0f0; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>TTN Monitor</h1>
+  <p>Live view of nodes and recent messages from <code>/ttdb/records</code>.</p>
+
+  <div class="section">
+    <h2>Nodes</h2>
+    <div id="nodes" class="grid"></div>
+  </div>
+
+  <div class="section">
+    <h2>Recent Messages</h2>
+    <div id="messages"></div>
+  </div>
+
+  <script>
+    async function load() {
+      const res = await fetch("/ttdb/records");
+      const data = await res.json();
+      const records = data.records || [];
+
+      const nodes = records.filter(r => r.kind === "node");
+      const messages = records.filter(r => r.kind === "message").slice(-20).reverse();
+
+      const nodesEl = document.getElementById("nodes");
+      nodesEl.innerHTML = "";
+      nodes.forEach(node => {
+        const div = document.createElement("div");
+        div.className = "card";
+        div.innerHTML = `<strong>${node.label || node.id}</strong><br/><code>${node.id}</code>`;
+        nodesEl.appendChild(div);
+      });
+
+      const messagesEl = document.getElementById("messages");
+      messagesEl.innerHTML = "";
+      messages.forEach(msg => {
+        const div = document.createElement("div");
+        div.className = "card";
+        div.style.marginBottom = "8px";
+        div.innerHTML = `<strong>${msg.from_id}</strong>: ${msg.content}`;
+        messagesEl.appendChild(div);
+      });
+    }
+
+    load();
+    setInterval(load, 3000);
+  </script>
+</body>
+</html>

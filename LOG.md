@@ -1,3 +1,45 @@
 # LOG
 
 ## Entries
+- Step: 1
+- Role: Bootstrap
+- Summary: Interpreted the cycle-01 prompt, proposed team composition, objectives, plan adjustments, risks, and next-cycle prompt options.
+- Decisions: Kept SVG engineer optional; recommended a specs-first structure and explicit device matrix and sync protocol sections.
+- Open questions: Confirm device-specific firmware constraints and required toolchains for Meshtastic, K10, and T-Deck.
+- Next step: Storyteller
+- Step: 2
+- Role: Storyteller
+- Summary: Established the narrative arc and tone for the six-device TTN build, with role metaphors and guide framing to support teachability.
+- Decisions: Framed devices as a workshop ensemble (Archivist, Operator, Scouts, Scribe) and emphasized observable evidence at each step.
+- Open questions: None.
+- Next step: Orchestrator
+- Step: 4
+- Role: Orchestrator
+- Summary: Updated PLAN inputs and deliverable paths; advanced the critical path to Core worker.
+- Decisions: Listed relevant RFCs and standards as cycle inputs; set explicit deliverable filenames for steps 5-8.
+- Open questions: None.
+- Next step: Core worker
+- Step: 5
+- Role: Core worker
+- Summary: Produced cycle-01 solution spec, deployment guide, acceptance tests, and reference implementation code for hub, K10 gateway, and Meshtastic TTDB module.
+- Decisions: Implemented TTDB as JSONL with hash-based diffs per prompt; provided optional export path for RFC-compliant TTDB container.
+- Open questions: Meshtastic module integration points may require adjustment per firmware version.
+- Next step: Reviewer
+- Step: 6
+- Role: Reviewer
+- Summary: Reviewed cycle-01 solution and noted integration and UI gaps.
+- Decisions: Proceeding with delivery while documenting Meshtastic module integration and LVGL UI as risks.
+- Open questions: Confirm Meshtastic module hooks for the target firmware version.
+- Next step: Delivery packager
+- Step: 7
+- Role: Delivery packager
+- Summary: Packaged cycle-01 delivery notes and updated RELEASES.md with current artifacts.
+- Decisions: Marked cycle-01 release status as in progress pending retrospective completion.
+- Open questions: None.
+- Next step: Retrospective
+- Step: 8
+- Role: Retrospective
+- Summary: Added post-cycle recommendations to BOOTSTRAP.md and closed the cycle.
+- Decisions: Recommended explicit firmware validation, UI parity checks, and RFC export tasks for future cycles.
+- Open questions: None.
+- Next step: Human selects next-cycle prompt

@@ -41,6 +41,9 @@ Build the canonical TTN + TTDB reference for six heterogeneous devices (Windows 
 2. "Build a monitoring and visualization dashboard for the Windows hub that shows live node status, TTDB sync health, and message flows."
 3. "Produce field-deployment packaging: enclosure notes, power management guidance, and reliability playbook for 30-day operation."
 
+## Selected next-cycle prompt (combined)
+"Harden and document the TTDB sync protocol with security, versioning, and backward compatibility (including tests and migration notes), and build a Windows hub monitoring/visualization dashboard showing live node status, TTDB sync health, and message flows."
+
 ## Offer
 I can apply the retrospective recommendations and reset the plan with the selected next-cycle prompt once cycle-01 deliverables are complete.
 

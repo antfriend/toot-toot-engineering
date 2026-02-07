@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TTN Monitor v2</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f1ea;
+      --panel: #fff9f0;
+      --ink: #1f1c16;
+      --accent: #2b6f6d;
+      --warn: #b23a48;
+    }
+    body {
+      margin: 0;
+      font-family: "Georgia", "Times New Roman", serif;
+      background: radial-gradient(circle at top, #fff6e8 0%, #f4f1ea 60%);
+      color: var(--ink);
+    }
+    header {
+      padding: 24px 28px 12px;
+      border-bottom: 2px solid #e5dbc9;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 28px;
+    }
+    .sub {
+      font-size: 14px;
+      color: #6b5f4e;
+    }
+    main {
+      padding: 20px 28px 32px;
+      display: grid;
+      gap: 18px;
+    }
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid #e3d7c4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: 0 6px 18px rgba(60, 40, 10, 0.08);
+    }
+    .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #7a6c59;
+    }
+    .value {
+      font-size: 18px;
+      margin-top: 6px;
+    }
+    .node {
+      padding: 10px;
+      border: 1px dashed #cdbb9c;
+      border-radius: 12px;
+      margin-top: 8px;
+      background: #fffdf8;
+    }
+    .flow {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin: 6px 0;
+    }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #e9d9c3;
+      font-size: 12px;
+    }
+    .warn {
+      color: var(--warn);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TTN Monitor v2</h1>
+    <div class="sub">Sync health, node presence, and message flow</div>
+  </header>
+  <main>
+    <section class="grid">
+      <div class="card">
+        <div class="label">Sync Mode</div>
+        <div class="value" id="sync-mode">-</div>
+      </div>
+      <div class="card">
+        <div class="label">Missing Records</div>
+        <div class="value" id="sync-missing">-</div>
+      </div>
+      <div class="card">
+        <div class="label">Handshake Status</div>
+        <div class="value" id="sync-handshake">-</div>
+      </div>
+    </section>
+
+    <section class="grid" id="nodes"></section>
+
+    <section class="card">
+      <div class="label">Recent Messages</div>
+      <div id="messages"></div>
+    </section>
+  </main>
+
+  <script>
+    async function load() {
+      const [recordsRes, healthRes] = await Promise.all([
+        fetch('/ttdb/records'),
+        fetch('/sync/health')
+      ]);
+      const recordsData = await recordsRes.json();
+      const health = await healthRes.json();
+      const records = recordsData.records || [];
+
+      document.getElementById('sync-mode').textContent = health.last_mode || 'unknown';
+      document.getElementById('sync-missing').textContent = health.last_missing ?? 0;
+      document.getElementById('sync-handshake').textContent = health.last_handshake || 'none';
+
+      const nodes = records.filter(r => r.kind === 'node');
+      const nodesEl = document.getElementById('nodes');
+      nodesEl.innerHTML = '';
+      nodes.forEach(node => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+          <div class="label">Node</div>
+          <div class="value">${node.label || node.id}</div>
+          <div class="pill">${node.id}</div>
+        `;
+        nodesEl.appendChild(div);
+      });
+
+      const messages = records.filter(r => r.kind === 'message').slice(-12).reverse();
+      const msgEl = document.getElementById('messages');
+      msgEl.innerHTML = '';
+      messages.forEach(msg => {
+        const row = document.createElement('div');
+        row.className = 'flow';
+        row.innerHTML = `<span>${msg.from_id}</span><span>${msg.content}</span>`;
+        msgEl.appendChild(row);
+      });
+    }
+
+    load();
+    setInterval(load, 3000);
+  </script>
+</body>
+</html>

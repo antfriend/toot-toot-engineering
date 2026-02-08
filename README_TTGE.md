@@ -34,11 +34,12 @@ This section is append-only. Each Bell Event adds a timestamped line here.
 Open `TTGE.seed.ttdb.md` and start editing:
 
 - Add hypotheses
-- Add concrete tests tied to real deliverables in your repo
+- Add concrete tests for those hypotheses
 - Replace the toy metric in `ttge_runner.py` with checks that:
-  - scan your repo for artifacts
-  - run unit tests
-  - validate schemas
-  - measure build time or failure rate
+  - review bootstrap retrospectives
+  - test hypotheses (not required to be Python tests; agentic checks are allowed)
 
 If you want, tell me what your current TTE repo structure looks like (folders + key files) and I’ll wire the runner to real signals.
+
+The unifying goal for TTGE is to ring a Bell Event recording a Toot Toot Engineering System Self Improvement. Each one in the history is a trophy of self-improvement.
+

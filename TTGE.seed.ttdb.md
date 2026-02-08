@@ -24,6 +24,7 @@ The engine state lives in this single JSON payload. The runner updates it **appe
       "erase_history"
     ]
   },
+  "schema_ref": "TTGE.schema.ttdb.md",
   "goedel_goal": {
     "description": "Maximize the rate at which the system can correctly design, test, and improve itself while preserving epistemic traceability.",
     "invariant": true

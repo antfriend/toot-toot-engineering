@@ -23,6 +23,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Dict, Tuple, List
 
+from ttge import index_repo
 
 JSON_BLOCK_RE = re.compile(r"```json\s*(\{.*?\})\s*```", re.DOTALL)
 
@@ -236,6 +237,19 @@ def append_bell_history(readme_path: str, payload: Dict[str, Any], codex_path: s
         f.write("\n".join(out).rstrip() + "\n")
 
 
+def update_graph(payload: Dict[str, Any], root: str) -> None:
+    nodes = index_repo.build_nodes(root)
+    edges = index_repo.build_edges(nodes)
+    payload["graph"] = {
+        "nodes": nodes,
+        "edges": edges,
+        "indexed_at": now_iso(),
+        "root": os.path.abspath(root),
+    }
+    payload.setdefault("system_state", {}).setdefault("repo_snapshot", {})
+    payload["system_state"]["repo_snapshot"]["paths_indexed"] = len(nodes)
+
+
 def cmd_status(args: argparse.Namespace) -> int:
     _, payload = read_seed(args.file)
     m = payload.get("metrics", {})
@@ -245,11 +259,14 @@ def cmd_status(args: argparse.Namespace) -> int:
     print(f"Hypotheses: {len(payload.get('hypotheses', []))} (active: {sum(1 for h in payload.get('hypotheses', []) if h.get('status')=='active')})")
     print(f"Tests: {len(payload.get('tests', []))}")
     print(f"Iterations: {len(payload.get('iterations', []))}")
+    graph = payload.get("graph", {})
+    print(f"Graph nodes: {len(graph.get('nodes', []))}")
     return 0
 
 
 def cmd_run(args: argparse.Namespace) -> int:
     text, payload = read_seed(args.file)
+    update_graph(payload, os.path.dirname(args.file) or ".")
 
     steps = max(1, int(args.steps))
     for _ in range(steps):

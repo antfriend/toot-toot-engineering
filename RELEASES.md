@@ -48,3 +48,20 @@ How to update:
   - `deliverables/cycle-02/SOLUTION.md`
   - `deliverables/cycle-02/REVIEW.md`
   - `deliverables/cycle-02/DELIVERY.md`
+
+## Cycle 03
+- Status: complete
+- Prompt source: `TTE_PROMPT.md` (fallback used because prior cycle folders were not present in this workspace snapshot)
+- Deliverables root: `deliverables/cycle-03/`
+- Primary artifacts:
+  - `deliverables/cycle-03/one_drop_portrait.svg`
+  - `deliverables/cycle-03/raining.svg`
+- Other deliverables:
+  - `deliverables/cycle-03/BOOTSTRAP.md`
+  - `deliverables/cycle-03/STORYTELLER.md`
+  - `deliverables/cycle-03/SVG_ENGINEER.md`
+  - `deliverables/cycle-03/SOLUTION.md`
+  - `deliverables/cycle-03/REVIEW.md`
+  - `deliverables/cycle-03/DELIVERY.md`
+  - `deliverables/cycle-03/assets/`
+  - `deliverables/cycle-03/output/`

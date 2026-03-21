@@ -141,9 +141,14 @@ TTDB-RFC-0001 maps directly to device personality and capability.
 
 ## 7. Compatibility with Toot Toot Engineering
 
-Agent 32 projects SHOULD use the TTE workflow (WORKFLOW.md, PLAN.md,
-CHECKLIST.md, etc.) for development. The TTDB file that ships on the
-device is authored and maintained using TTE conventions.
+Agent 32 projects SHOULD use the TTE workflow for development. The governing
+RFCs are:
+- **TTE-RFC-0001** — Workflow, roles, and role discipline (WORKFLOW.md, PLAN.md, etc.)
+- **TTE-RFC-0002** — Required content for PLAN.md, LOG.md, and CHECKLIST.md
+- **TTE-RFC-0003** — Definition of Done and release packaging (RELEASES.md, DELIVERY.md)
+
+The TTDB file that ships on the device is authored and maintained using TTE
+conventions.
 
 Claude Code projects for Agent 32 SHOULD include:
 - `CLAUDE.md` or `AGENTS.md` with Agent 32-specific guidance.
@@ -155,9 +160,43 @@ Claude Code projects for Agent 32 SHOULD include:
 ## 8. Non-Goals
 
 - Agent 32 does NOT include LLM inference, cloud AI APIs, or neural networks.
-- Agent 32 does NOT define a messaging protocol (Telegram, MQTT, etc.),
-  though implementations MAY add one.
+- Agent 32 does NOT prescribe a specific messaging protocol (Telegram, MQTT,
+  etc.), though implementations MAY add one.
 - Agent 32 does NOT prescribe a specific UI. Devices MAY be headless.
+
+---
+
+## 9. Alignment with TTN RFCs
+
+### 9.1 TTN-RFC-0003 ESP32 Node Checklist
+
+TTN-RFC-0003 defines the reference implementation checklist for an ESP32 node.
+A32 satisfies the following items:
+
+| TTN-RFC-0003 Requirement        | A32 Coverage                                  |
+|---------------------------------|-----------------------------------------------|
+| Compact DB                      | A32-RFC-0002 (streaming TTDB parser)          |
+| Sensor events                   | A32-RFC-0003 §2 (Sensor Registry)             |
+| Web or serial UI                | Serial monitor supported; web UI is optional  |
+| Store-and-forward buffers       | **Not defined in current A32 RFCs** — gap     |
+
+Store-and-forward is a known gap. Implementations requiring offline message
+buffering for TTN mesh participation MUST provide their own solution until a
+future A32 RFC addresses it.
+
+### 9.2 LoRa Packet Framing (TTN-RFC-0006)
+
+A32 devices that include a LoRa radio and communicate with a TTN gateway
+outside of Meshtastic MUST implement the framing defined in TTN-RFC-0006.
+The Hardware Abstraction Layer (see A32-RFC-0003) provides the integration
+point for LoRa comms; TTN-RFC-0006 governs the on-air format.
+
+### 9.3 Trust and Reputation (TTN-RFC-0005)
+
+When an A32 device participates in a TTN mesh (as a TTN-Base or TTN-AI node),
+it falls under the trust model defined in TTN-RFC-0005. The device's `db_id`
+and `umwelt_id` serve as its identity anchor for trust edge assertions made
+by peer nodes.
 
 ---
 

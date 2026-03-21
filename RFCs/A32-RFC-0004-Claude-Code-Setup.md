@@ -195,7 +195,11 @@ When beginning work on an Agent 32 project in Claude Code:
 
 ### 5.3 TTE Cycle Integration
 
-The TTE workflow drives development. A typical cycle:
+The TTE workflow drives development. The governing RFCs are TTE-RFC-0001
+(workflow and roles), TTE-RFC-0002 (PLAN.md, LOG.md, and CHECKLIST.md
+requirements), and TTE-RFC-0003 (Definition of Done and release packaging).
+
+A typical cycle:
 
 1. Edit `TTE_PROMPT.md` with the next goal (e.g., "Add temperature-based
    fan control using TTDB edges").

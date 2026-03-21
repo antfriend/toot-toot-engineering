@@ -135,7 +135,12 @@ nearest TTDB record:
 3. If the nearest node is within the `coord_increment` threshold,
    the cursor moves to that node.
 4. If no node is within threshold, the cursor stays and the agent
-   applies the `collision_policy` from the `mmpdb` block.
+   applies the `no_match_policy` for the current cycle. The default
+   behavior is to hold position and re-evaluate next cycle.
+
+Note: `collision_policy` (TTDB-RFC-0004 §3) governs ID assignment
+when creating a new record would duplicate an existing ID. It is
+distinct from the runtime matching behavior described here.
 
 ### 3.3 Edge Selection
 
@@ -157,15 +162,18 @@ for (uint8_t i = 0; i < n; i++) {
 }
 ```
 
-Edge types are domain-specific and defined per TTDB. Common patterns:
+Edge types are domain-specific and defined per TTDB. TTDB-RFC-0003 §4
+requires that implementations SHOULD align with the TTN typed edge taxonomy
+(TTN-RFC-0002) where applicable. The following are A32-specific extensions;
+project TTDB files MAY also use TTN-RFC-0002 taxonomy edges alongside them.
 
-| Edge Type       | Semantics                                     |
-|-----------------|-----------------------------------------------|
-| `triggers`      | Activate an actuator or output                |
-| `navigates_to`  | Move cursor to another node                   |
-| `inhibits`      | Suppress an action that would otherwise fire   |
-| `requires`      | Gate: only proceed if target node is satisfied |
-| `logs`          | Record an observation (see Section 5)          |
+| Edge Type       | Semantics                                      | Closest TTN-RFC-0002 analogue |
+|-----------------|------------------------------------------------|-------------------------------|
+| `triggers`      | Activate an actuator or output                 | `commands`                    |
+| `navigates_to`  | Move cursor to another node                    | *(A32-specific)*              |
+| `inhibits`      | Suppress an action that would otherwise fire   | *(A32-specific)*              |
+| `requires`      | Gate: only proceed if target node is satisfied | *(A32-specific)*              |
+| `logs`          | Record an observation (see Section 5)          | `reports_sensor`              |
 
 ---
 
@@ -219,13 +227,19 @@ use the highest-priority entry. The queue is cleared after each cycle.
 ## 5. Observation Logging
 
 Agent 32 devices MAY log observations for later retrieval. Logs are
-append-only and stored separately from the TTDB file:
+append-only and stored separately from the TTDB file.
+
+Per TTN-RFC-0001 §5, all assertions MUST include provenance. Log entries
+MUST therefore include the `db_id` and `umwelt_id` from the `mmpdb` block
+so that records can be attributed to a specific device and worldview:
 
 ```cpp
 // Append to /log.csv on LittleFS or SD
-void agent_log(const char* event, float value) {
+// Format: timestamp_ms, db_id, umwelt_id, event, value
+void agent_log(const char* db_id, const char* umwelt_id,
+               const char* event, float value) {
     File f = LittleFS.open("/log.csv", "a");
-    f.printf("%lu,%s,%.2f\n", millis(), event, value);
+    f.printf("%lu,%s,%s,%s,%.2f\n", millis(), db_id, umwelt_id, event, value);
     f.close();
 }
 ```

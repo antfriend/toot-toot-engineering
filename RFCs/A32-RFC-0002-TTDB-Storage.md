@@ -115,7 +115,9 @@ full YAML library to conserve flash and RAM.
 
 ### 2.3 Record Header Parsing
 
-Record headers follow the format defined in TTDB-RFC-0001 Section 3:
+Record headers follow the format defined in TTDB-RFC-0001 Section 3. The
+`@LATxLONy` ID format and coordinate semantics (including globe-as-knowledge-map
+projection) are defined in TTDB-RFC-0004 §1–2.1:
 
 ```
 @LAT12LON34 | created:1719000000 | updated:1719100000 | relates:edge1,edge2
@@ -142,7 +144,7 @@ bool ttdb_parse_record_header(const char* line, TTDBRecordHeader* out);
 
 ## 3. Cursor State
 
-The cursor (per TTDB-RFC-0001 Section 1) tracks the agent's current
+The cursor (per TTDB-RFC-0002) tracks the agent's current
 position in the knowledge graph. On ESP32, the cursor state is held in RAM:
 
 ```cpp
@@ -196,9 +198,9 @@ Query responses are bounded by `librarian.max_reply_chars`.
 
 ## 5. Edge Parsing
 
-Typed edges use the syntax defined in `mmpdb.typed_edges.syntax`. The
-parser MUST support the configured syntax for splitting edge strings into
-structured data:
+Typed edges use the syntax and directionality rules defined in TTDB-RFC-0003.
+The syntax token is declared in `mmpdb.typed_edges.syntax`. The parser MUST
+support the configured syntax for splitting edge strings into structured data:
 
 ```cpp
 struct TTDBEdge {

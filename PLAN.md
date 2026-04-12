@@ -1,38 +1,46 @@
 # PLAN
 
 ## Current cycle
-- cycle-XX (not started)
+- cycle-03 (complete)
 
 ## Current step
-- 1. Bootstrap (pending)
+- Awaiting human selection of next-cycle prompt (see `deliverables/cycle-03/BOOTSTRAP.md`)
 
 ## Inputs for this cycle
-- `TTE_PROMPT.md` (cycle-01 prompt source; later cycles use the prompt selected in the prior cycle bootstrap)
+- `TTE_PROMPT.md` (cycle prompt source)
 - `WORKFLOW.md`
 - `WHAT.md`
 - `AGENTS.md`
 - `CHECKLIST.md`
 - `RELEASES.md`
 - `LOG.md`
-- `standards/ttai/TTAI_SPEC.md`
-- `standards/ttai/DEFAULT_NETWORK.md`
-- `standards/ttai/BEHAVIOR_SPEC.md`
-- `standards/umwelt/TTE_Agent_Umwelt_v1.yaml`
-- Relevant RFCs in `RFCs/` for protocol, file-format, and network behavior details
+- `unihiker_k10/k10_ttdb_navigator.ino` (prior art — cycle-01 output)
+- `unihiker_k10/unihiker_k10.h` (K10 hardware API)
+- `unihiker_k10/ttdb_dice_k10.md` (sample TTDB data)
+- `RFCs/A32-RFC-0001-Architecture.md`
+- `RFCs/A32-RFC-0002-TTDB-Storage.md`
+- `RFCs/A32-RFC-0003-Agent-Loop.md`
+- `RFCs/TTDB-RFC-0001-File-Format.md`
+- `RFCs/TTDB-RFC-0002-Cursor-Semantics.md`
 
 ## Critical path
-- [ ] 1. Bootstrap interprets the prompt, proposes team composition, and recommends plan adjustments. (`deliverables/cycle-XX/BOOTSTRAP.md`)
-- [ ] 2. Storyteller refines the central story or creative thread and elevates narrative excellence. (`deliverables/cycle-XX/STORYTELLER.md`)
-- [ ] 3. (Optional) SVG engineer documents SVG constraints and coordinates with Storyteller when the prompt centers on SVG output. (`deliverables/cycle-XX/SVG_ENGINEER.md`)
-- [ ] 4. Orchestrator finalizes plan/rules/logging assets and advances the workflow. (`PLAN.md`, `AGENTS.md`, `LOG.md`)
-- [ ] 5. Core worker produces the primary solution artifacts. (`deliverables/cycle-XX/SOLUTION.md` and task-specific outputs)
-- [ ] 6. Reviewer checks correctness, gaps, and risks. (`deliverables/cycle-XX/REVIEW.md`)
-- [ ] 7. Delivery packager assembles final assets and export notes; updates release tracking. (`deliverables/cycle-XX/DELIVERY.md`, `RELEASES.md`)
-- [ ] 8. Retrospective captures improvements and next-cycle prompts. (update `deliverables/cycle-XX/BOOTSTRAP.md`)
+- [x] 1. Bootstrap — interpret prompt, propose team and plan adjustments. (`deliverables/cycle-03/BOOTSTRAP.md`)
+- [x] 2. Storyteller — frame device experience and narrative. (`deliverables/cycle-03/STORYTELLER.md`)
+- [x] 3. Orchestrator — finalize plan and logging assets. (`PLAN.md`, `LOG.md`)
+- [x] 4. Core Worker — produce primary solution artifacts. (`deliverables/cycle-03/k10_a32_navigator/k10_a32_navigator.ino`, `deliverables/cycle-03/k10_a32_navigator/data/ttdb.md`, `deliverables/cycle-03/SOLUTION.md`)
+- [x] 5. Reviewer — verify correctness and gaps. (`deliverables/cycle-03/REVIEW.md`)
+- [x] 6. Delivery Packager — assemble final assets and update release tracking. (`deliverables/cycle-03/DELIVERY.md`, `RELEASES.md`)
+- [x] 7. Retrospective — capture improvements and next-cycle prompts. (update `deliverables/cycle-03/BOOTSTRAP.md`)
 
 ## Assets index
 - `AGENTS.md`
 - `LOG.md`
 - `PLAN.md`
 - `RELEASES.md`
-- `deliverables/cycle-XX/`
+- `deliverables/cycle-03/BOOTSTRAP.md`
+- `deliverables/cycle-03/STORYTELLER.md`
+- `deliverables/cycle-03/SOLUTION.md`
+- `deliverables/cycle-03/REVIEW.md`
+- `deliverables/cycle-03/DELIVERY.md`
+- `deliverables/cycle-03/k10_a32_navigator/k10_a32_navigator.ino`
+- `deliverables/cycle-03/k10_a32_navigator/data/ttdb.md`

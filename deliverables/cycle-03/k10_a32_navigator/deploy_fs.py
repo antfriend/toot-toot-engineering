@@ -5,14 +5,9 @@ Usage:
     python deploy_fs.py --port COM3
     python deploy_fs.py --port COM3 --dry-run
 
-Partition info (from large_spiffs_16MB.csv — the actual table used by arduino-cli):
-    offset = 0x510000   ("model" partition, subtype spiffs/littlefs)
-    size   = 0x475000   (4673536 bytes / ~4564 KB)
-
-    This is NOT the "default.bin" binary table. The arduino-cli build falls
-    back to large_spiffs_16MB.csv because no variant-specific partitions.csv
-    exists. The spiffs-subtype partition in that table is named "model" but
-    LittleFS.begin() finds it via type/subtype scan, not by name.
+Partition info (from partitions.csv in the sketch directory):
+    offset = 0x510000   ("littlefs" partition, subtype spiffs)
+    size   = 0x200000   (2097152 bytes / 2048 KB)
 """
 
 import argparse
@@ -27,7 +22,7 @@ MKLITTLEFS = (
 )
 
 FS_OFFSET    = "0x510000"
-FS_SIZE      = 0x475000   # 4564 KB — "model" partition in large_spiffs_16MB.csv
+FS_SIZE      = 0x200000   # 2048 KB — "littlefs" partition in partitions.csv
 BLOCK_SIZE   = 4096
 PAGE_SIZE    = 256
 DATA_DIR     = "data"

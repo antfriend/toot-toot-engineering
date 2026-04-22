@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pio --version)",
+      "Bash(arduino-cli version:*)",
+      "Bash(pip show:*)",
+      "Bash(python -m platformio --version)",
+      "Bash(pip install:*)",
+      "Bash(python -c \"import platformio\")",
+      "Bash(grep -v \"^deliverables$\\\\|^RFCs$\\\\|^unihiker_k10$\\\\|^images$\\\\|^standards$\")",
+      "Bash(python -c \"import platformio; import os; print\\(os.path.dirname\\(platformio.__file__\\)\\)\")",
+      "Bash(python -c \"import sys, os; print\\(os.path.join\\(os.path.dirname\\(sys.executable\\), 'Scripts', 'pio.exe'\\)\\)\")",
+      "Read(//c/Users/antfr/AppData/Roaming/Python/Python313/Scripts/**)",
+      "Read(//c/Python313/Scripts/**)",
+      "Read(//c/Users/antfr/AppData/Local/Arduino15/packages/**)",
+      "Read(//c/Users/antfr/Documents/ArduinoData/packages/**)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Program Files \\(x86\\)/**)",
+      "Bash(where arduino-cli:*)",
+      "Read(//c/Users/antfr/AppData/Local/Arduino15/**)",
+      "Read(//c/Users/antfr/AppData/Local/Programs/arduino-ide/**)",
+      "Bash(curl -L \"https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip\" -o \"C:/Users/antfr/AppData/Local/arduino-cli.zip\")",
+      "Read(//c/Users/antfr/AppData/Local/**)",
+      "Bash(unzip -o arduino-cli.zip arduino-cli.exe -d .)",
+      "Bash(./arduino-cli version:*)",
+      "Bash(\"C:/Users/antfr/AppData/Local/arduino-cli.exe\" board:*)",
+      "Bash(\"C:/Users/antfr/AppData/Local/arduino-cli.exe\" compile:*)",
+      "Bash(python -m esptool version)",
+      "Bash(\"C:/Users/antfr/AppData/Local/Arduino15/packages/UNIHIKER/tools/esptool_py/4.6/esptool.exe\" version:*)",
+      "Bash(python deploy_fs.py --port COM3 --dry-run)",
+      "Bash(python3 -c ':*)"
+    ]
+  }
+}

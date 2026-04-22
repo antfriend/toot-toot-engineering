@@ -1,0 +1,94 @@
+{
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "comPort",
+      "type": "promptString",
+      "description": "Serial port for upload (e.g. COM3). Run 'K10: List Devices' first.",
+      "default": "COM3"
+    }
+  ],
+  "tasks": [
+    {
+      "label": "K10: List Devices",
+      "type": "shell",
+      "command": "\"C:/Users/antfr/AppData/Local/arduino-cli.exe\" board list",
+      "options": {
+        "cwd": "${workspaceFolder}/deliverables/cycle-03/k10_a32_navigator"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "K10: Build",
+      "type": "shell",
+      "command": "\"C:/Users/antfr/AppData/Local/arduino-cli.exe\" compile --fqbn UNIHIKER:esp32:k10 .",
+      "options": {
+        "cwd": "${workspaceFolder}/deliverables/cycle-03/k10_a32_navigator"
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "K10: Upload Firmware",
+      "type": "shell",
+      "command": "\"C:/Users/antfr/AppData/Local/arduino-cli.exe\" upload --fqbn UNIHIKER:esp32:k10 --port ${input:comPort} .",
+      "options": {
+        "cwd": "${workspaceFolder}/deliverables/cycle-03/k10_a32_navigator"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "K10: Upload Filesystem (LittleFS)",
+      "type": "shell",
+      "command": "python deploy_fs.py --port ${input:comPort}",
+      "options": {
+        "cwd": "${workspaceFolder}/deliverables/cycle-03/k10_a32_navigator"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "K10: Upload All (FS then Firmware)",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "K10: Upload Filesystem (LittleFS)",
+        "K10: Upload Firmware"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "K10: Monitor",
+      "type": "shell",
+      "command": "\"C:/Users/antfr/AppData/Local/arduino-cli.exe\" monitor --fqbn UNIHIKER:esp32:k10 --port ${input:comPort} --config baudrate=115200",
+      "options": {
+        "cwd": "${workspaceFolder}/deliverables/cycle-03/k10_a32_navigator"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": [],
+      "isBackground": true
+    }
+  ]
+}

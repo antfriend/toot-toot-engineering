@@ -44,7 +44,7 @@ agent_note: "Dice TTDB compact set for K10 LittleFS."
 
 @LAT35.264LON45.0 | created:1760000000 | updated:1760000000 | z:0 | relates:lat>@LAT35.264LON135.0,lat>@LAT35.264LON-135.0,lat>@LAT35.264LON-45.0,lon>@LAT-35.264LON45.0
 
-## Cube Vertex NE
+## Dube Vertex NE
 North hemisphere vertex at lon 45. Lat links to other north vertices; lon links to its south counterpart.
 
 ---

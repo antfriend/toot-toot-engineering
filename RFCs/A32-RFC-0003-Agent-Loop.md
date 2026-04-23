@@ -2,9 +2,9 @@
 
 ## Agent Loop and Hardware Abstraction
 
-### Version 0.1
+### Version 1.0
 
-Status: Draft
+Status: Stable
 
 This RFC defines the Agent Loop (sense-reason-act cycle) and the Hardware
 Abstraction Layer for Agent 32 applications running on ESP32 with Arduino.

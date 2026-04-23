@@ -2,9 +2,9 @@
 
 ## Agent 32 Architecture Overview
 
-### Version 0.1
+### Version 1.0
 
-Status: Draft
+Status: Stable
 
 This RFC defines the architecture of an Agent 32 application: an autonomous
 device built on ESP32 hardware using the Arduino framework, with a

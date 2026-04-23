@@ -1,7 +1,7 @@
 # LOG
 
 ## Entries
-No entries yet.
+No entries yet. Each completed step appends one entry here; do not edit past entries.
 
 ## Entry template
 - Step: <step id>

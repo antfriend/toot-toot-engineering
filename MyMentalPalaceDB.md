@@ -66,6 +66,12 @@ dot: |
 ---
 
 @LAT-81.6LON0.0 | created:1700000000 | updated:1700000600 | relates:inspires>@LAT-71.1LON-84.2,anchors>@LAT-75.4LON137.9
+[ew]
+conf:210
+rev:2
+sal:18
+touched:1700000600
+[/ew]
 
 ## The Root Workbench
 You arrive at **@LAT-81.6LON0.0**, the root node.  

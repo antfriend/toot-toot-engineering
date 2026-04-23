@@ -2,9 +2,9 @@
 
 ## TTDB Storage and Parsing on ESP32
 
-### Version 0.1
+### Version 1.0
 
-Status: Draft
+Status: Stable
 
 This RFC defines how TTDB files (per TTDB-RFC-0001) are stored, loaded, and
 queried on ESP32 hardware within the Arduino framework.

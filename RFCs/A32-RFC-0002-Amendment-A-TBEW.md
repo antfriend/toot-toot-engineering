@@ -1,7 +1,8 @@
 # A32-RFC-0002 Amendment A: TBEW Parser Extension
 ### C++ Storage and Parsing Update for Toot-Bit Epistemic Weight Fields
 
-**Status:** Draft
+**Version:** 1.0
+**Status:** Stable
 **Amends:** A32-RFC-0002 (TTDB Storage and Parsing on ESP32)
 **Required by:** TTDB-RFC-0005 (Toot-Bit Epistemic Weight)
 **Project:** toot-toot-engineering

@@ -2,9 +2,9 @@
 
 ## Claude Code Project Setup for Agent 32
 
-### Version 0.1
+### Version 1.0
 
-Status: Draft
+Status: Stable
 
 This RFC defines how to structure an Agent 32 project for development with
 Claude Code, including the CLAUDE.md file, project layout, PlatformIO

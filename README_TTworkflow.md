@@ -1,6 +1,6 @@
 ﻿# Toot Toot Engineering Workflow
 ![Toot Toot Engineering](images/time-foundry.svg)
-[TTE is free, open-source software licensed under the MIT License.](https://antfriend.github.io/)   
+TTE is free, open-source software. [MIT License](LICENSE) | [antfriend.github.io](https://antfriend.github.io/)
 ![Release](https://img.shields.io/github/v/release/antfriend/toot-toot-engineering)
 
 Workflow version: 3.8
@@ -24,3 +24,16 @@ Workflow version: 3.8
 4. Some agents or versions of agents will stop after a step and need prompting to "continue to the end of the cycle"
 
 5. Find all the deliverables in deliverables/
+
+# Python tools
+
+Install dependencies first:
+```
+pip install -r requirements.txt
+```
+
+| Tool | Command | Purpose |
+|---|---|---|
+| `tte_agent.py` | `python tte_agent.py` | Main agent loop. Requires `OPENAI_API_KEY` environment variable. |
+| `tte_monitor.py` | `python tte_monitor.py` | Tkinter UI for monitoring `PLAN.md` and `LOG.md` during a cycle. |
+| `ttdb_navigator.py` | `python ttdb_navigator.py` | Tkinter UI for browsing TTDB records with a globe coordinate view. |

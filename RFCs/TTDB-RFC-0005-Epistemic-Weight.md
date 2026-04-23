@@ -1,7 +1,8 @@
 # TTDB-RFC-0005: Toot-Bit Epistemic Weight (TBEW)
 ### Lightweight Free-Energy-Adjacent Surprise and Salience Metadata for TTDB Entries
 
-**Status:** Draft
+**Version:** 1.0
+**Status:** Stable
 **RFC Number:** 0005
 **Project:** toot-toot-engineering
 **Component:** TTDB (MyMentalPalaceDB)

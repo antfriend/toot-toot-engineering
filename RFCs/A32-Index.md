@@ -13,6 +13,7 @@ a $5 microcontroller.
 | A32-RFC-0002 | TTDB Storage and Parsing | Draft | LittleFS/SD storage, streaming parser, index structure, librarian queries |
 | A32-RFC-0003 | Agent Loop and Hardware Abstraction | Draft | Sense-reason-act cycle, sensor/actuator registries, edge-based reasoning |
 | A32-RFC-0004 | Claude Code Project Setup | Draft | Project layout, CLAUDE.md reference, PlatformIO config, TTE integration |
+| A32-RFC-0002-Amendment-A-TBEW | TBEW Parser Extension | Draft | C++ structs, state machine extension, field parse helpers, writer for [ew] blocks |
 
 ## Dependencies
 

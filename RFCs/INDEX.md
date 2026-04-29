@@ -22,11 +22,7 @@ This index lists RFCs included in the TTE 1.0 bundle.
 - TTE-RFC-0002-Plan-Log-and-Checklist.md: Plan, Log, and Checklist Requirements
 - TTE-RFC-0003-Definition-of-Done-and-Release.md: Definition of Done and Release Packaging
 
-## A32 (Agent 32)
-Autonomous ESP32 devices using TTDB as an onboard, static knowledge base. Deterministic graph-based reasoning on a $5 microcontroller — no cloud LLMs, no neural inference.
-
-- A32-RFC-0001-Architecture.md: Architecture Overview
-- A32-RFC-0002-TTDB-Storage.md: TTDB Storage and Parsing
-- A32-RFC-0003-Agent-Loop.md: Agent Loop and Hardware Abstraction
-- A32-RFC-0004-Claude-Code-Setup.md: Claude Code Project Setup
-- A32-RFC-0002-Amendment-A-TBEW.md: TBEW Parser Extension
+## TTCP (Toot Toot Content Publishing)
+- TTCP-RFC-0001-Record-Rendering.md: File Ingestion, Record Parsing, and HTML Rendering
+- TTCP-RFC-0002-Globe-and-Navigation.md: Knowledge Globe, Cursor Selection, Discovery, Tour, and Scene Playback
+- TTCP-RFC-0003-Link-System-and-Addressability.md: Toot URI Scheme, URL Synchronization, and Search

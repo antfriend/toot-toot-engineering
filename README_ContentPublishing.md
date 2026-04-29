@@ -8,7 +8,7 @@ Workflow version: 3.8
 # What is TTE Content Publishing?
 
 TTE Content Publishing is exemplified at [antfriend.github.io](https://antfriend.github.io/).  
-Content Publishing covers the full pipeline from a single flat Markdown (or LaTeX) file through: parse → identify → relate → render → animate → navigate → discover. The output is a self-contained, offline-capable web experience where every record is a first-class addressable document, every edge is a navigable relationship, and the globe is the primary spatial index.
+Content Publishing covers the full pipeline from a single flat Markdown (or [LaTeX](https://antfriend.github.io/index.html?ttdb=Mathematical.latex&toot=lat65lon45)) file through: parse → identify → relate → render → animate → navigate → discover. The output is a self-contained, offline-capable web experience where every record is a first-class addressable document, every edge is a navigable relationship, and the globe is the primary spatial index.
 
 # Human-readable documentation
 

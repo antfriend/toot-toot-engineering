@@ -6,7 +6,7 @@
 Workflow version: 3.8
 
 # What is TTDB?
-
+[see it here](https://antfriend.github.io/?ttdb=TootTootTerminologyDB.md&toot=lat35.7lon139.7)   
 MyMentalPalaceDB (TTDB) is a single-file, flat-text knowledge graph. Each entry is a record at a `@LATxLONy` coordinate on a semantic "globe" — a projection of the agent's umwelt into a navigable space. Entries carry typed edges to other entries, forming a semantic mesh the agent traverses during reasoning.
 
 TTDB files are plain Markdown. Any text editor can read, audit, and edit one.

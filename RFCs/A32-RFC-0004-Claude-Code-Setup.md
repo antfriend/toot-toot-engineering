@@ -1,14 +1,15 @@
-# A32-RFC-0004
+# A32-RFC-0004: Claude Code Project Setup for Agent 32
 
-## Claude Code Project Setup for Agent 32
+**Version:** 1.0
+**Status:** Stable
+**RFC Number:** 0004
+**Project:** toot-toot-engineering
+**Component:** A32 (ESP32 Autonomous Device Framework)
+**Depends on:** A32-RFC-0001 (Architecture), TTE-RFC-0001 (Workflow and Roles), TTE-RFC-0003 (Definition of Done and Release)
+**Author:** antfriend
+**Created:** 2026-04-24
 
-### Version 1.0
-
-Status: Stable
-
-This RFC defines how to structure an Agent 32 project for development with
-Claude Code, including the CLAUDE.md file, project layout, PlatformIO
-configuration, and integration with the Toot Toot Engineering workflow.
+This RFC defines how to structure an Agent 32 project for development with Claude Code, including the CLAUDE.md file, project layout, and PlatformIO configuration.
 
 ---
 
@@ -27,15 +28,7 @@ project scaffolding.
 ```
 my-agent32-project/
 ├── CLAUDE.md                  # Claude Code onboarding (see Section 3)
-├── AGENTS.md                  # TTE agent guidance (from toot-toot-engineering)
-├── WORKFLOW.md                # TTE workflow
-├── PLAN.md                    # TTE plan
-├── CHECKLIST.md               # TTE checklist
-├── LOG.md                     # TTE log
-├── RELEASES.md                # TTE releases
-├── TTE_PROMPT.md              # TTE prompt (project-specific goals)
-├── WHAT.md                    # TTE what-is-this
-├── platformio.ini             # PlatformIO build config
+├──  platformio.ini             # PlatformIO build config
 ├── data/
 │   └── ttdb.md                # The TTDB file (uploaded to LittleFS)
 ├── src/
@@ -54,8 +47,7 @@ my-agent32-project/
 │       ├── Agent32.h
 │       └── Agent32.cpp
 ├── RFCs/                      # Project-specific RFCs
-│   └── ...
-└── deliverables/              # TTE output directory
+
 ```
 
 ---
@@ -72,7 +64,7 @@ universally applicable instructions.
 ## What This Is
 
 This is an Agent 32 project: an autonomous ESP32 device that reasons using
-a TTDB (MyMentalPalaceDB) file, not a cloud LLM. The TTDB file in `data/`
+a TTDB (Toot-Toot Database) file, not a cloud LLM. The TTDB file in `data/`
 is the device's entire knowledge base.
 
 ## Architecture
@@ -113,11 +105,6 @@ pio run --target uploadfs  # upload data/ttdb.md to LittleFS
 pio device monitor         # serial monitor
 ```
 
-## Workflow
-
-This project uses Toot Toot Engineering. Run WORKFLOW.md for the full
-cycle. Deliverables go in `deliverables/`.
-```
 
 ---
 
@@ -193,21 +180,6 @@ When beginning work on an Agent 32 project in Claude Code:
 3. The log shows each cycle's state snapshot, matched node, and selected
    actions.
 
-### 5.3 TTE Cycle Integration
-
-The TTE workflow drives development. The governing RFCs are TTE-RFC-0001
-(workflow and roles), TTE-RFC-0002 (PLAN.md, LOG.md, and CHECKLIST.md
-requirements), and TTE-RFC-0003 (Definition of Done and release packaging).
-
-A typical cycle:
-
-1. Edit `TTE_PROMPT.md` with the next goal (e.g., "Add temperature-based
-   fan control using TTDB edges").
-2. Run WORKFLOW.md. Claude Code executes the plan.
-3. Firmware changes land in `src/` and `lib/`.
-4. TTDB changes land in `data/ttdb.md`.
-5. Deliverables (docs, test results) go to `deliverables/`.
-6. Update LOG.md and CHECKLIST.md per TTE convention.
 
 ---
 

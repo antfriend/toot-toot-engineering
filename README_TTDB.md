@@ -67,3 +67,6 @@ Your first entry body goes here.
 | [TTDB-RFC-0003](RFCs/TTDB-RFC-0003-Typed-Edges.md) | Typed edge semantics |
 | [TTDB-RFC-0004](RFCs/TTDB-RFC-0004-Event-ID-and-Collision.md) | Event ID assignment and collision handling |
 | [TTDB-RFC-0005](RFCs/TTDB-RFC-0005-Epistemic-Weight.md) | Toot-Bit Epistemic Weight (TBEW) — optional confidence, revision, salience, and recency metadata |
+| [TTDB-RFC-0006](RFCs/TTDB-RFC-0006-Experiential-Perception-as-Synthetic-Model.md) | Experiential Perception as Synthetic Model — Locus framework foundation; `@PERCEPT:before`/`@PERCEPT:after` paired node as the normative unit of perceptual knowledge; umwelt and biosemiotic grounding |
+| [TTDB-RFC-0007](RFCs/TTDB-RFC-0007-Locus-Point-and-Dream-Cycle.md) | Locus Point and Dream Cycle — episodic-to-semantic memory consolidation; `@BELIEF:` namespace; two-phase offline graph traversal; graph compression; multi-agent belief propagation |
+| [TTDB-RFC-0008](RFCs/TTDB-RFC-0008-Narrative-Metamorphosis.md) | Narrative Metamorphosis — story-seeded life-stage transition from game-solving larva to orchestrating imago; `@IMAGO:seed` and `@META:state` namespaces; instar sequencing; eclosion predicate |

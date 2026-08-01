@@ -12,7 +12,7 @@ deterministic expansion target (TTN-RFC-0004 applied to the corpus itself).
 ## TTDB (Toot-Toot Database)
 - [TTDB-RFC-0001-File-Format.md](TTDB-RFC-0001-File-Format.md): File Format and Sections
 - [TTDB-RFC-0002-Cursor-Semantics.md](TTDB-RFC-0002-Cursor-Semantics.md): Cursor Semantics and Selection Rules
-- [TTDB-RFC-0003-Typed-Edges.md](TTDB-RFC-0003-Typed-Edges.md): Typed Edge Semantics
+- [TTDB-RFC-0003-Typed-Edges.md](TTDB-RFC-0003-Typed-Edges.md): Typed Edge Semantics — **v1.1** adds §7: symmetric types, and `opposes` for semantic polarity (distinct from the epistemic `contradicts`; under `opposes` both endpoints may be true). §§1–6 unchanged, all v1.0 files remain valid
 - [TTDB-RFC-0004-Event-ID-and-Collision.md](TTDB-RFC-0004-Event-ID-and-Collision.md): Event ID Assignment and Collision Handling
 - [TTDB-RFC-0005-Epistemic-Weight.md](TTDB-RFC-0005-Epistemic-Weight.md): Toot-Bit Epistemic Weight (TBEW) — optional [ew] block for confidence, revision, salience, and recency metadata
 - [TTDB-RFC-0006-Experiential-Perception-as-Synthetic-Model.md](TTDB-RFC-0006-Experiential-Perception-as-Synthetic-Model.md): Experiential Perception as Synthetic Model (Locus framework foundation)
@@ -22,7 +22,7 @@ deterministic expansion target (TTN-RFC-0004 applied to the corpus itself).
 
 ## TTN (Toot Toot Network)
 - [TTN-RFC-0001.md](TTN-RFC-0001.md): Core Semantic Mesh Specification
-- [TTN-RFC-0002-Typed-Edges.md](TTN-RFC-0002-Typed-Edges.md): Typed Edge Taxonomy
+- [TTN-RFC-0002-Typed-Edges.md](TTN-RFC-0002-Typed-Edges.md): Typed Edge Taxonomy — **v1.1** adds a seventh group, semantic polarity (`opposes`)
 - [TTN-RFC-0003-Reference-Implementation.md](TTN-RFC-0003-Reference-Implementation.md): Reference Implementation Checklist
 - [TTN-RFC-0004-Semantic-Compression.md](TTN-RFC-0004-Semantic-Compression.md): Semantic Compression and Token Dictionary
 - [TTN-RFC-0005-Trust-and-Reputation.md](TTN-RFC-0005-Trust-and-Reputation.md): Trust and Reputation Signals

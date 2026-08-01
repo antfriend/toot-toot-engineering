@@ -52,7 +52,7 @@ preview:
   @LAT10LON-10: "Serenity — a mild, quiet ease. A positive feeling, near."
   @LAT-10LON-10: "Unease — a faint disquiet beneath the surface. A negative feeling, near."
   @LAT88LON0: "Story: The Hero's Arc — a six-beat emotional cycle from serenity through darkness and back to joy. Play to walk the graph."
-agent_note: "Affective field map. Lat = valence (N=positive, S=negative). Lon = object of affect (E=other-directed, W=self-directed). NE = positive+other; NW = positive+self; SE = negative+other; SW = negative+self. Distance = intensity. Feelings/emotions relate TO the umwelt; dispositions/intents relate FROM the umwelt."
+agent_note: "Affective field map. Lat = valence (N=positive, S=negative). Lon = object of affect (E=other-directed, W=self-directed). NE = positive+other; NW = positive+self; SE = negative+other; SW = negative+self. Distance = intensity. Feelings/emotions relate TO the umwelt; dispositions/intents relate FROM the umwelt. 2026-08-01: added 22 `opposes` edges across the 11 antonym pairs (TTDB-RFC-0003 v1.1 §7 — symmetric, so both directions are written and no parser infers the reverse); polarity had been encoded only positionally and was invisible to anything reading the edge list. Added @LAT10LON10 (Fondness) and @LAT-30LON-40 (Paranoia), which had been referenced by Gratitude and Suspicion but never written; both carry conf:150, below the author's 175-240 band, because they are reconstructions from the edge structure rather than original placements — revise them freely. `sal` is 0 throughout ON PURPOSE, not by omission: TTDB-RFC-0005 defines sal as an access count, this store has never been consulted by an agent, and 0 is therefore the honest value. It will populate itself when something uses the store. Do NOT hand-author it — for an affective landscape the intuitive proxy for salience is intensity, which here IS |lat|, so hand-set values would silently encode valence; see research/valence/arousal_from_norms.py."
 dot: |
   digraph Affective {
     rankdir=LR;
@@ -162,6 +162,27 @@ Gratitude is a feeling oriented toward something or someone beyond the self. It 
 - **Intensity:** Mild-Moderate (L2)
 
 ---
+
+@LAT10LON10 | created:1785542400 | updated:1785542400 | relates:feels>@LAT0LON0,resonates_with>@LAT10LON20
+[ew]
+conf:150
+rev:0
+sal:0
+touched:1785542400
+[/ew]
+
+## Fondness
+
+*A quiet liking that rests on someone — warmth without demand.*
+
+Fondness sits just east of center and barely north of it: mildly positive, mildly other-directed. It is the low, steady regard that gratitude thickens into acknowledgment. Closer to the origin than gratitude because it asks for no occasion — it does not require having received anything.
+
+- **Valence:** Positive
+- **Category:** Feeling
+- **Intensity:** Mild (L1)
+
+---
+
 
 @LAT30LON30 | created:1775260800 | updated:1775260800 | relates:feels>@LAT0LON0,intensifies_into>@LAT40LON-40,resonates_with>@LAT30LON20
 [ew]
@@ -562,6 +583,27 @@ Suspicion is a moderate negative disposition. The experiencer defaults to warine
 - **Intensity:** Moderate (L2)
 
 ---
+
+@LAT-30LON-40 | created:1785542400 | updated:1785542400 | relates:is_disposition_of>@LAT0LON0,intensified_from>@LAT-20LON-30
+[ew]
+conf:150
+rev:0
+sal:0
+touched:1785542400
+[/ew]
+
+## Paranoia
+
+*Vigilance with no off switch — the threat-reading turned total.*
+
+Paranoia is suspicion that has stopped being selective. Where suspicion reads the world for hidden threat and can still be talked down, paranoia has made the reading permanent and self-sealing: disconfirming evidence is absorbed as further proof. It lies far west because the machinery has turned fully inward — the experiencer is now defending against a world it is itself generating.
+
+- **Valence:** Negative
+- **Category:** Disposition
+- **Intensity:** Intense (L3)
+
+---
+
 
 @LAT-10LON-40 | created:1775260800 | updated:1775260800 | relates:is_disposition_of>@LAT0LON0,resonates_with>@LAT-20LON-30,enables>@LAT-20LON-40
 [ew]

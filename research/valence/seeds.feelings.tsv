@@ -1,0 +1,24 @@
+# Tier 1 seeds for feelings_ttdb.md
+#
+# Values are ground truth: phi_true(v) = lat(v) / 40, read off the store's own
+# mmpdb.umwelt.globe.mapping ("Latitude = valence, N positive, S negative").
+# This is what makes the store falsifiable rather than illustrative -- the
+# answer is knowable independently of the propagation.
+#
+# Protocol (VALENCE_FIELD.md §3.2): seeds must be (a) confidently signed,
+# (b) spread across the graph, (c) not all in one component.
+# All four quadrants are covered, both polarities, full intensity range.
+#
+# address	value	# title (lat, lon) quadrant
+@LAT40LON30	1.00	# Ecstasy (+40,+30) NE
+@LAT40LON-40	1.00	# Bliss (+40,-40) NW
+@LAT30LON30	0.75	# Joy (+30,+30) NE
+@LAT30LON40	0.75	# Compassion (+30,+40) NE, disposition
+@LAT20LON20	0.50	# Hope (+20,+20) NE
+@LAT10LON-10	0.25	# Serenity (+10,-10) NW
+@LAT-10LON-10	-0.25	# Unease (-10,-10) SW
+@LAT-20LON20	-0.50	# Frustration (-20,+20) SE
+@LAT-30LON-30	-0.75	# Grief (-30,-30) SW
+@LAT-30LON40	-0.75	# Hostility (-30,+40) SE, disposition
+@LAT-40LON30	-1.00	# Rage (-40,+30) SE
+@LAT-40LON-40	-1.00	# Despair (-40,-40) SW

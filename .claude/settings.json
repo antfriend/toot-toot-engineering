@@ -4,7 +4,8 @@
       "Bash(python files/ttdb_valence.py agent-memory-system_ttdb.md --dump-parse)",
       "Bash(rm -f /tmp/smoke.tsv; echo \"=== final tree ===\"; ls; echo \"--- research/valence\"; ls research/valence; echo; echo \"=== git status ===\"; git status --short)",
       "Bash(grep \"@LAT0LON0$\")",
-      "Bash(python research/valence/ttdb_valence.py agent-memory-system_ttdb.md RFCs/rfc.ttdb.md --dump-parse)"
+      "Bash(python research/valence/ttdb_valence.py agent-memory-system_ttdb.md RFCs/rfc.ttdb.md --dump-parse)",
+      "Bash(python research/valence/ttdb_valence.py feelings_ttdb.md --dump-parse)"
     ],
     "additionalDirectories": [
       "\\tmp"

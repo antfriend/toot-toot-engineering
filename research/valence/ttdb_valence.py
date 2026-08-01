@@ -80,24 +80,89 @@ FIELD_RE = re.compile(r'^\s*(conf|sal|rev|touched)\s*:\s*(\S+)', re.I)
 # Edge type -> sign. THIS IS THE SUBSTANTIVE MODELING CHOICE.
 # Everything downstream depends on it. Types not listed here are reported
 # as unmapped and default to DEFAULT_SIGN.
+#
+# sigma answers ONE question: does this edge assert that its endpoints carry
+# the SAME valence (+1) or OPPOSITE valence (-1)? It does NOT mean "is this
+# relationship good or bad". 'blocks' is -1 because A blocking B means they
+# cannot both be endorsed, not because blocking is unpleasant. Inverting this
+# reading silently produces a plausible-looking field.
+#
+# See SIGN_MAP_PROPOSAL.md for the evidence behind each assignment. In
+# feelings_ttdb.md every entry below was checked against endpoint LATITUDES
+# (that store declares lat = valence), not inferred from the type name.
 SIGN_MAP = {
-    'supports':     +1,
-    'implies':      +1,
-    'refines':      +1,
-    'extends':      +1,
-    'instantiates': +1,
-    'cites':        +1,
-    'depends_on':   +1,
-    'part_of':      +1,
-    'contradicts':  -1,
-    'refutes':      -1,
-    'blocks':       -1,
-    'supersedes':   -1,
-    'conflicts':    -1,
-    'negates':      -1,
-    'excludes':     -1,
+    # --- generic / stub (retained, not all present in the corpus) ---
+    'implies':            +1,
+    'extends':            +1,
+    'instantiates':       +1,
+    'cites':              +1,
+    'part_of':            +1,
+    'refutes':            -1,
+    'blocks':             -1,
+    'supersedes':         -1,
+    'conflicts':          -1,
+    'negates':            -1,
+    'excludes':           -1,
+
+    # --- RFC stores: structural agreement (phi = endorsement) ---
+    'depends_on':         +1,
+    'supports':           +1,
+    'refines':            +1,
+    'requires':           +1,
+    'derived_from':       +1,
+    'demonstrates':       +1,
+    'implemented_by':     +1,
+    'propagated_by':      +1,
+    'implements':         +1,
+    'applied_by':         +1,
+    'aligns_with':        +1,
+    'generalizes':        +1,
+    'generalized_by':     +1,
+    'duplicates':         +1,
+
+    # --- RFC stores: opposition ---
+    'contradicts':        -1,
+    # Weaker reading than 'contradicts': the amended portion is displaced by
+    # the amending text. Statistically inert either way at n=2 -- flagged as
+    # unreviewed rather than settled.
+    'amends':             -1,
+    'amended_by':         -1,
+
+    # --- feelings_ttdb.md: same-valence, verified against endpoint latitudes ---
+    'resonates_with':     +1,   # +30<->+20, -30<->-20; never crosses zero
+    'enabled_by':         +1,   # +30<-+10, +40<-+40
+    'enables':            +1,   # +20->+30, -30->-40
+    'can_become':         +1,   # +30->+40
+    'can_deepen_into':    +1,   # +10->+20, -10->-20
+    'intensified_from':   +1,   # +40<-+30, -40<--30
+    'can_intensify_into': +1,
+    'intensifies_into':   +1,   # +30->+40, -30->-40
+    'opens_toward':       +1,   # +10->+10
 }
 DEFAULT_SIGN = +1
+
+# Types that assert NOTHING about valence and must be dropped, not forced to
+# a sign. Excluding is a modeling decision as substantive as choosing +1/-1.
+EXCLUDE_TYPES = {
+    # feelings_ttdb.md hub: all 55 of these touch the neutral origin
+    # @LAT0LON0, giving one node degree 55 in a 41-record store. They assert
+    # MEMBERSHIP ("this state belongs to the experiencer"), not valence.
+    # Serenity (+10) and Unease (-10) both point there, so at +1 the solver
+    # is instructed to make them agree. Observed cost of not excluding these:
+    # leave-one-out r = -0.963, held-out seeds predicted with reversed sign.
+    'feels', 'emotes', 'is_disposition_of', 'is_intent_of',
+    'disposed_toward', 'intends',
+
+    # Narrative traversal (@LAT88LON0, "The Hero's Arc"): the arc runs
+    # +10 -> -10 -> -30 -> -30 -> +20 -> +30. It crosses valence BY DESIGN --
+    # that is what makes it a story. Not -1 either: -1 asserts consistent
+    # opposition, and an arc crossing zero twice is not that. Traversal order
+    # in the sense of TTDB-RFC-0009; render hints per TTDB-RFC-0003 §5.
+    'plays', 'starts_at',
+
+    # Presentation and pointer relations: no epistemic content.
+    'renders', 'default_log',
+}
 
 # Optional per-type weights. Missing types get 1.0.
 WEIGHT_MAP = {}
@@ -130,8 +195,9 @@ def parse_store(paths):
     edges = []
     meta = defaultdict(dict)
     unmapped = defaultdict(int)
+    excluded = defaultdict(int)
     stats = {'files': 0, 'node_decls': 0, 'edge_lines': 0, 'self_loops': 0,
-             'malformed_edges': 0, 'syntaxes': {}}
+             'malformed_edges': 0, 'syntaxes': {}, 'excluded': excluded}
 
     for path in iter_files(paths):
         stats['files'] += 1
@@ -182,6 +248,9 @@ def parse_store(paths):
                         stats['self_loops'] += 1
                         continue
                     etype = (em.group('type') or '').lower()
+                    if etype in EXCLUDE_TYPES:
+                        excluded[etype] += 1
+                        continue
                     if etype and etype not in SIGN_MAP:
                         unmapped[etype] += 1
                     sign = SIGN_MAP.get(etype, DEFAULT_SIGN)
@@ -422,7 +491,15 @@ def permutation_nulls(nodes, adj, merged, seeds, trials, rng, **kw):
         sign_spread.append(stdev(p.values()))
         sign_energy.append(total_energy(m2, p))
 
-    seed_spread = []
+    # Seed-shuffle is scored on ENERGY, not spread. Shuffling values across a
+    # fixed seed set preserves the multiset of seed values, so the field's
+    # overall spread barely moves no matter where the values land -- measured
+    # on the golden store, spread gave p=0.69 while energy on the same
+    # shuffles gave p<0.005 (null mean 17.6 vs observed 1.2). Spread cannot
+    # detect placement, and §6 makes this null a stop condition, so scoring it
+    # on spread risks a false "archive this" verdict. Spread is still reported
+    # for continuity and flagged as non-diagnostic.
+    seed_spread, seed_energy = [], []
     keys = list(seeds.keys())
     vals = list(seeds.values())
     for _ in range(trials):
@@ -430,17 +507,23 @@ def permutation_nulls(nodes, adj, merged, seeds, trials, rng, **kw):
         rng.shuffle(shuffled)
         p, _, _ = solve(nodes, adj, dict(zip(keys, shuffled)), **kw)
         seed_spread.append(stdev(p.values()))
+        seed_energy.append(total_energy(merged, p))
 
     def pct(obs, null):
         return sum(1 for x in null if x >= obs) / len(null) if null else float('nan')
+
+    def pct_lower(obs, null):
+        return sum(1 for x in null if x <= obs) / len(null) if null else float('nan')
 
     return {
         'obs_spread': obs_spread,
         'obs_energy': obs_energy,
         'sign_spread_mean': mean(sign_spread),
         'sign_energy_mean': mean(sign_energy),
-        'p_energy_lower': sum(1 for x in sign_energy if x <= obs_energy) / max(len(sign_energy), 1),
+        'p_energy_lower': pct_lower(obs_energy, sign_energy),
         'seed_spread_mean': mean(seed_spread),
+        'seed_energy_mean': mean(seed_energy),
+        'p_energy_seed': pct_lower(obs_energy, seed_energy),
         'p_spread_sign': pct(obs_spread, sign_spread),
         'p_spread_seed': pct(obs_spread, seed_spread),
     }
@@ -452,26 +535,35 @@ def permutation_nulls(nodes, adj, merged, seeds, trials, rng, **kw):
 
 
 def load_seeds(path, nodes):
+    """Parse address/value pairs. Trailing '#' comments are stripped.
+
+    Unparseable lines are RETURNED, not silently skipped -- a seed file that
+    quietly loses half its entries produces a flat field, which is
+    indistinguishable from a negative result.
+    """
     seeds = {}
     missing = []
+    bad = []
     with open(path, 'r', encoding='utf-8') as fh:
-        for raw in fh:
-            line = raw.strip()
-            if not line or line.startswith('#'):
+        for lineno, raw in enumerate(fh, 1):
+            line = raw.split('#', 1)[0].strip()
+            if not line:
                 continue
-            parts = re.split(r'[\t,]+|\s{2,}|\s+', line)
+            parts = [p for p in re.split(r'[\t,]+|\s+', line) if p]
             if len(parts) < 2:
+                bad.append((lineno, raw.strip()))
                 continue
-            addr, val = parts[0], parts[-1]
+            addr, val = parts[0], parts[1]
             try:
                 v = float(val)
             except ValueError:
+                bad.append((lineno, raw.strip()))
                 continue
             if addr not in nodes:
                 missing.append(addr)
                 continue
             seeds[addr] = max(-1.0, min(1.0, v))
-    return seeds, missing
+    return seeds, missing, bad
 
 
 # ---------------------------------------------------------------------------
@@ -518,7 +610,7 @@ def main():
             print(f'  {os.path.basename(p):<32} {s}')
 
     if not nodes:
-        print('\n!! No records parsed. NODE_DECL_RE expects the TTDB-RFC-0001 §3')
+        print('\n!! No records parsed. NODE_DECL_RE expects the TTDB-RFC-0001 sec.3')
         print('   header line:  @LATxLONy | created:<int> | ... | relates:<edges>')
         print('   Edit NODE_TOKEN / NODE_DECL_RE at the top of this file.')
         return 1
@@ -533,6 +625,13 @@ def main():
         print(f'  {c:5d}  {t:<20} {mark}')
     if unmapped:
         print('\n!! Unmapped types defaulted to %+d. Add them to SIGN_MAP.' % DEFAULT_SIGN)
+
+    exc = stats['excluded']
+    if exc:
+        n_exc = sum(exc.values())
+        print(f'\nexcluded as valence-neutral ({n_exc} edges, EXCLUDE_TYPES):')
+        for t, c in sorted(exc.items(), key=lambda kv: -kv[1]):
+            print(f'  {c:5d}  {t}')
 
     adj, merged = build_adjacency(nodes, edges)
     npos = sum(1 for _a, _b, _w, s in merged if s > 0)
@@ -562,7 +661,11 @@ def main():
         print('Seed file format:  @LAT20LON3<TAB>0.8')
         return 0
 
-    seeds, missing = load_seeds(args.seeds, nodes)
+    seeds, missing, bad = load_seeds(args.seeds, nodes)
+    if bad:
+        print(f'\n!! {len(bad)} unparseable seed lines (expected "ADDR<TAB>VALUE"):')
+        for lineno, text in bad[:10]:
+            print(f'     line {lineno}: {text}')
     if missing:
         print(f'\n!! {len(missing)} seed addresses not present in store:')
         for m in missing[:10]:
@@ -620,14 +723,22 @@ def main():
     hr('PERMUTATION NULLS')
     rng = random.Random(args.seed_rng)
     nulls = permutation_nulls(nodes, adj, merged, seeds, args.trials, rng, **kw)
-    print(f'observed spread      {nulls["obs_spread"]:.4f}')
+    print(f'observed energy      {nulls["obs_energy"]:.4f}      <- the diagnostic statistic')
+    print(f'  sign-shuffled mean {nulls["sign_energy_mean"]:.4f}   '
+          f'p(lower)={nulls["p_energy_lower"]:.4f}')
+    print(f'  seed-shuffled mean {nulls["seed_energy_mean"]:.4f}   '
+          f'p(lower)={nulls["p_energy_seed"]:.4f}')
+    print(f'\nobserved spread      {nulls["obs_spread"]:.4f}      '
+          f'(NON-DIAGNOSTIC, see permutation_nulls)')
     print(f'  sign-shuffled mean {nulls["sign_spread_mean"]:.4f}   p={nulls["p_spread_sign"]:.3f}')
     print(f'  seed-shuffled mean {nulls["seed_spread_mean"]:.4f}   p={nulls["p_spread_seed"]:.3f}')
-    print(f'observed energy      {nulls["obs_energy"]:.4f}')
-    print(f'  sign-shuffled mean {nulls["sign_energy_mean"]:.4f}   '
-          f'p(lower)={nulls["p_energy_lower"]:.3f}')
-    print('\nIf both p-values sit near 0.5, the sign structure is carrying')
-    print('nothing and the field is decoration. That is a real result. Stop here.')
+
+    if nneg == 0:
+        print('\n!! SIGN-SHUFFLE IS VACUOUS HERE. With no negative edges, permuting')
+        print('   signs is a no-op and p=1.000 is arithmetic, not evidence. This is')
+        print('   the ABSENCE of the sign experiment, NOT a sec.6 stop condition.')
+    print('\nIf the ENERGY p-values sit near 0.5, the structure is carrying nothing')
+    print('and the field is decoration. That is a real result. Stop here.')
 
     if args.csv:
         with open(args.csv, 'w', newline='', encoding='utf-8') as fh:

@@ -3,7 +3,9 @@
 **Run date:** 2026-08-01
 **Sign map:** as proposed in `SIGN_MAP_PROPOSAL.md`, applied in full
 (hub excluded, `amends` left at −1 as statistically inert, φ = endorsement for
-the RFC stores, the two stores run as separate graphs).
+the RFC stores, the two stores run as separate graphs), **plus `opposes: −1`**
+added after the fact when that type was minted (§7.5). Results in §§1–6 were
+measured *before* `opposes` existed and are unaffected by it.
 **Reproduce:**
 
 ```bash
@@ -416,8 +418,8 @@ exists independently of anything valence diffusion wants.
 
 ### 7.2 What an `opposes` type would change structurally
 
-Simulating 11 `opposes` edges (σ = −1) between the mirror pairs — **not written
-to the store**:
+Simulating 11 `opposes` edges (σ = −1) between the mirror pairs (this was a
+simulation when first run; it has since been **minted and written** — see §7.5):
 
 | | As authored | With `opposes` |
 |---|---|---|
@@ -476,4 +478,48 @@ secondary.** Specifically:
 - Adding the 11 edges to `feelings_ttdb.md` is a **separate** store-authoring
   decision from amending the taxonomy, and should be taken separately.
 
-Neither has been done here. Both are the repository owner's call.
+### 7.5 Minted — what was changed
+
+Accepted and applied on 2026-08-01, in four places, because this corpus's spec
+is an instance of itself and a taxonomy change that lands in only one of them
+goes stale immediately:
+
+| File | Change |
+|---|---|
+| `RFCs/TTN-RFC-0002-Typed-Edges.md` | v1.0 → **1.1**. New *Semantic Polarity* group holding `opposes`, with the distinction from `contradicts` stated inline. |
+| `RFCs/TTDB-RFC-0003-Typed-Edges.md` | v1.0 → **1.1**. New §7 (symmetric types; `opposes` semantics; the comparison table; rationale) and §8 changelog. §§1–6 untouched — all 1.0-conformant files remain valid. |
+| `RFCs/rfc.ttdb.md` | Records `@LAT10LON3` and `@LAT20LON2` re-compressed to match, `updated`/`touched` bumped, `rev` 0 → 1. |
+| `feelings_ttdb.md` | 22 `opposes` edges across the 11 antonym pairs. |
+
+**Both directions were written** (22 edges, not 11). TTDB-RFC-0003 §2 forbids
+inferring reverse edges, and §7.1 deliberately did not carve out an exception —
+a symmetric type is a convention about meaning, not a change to traversal, so
+every existing parser stays correct without modification.
+
+**`rev` was *not* bumped on the 22 affective records** (only `updated` and
+`touched`). `rev` is TBEW's revision counter and feeds surprise: bumping it
+would assert these beliefs had been *wrong* before. Nothing was corrected — a
+relation that always held was finally written down. Bumping `rev` would have
+distorted EPS across a fifth of the store to record an act of completion.
+
+`opposes: -1` was added to `SIGN_MAP`, with the §7.3 circularity warning carried
+into the code comment so it survives separation from this document.
+
+### 7.6 What the mint actually verified
+
+The store now reads: 60 merged edges (+49 / −11), 4 components, largest **40**,
+matching the §7.2 simulation exactly.
+
+**Legitimate:** frustration is **0 of 60**. With 11 negative edges present this
+is a *proof* of balance rather than the arithmetic of §2 — and it could have
+failed. Had the `resonates_with` / `intensifies_into` / `enables` structure
+disagreed anywhere with the antonym partition, a frustrated cycle would have
+appeared. None did. The positive relational structure and the polarity structure
+are mutually consistent.
+
+**Not legitimate, and not claimed:** the accuracy gain, and the sign-shuffle
+null now returning p ≈ 0. The `opposes` edges were authored between
+coordinate-mirrored pairs, so both the field's improvement *and* the sign
+structure's apparent informativeness restate the ground truth being predicted.
+§7.3 applies to both. The externally-validated numbers that stand are the ones
+in §6.2, measured **before** these edges existed.

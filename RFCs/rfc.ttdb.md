@@ -101,15 +101,15 @@ queries (not free-form NL) and update the last_query/last_answer fields on reply
 
 ---
 
-@LAT10LON3 | created:1774396800 | updated:1774396800 | relates:depends_on@LAT10LON1,depends_on@LAT10LON2,aligns_with@LAT20LON2
+@LAT10LON3 | created:1774396800 | updated:1785542400 | relates:depends_on@LAT10LON1,depends_on@LAT10LON2,aligns_with@LAT20LON2
 [ew]
 conf:210
-rev:0
-sal:130
-touched:1774396800
+rev:1
+sal:140
+touched:1785542400
 [/ew]
 
-**TTDB-RFC-0003 — Typed Edge Semantics** (Stable)
+**TTDB-RFC-0003 — Typed Edge Semantics** (Stable, v1.1)
 src: TTDB-RFC-0003-Typed-Edges.md
 
 Edges use the syntax declared in `mmpdb.typed_edges.syntax` (default
@@ -119,6 +119,15 @@ tokens but SHOULD align with the TTN taxonomy (TTN-RFC-0002). An edge is the
 librarian's subjective assertion inside its umwelt, not a global truth; reference
 other worldviews explicitly (`db:<id>`, `umwelt:<id>`). Embedded node graphs in
 bodies are render hints only — the header edge list is canonical.
+
+v1.1 adds §7: a type MAY be **symmetric**, meaning both directions assert the same
+thing — but §2 still holds, so the author MUST write both edges and no parser
+infers the reverse. `opposes` is the first such type: symmetric **semantic
+polarity**, two concepts at opposite ends of one dimension. Not `contradicts`,
+which is epistemic — under `opposes` both endpoints may be true at once (*Joy*
+and *Grief*), so a store holding both is not thereby inconsistent. Rationale:
+polarity encoded positionally (e.g. latitude carrying valence) is invisible to a
+consumer traversing the edge list, which is what implementations actually read.
 
 ---
 
@@ -298,24 +307,26 @@ records preferred.
 
 ---
 
-@LAT20LON2 | created:1775347200 | updated:1775347200 | relates:depends_on@LAT20LON1,depends_on@LAT10LON3
+@LAT20LON2 | created:1775347200 | updated:1785542400 | relates:depends_on@LAT20LON1,depends_on@LAT10LON3
 [ew]
 conf:210
-rev:0
-sal:70
-touched:1775347200
+rev:1
+sal:80
+touched:1785542400
 [/ew]
 
-**TTN-RFC-0002 — Typed Edge Taxonomy** (Stable)
+**TTN-RFC-0002 — Typed Edge Taxonomy** (Stable, v1.1)
 src: TTN-RFC-0002-Typed-Edges.md
 
-The shared edge vocabulary, six groups: identity/topology (knows, seen_near,
+The shared edge vocabulary, seven groups: identity/topology (knows, seen_near,
 routes_via, connected_over); conversation/BBS (board_contains, thread_root,
 replies_to, mentions, moderates, supersedes); AI semantics (asks_ai, ai_summarizes,
 ai_flags, ai_responds_to, ai_refuses, ai_confidence_low); sensors/actions
 (reports_sensor, alerts, commands, acknowledges, escalates); knowledge graph
-(supports, contradicts, refines, duplicates, derived_from); moderation/trust
-(trusted_by, muted_by, blocked_by, flagged_as_spam, quarantined).
+(supports, contradicts, refines, duplicates, derived_from); **semantic polarity
+(opposes)**; moderation/trust (trusted_by, muted_by, blocked_by, flagged_as_spam,
+quarantined). v1.1 added the semantic-polarity group: `opposes` is symmetric and
+distinct from the epistemic `contradicts` — see TTDB-RFC-0003 §7.
 
 ---
 

@@ -1,6 +1,6 @@
 # TTN-RFC-0002: Typed Edge Taxonomy
 
-**Version:** 1.0
+**Version:** 1.1
 **Status:** Stable
 **RFC Number:** 0002
 **Project:** toot-toot-engineering
@@ -46,6 +46,14 @@
 - refines
 - duplicates
 - derived_from
+
+## Semantic Polarity
+- opposes
+
+Distinct from `contradicts` in Knowledge Graph. `contradicts` is *epistemic* —
+two claims that cannot both hold. `opposes` is *semantic* — two concepts at
+opposite ends of one dimension, both of which may be perfectly true. Symmetric;
+see TTDB-RFC-0003 §7.
 
 ## Moderation / Trust
 - trusted_by

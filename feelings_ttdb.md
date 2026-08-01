@@ -103,12 +103,12 @@ The subject at the origin. All feelings and emotions arise *in* this subject and
 
 ---
 
-@LAT10LON-10 | created:1775260800 | updated:1775260800 | relates:feels>@LAT0LON0,resonates_with>@LAT10LON20,can_deepen_into>@LAT20LON-10
+@LAT10LON-10 | created:1775260800 | updated:1785542400 | relates:feels>@LAT0LON0,resonates_with>@LAT10LON20,can_deepen_into>@LAT20LON-10,opposes>@LAT-10LON-10
 [ew]
 conf:195
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Serenity
@@ -123,12 +123,12 @@ A feeling of calm without effort — the absence of agitation. Serenity is close
 
 ---
 
-@LAT20LON-10 | created:1775260800 | updated:1775260800 | relates:feels>@LAT0LON0,resonates_with>@LAT10LON-10,can_deepen_into>@LAT30LON30
+@LAT20LON-10 | created:1775260800 | updated:1785542400 | relates:feels>@LAT0LON0,resonates_with>@LAT10LON-10,can_deepen_into>@LAT30LON30,opposes>@LAT-20LON-10
 [ew]
 conf:185
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Contentment
@@ -183,12 +183,12 @@ Joy is more consuming than contentment. It rises, fills the chest, pulls at the 
 
 ---
 
-@LAT40LON-40 | created:1775260800 | updated:1775260800 | relates:feels>@LAT0LON0,intensified_from>@LAT30LON30,resonates_with>@LAT40LON30
+@LAT40LON-40 | created:1775260800 | updated:1785542400 | relates:feels>@LAT0LON0,intensified_from>@LAT30LON30,resonates_with>@LAT40LON30,opposes>@LAT-40LON-40
 [ew]
 conf:165
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Bliss
@@ -203,12 +203,12 @@ Bliss is the furthest positive feeling. It threatens the ordinary boundaries of 
 
 ---
 
-@LAT-10LON-10 | created:1775260800 | updated:1775260800 | relates:feels>@LAT0LON0,resonates_with>@LAT-10LON-20,can_deepen_into>@LAT-20LON-10
+@LAT-10LON-10 | created:1775260800 | updated:1785542400 | relates:feels>@LAT0LON0,resonates_with>@LAT-10LON-20,can_deepen_into>@LAT-20LON-10,opposes>@LAT10LON-10
 [ew]
 conf:155
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Unease
@@ -223,12 +223,12 @@ Unease is the mildest negative feeling. It lives near the umwelt because it has 
 
 ---
 
-@LAT-20LON-10 | created:1775260800 | updated:1775260800 | relates:feels>@LAT0LON0,resonates_with>@LAT-10LON-10,can_deepen_into>@LAT-30LON-30
+@LAT-20LON-10 | created:1775260800 | updated:1785542400 | relates:feels>@LAT0LON0,resonates_with>@LAT-10LON-10,can_deepen_into>@LAT-30LON-30,opposes>@LAT20LON-10
 [ew]
 conf:210
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Sadness
@@ -283,12 +283,12 @@ Grief tears at the structure of the self. It sits far from the umwelt because it
 
 ---
 
-@LAT-40LON-40 | created:1775260800 | updated:1775260800 | relates:feels>@LAT0LON0,intensified_from>@LAT-30LON-30,resonates_with>@LAT-40LON30
+@LAT-40LON-40 | created:1775260800 | updated:1785542400 | relates:feels>@LAT0LON0,intensified_from>@LAT-30LON-30,resonates_with>@LAT-40LON30,opposes>@LAT40LON-40
 [ew]
 conf:170
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Despair
@@ -323,12 +323,12 @@ Relief is an emotion triggered by the removal of threat or burden. Positive and 
 
 ---
 
-@LAT20LON20 | created:1775260800 | updated:1775260800 | relates:emotes>@LAT0LON0,can_become>@LAT30LON20,resonates_with>@LAT10LON30
+@LAT20LON20 | created:1775260800 | updated:1785542400 | relates:emotes>@LAT0LON0,can_become>@LAT30LON20,resonates_with>@LAT10LON30,opposes>@LAT-20LON20
 [ew]
 conf:190
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Hope
@@ -343,12 +343,12 @@ Hope is an emotion oriented toward a possible future. It sustains the experience
 
 ---
 
-@LAT30LON20 | created:1775260800 | updated:1775260800 | relates:emotes>@LAT0LON0,resonates_with>@LAT30LON30,can_become>@LAT40LON30
+@LAT30LON20 | created:1775260800 | updated:1785542400 | relates:emotes>@LAT0LON0,resonates_with>@LAT30LON30,can_become>@LAT40LON30,opposes>@LAT-30LON20
 [ew]
 conf:185
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Excitement
@@ -363,12 +363,12 @@ Excitement is high-energy positive arousal. The experiencer leans toward what is
 
 ---
 
-@LAT40LON30 | created:1775260800 | updated:1775260800 | relates:emotes>@LAT0LON0,resonates_with>@LAT40LON-40
+@LAT40LON30 | created:1775260800 | updated:1785542400 | relates:emotes>@LAT0LON0,resonates_with>@LAT40LON-40,opposes>@LAT-40LON30
 [ew]
 conf:165
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Ecstasy
@@ -383,12 +383,12 @@ Ecstasy is the most intense positive emotion. The boundaries of normal experienc
 
 ---
 
-@LAT-10LON-30 | created:1775260800 | updated:1775260800 | relates:emotes>@LAT0LON0,can_become>@LAT-20LON20
+@LAT-10LON-30 | created:1775260800 | updated:1785542400 | relates:emotes>@LAT0LON0,can_become>@LAT-20LON20,opposes>@LAT10LON-30
 [ew]
 conf:195
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Disappointment
@@ -403,12 +403,12 @@ Disappointment is mild negative emotion — a closing rather than a crisis. Near
 
 ---
 
-@LAT-20LON20 | created:1775260800 | updated:1775260800 | relates:emotes>@LAT0LON0,can_become>@LAT-30LON20,resonates_with>@LAT-10LON-30
+@LAT-20LON20 | created:1775260800 | updated:1785542400 | relates:emotes>@LAT0LON0,can_become>@LAT-30LON20,resonates_with>@LAT-10LON-30,opposes>@LAT20LON20
 [ew]
 conf:190
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Frustration
@@ -423,12 +423,12 @@ Frustration arises when action is impeded. It carries an arousal that cannot dis
 
 ---
 
-@LAT-30LON20 | created:1775260800 | updated:1775260800 | relates:emotes>@LAT0LON0,resonates_with>@LAT-30LON-30,can_become>@LAT-40LON30
+@LAT-30LON20 | created:1775260800 | updated:1785542400 | relates:emotes>@LAT0LON0,resonates_with>@LAT-30LON-30,can_become>@LAT-40LON30,opposes>@LAT30LON20
 [ew]
 conf:220
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Fear
@@ -443,12 +443,12 @@ Fear is a high-intensity negative emotion — a primal organizing response. Far 
 
 ---
 
-@LAT-40LON30 | created:1775260800 | updated:1775260800 | relates:emotes>@LAT0LON0,resonates_with>@LAT-40LON-40
+@LAT-40LON30 | created:1775260800 | updated:1785542400 | relates:emotes>@LAT0LON0,resonates_with>@LAT-40LON-40,opposes>@LAT40LON30
 [ew]
 conf:210
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Rage
@@ -503,12 +503,12 @@ Curiosity reaches outward more than it ascends: the longitude is extended, point
 
 ---
 
-@LAT30LON40 | created:1775260800 | updated:1775260800 | relates:is_disposition_of>@LAT0LON0,enables>@LAT20LON40,resonates_with>@LAT40LON20
+@LAT30LON40 | created:1775260800 | updated:1785542400 | relates:is_disposition_of>@LAT0LON0,enables>@LAT20LON40,resonates_with>@LAT40LON20,opposes>@LAT-30LON40
 [ew]
 conf:180
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Compassion
@@ -523,12 +523,12 @@ Compassion is a strong disposition: it requires real capacity from the experienc
 
 ---
 
-@LAT40LON20 | created:1775260800 | updated:1775260800 | relates:is_disposition_of>@LAT0LON0,resonates_with>@LAT30LON40,enables>@LAT40LON10
+@LAT40LON20 | created:1775260800 | updated:1785542400 | relates:is_disposition_of>@LAT0LON0,resonates_with>@LAT30LON40,enables>@LAT40LON10,opposes>@LAT-40LON20
 [ew]
 conf:175
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Generosity
@@ -583,12 +583,12 @@ Indifference extends far in longitude away from the self — the experiencer sim
 
 ---
 
-@LAT-30LON40 | created:1775260800 | updated:1775260800 | relates:is_disposition_of>@LAT0LON0,enables>@LAT-40LON-10,resonates_with>@LAT-40LON30
+@LAT-30LON40 | created:1775260800 | updated:1785542400 | relates:is_disposition_of>@LAT0LON0,enables>@LAT-40LON-10,resonates_with>@LAT-40LON30,opposes>@LAT30LON40
 [ew]
 conf:180
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Hostility
@@ -603,12 +603,12 @@ Hostility is a strong negative disposition. The experiencer has closed off; the 
 
 ---
 
-@LAT-40LON20 | created:1775260800 | updated:1775260800 | relates:is_disposition_of>@LAT0LON0,resonates_with>@LAT-30LON40,enables>@LAT-40LON-10
+@LAT-40LON20 | created:1775260800 | updated:1785542400 | relates:is_disposition_of>@LAT0LON0,resonates_with>@LAT-30LON40,enables>@LAT-40LON-10,opposes>@LAT40LON20
 [ew]
 conf:200
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Contempt
@@ -743,12 +743,12 @@ Withdrawal is a moderate negative intent. The experiencer closes off from the wo
 
 ---
 
-@LAT20LON-20 | created:1775260800 | updated:1775260800 | relates:feels>@LAT0LON0,resonates_with>@LAT20LON-10,can_intensify_into>@LAT30LON-20
+@LAT20LON-20 | created:1775260800 | updated:1785542400 | relates:feels>@LAT0LON0,resonates_with>@LAT20LON-10,can_intensify_into>@LAT30LON-20,opposes>@LAT-20LON-20
 [ew]
 conf:200
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Pride
@@ -764,12 +764,12 @@ Pride is a self-directed positive feeling: the experiencer evaluates itself and 
 
 ---
 
-@LAT10LON-30 | created:1775260800 | updated:1775260800 | relates:is_disposition_of>@LAT0LON0,resonates_with>@LAT10LON-10,resonates_with>@LAT20LON30
+@LAT10LON-30 | created:1775260800 | updated:1785542400 | relates:is_disposition_of>@LAT0LON0,resonates_with>@LAT10LON-10,resonates_with>@LAT20LON30,opposes>@LAT-10LON-30
 [ew]
 conf:185
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Self-Compassion
@@ -785,12 +785,12 @@ Self-compassion is the inward turn of compassion: the experiencer treats its own
 
 ---
 
-@LAT30LON-20 | created:1775260800 | updated:1775260800 | relates:is_disposition_of>@LAT0LON0,resonates_with>@LAT10LON-10,enabled_by>@LAT10LON-30
+@LAT30LON-20 | created:1775260800 | updated:1785542400 | relates:is_disposition_of>@LAT0LON0,resonates_with>@LAT10LON-10,enabled_by>@LAT10LON-30,opposes>@LAT-30LON-20
 [ew]
 conf:175
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Equanimity
@@ -806,12 +806,12 @@ Equanimity does not resist joy or sorrow — it holds both without being overtur
 
 ---
 
-@LAT-20LON-20 | created:1775260800 | updated:1775260800 | relates:feels>@LAT0LON0,resonates_with>@LAT-20LON-10,can_intensify_into>@LAT-30LON-20
+@LAT-20LON-20 | created:1775260800 | updated:1785542400 | relates:feels>@LAT0LON0,resonates_with>@LAT-20LON-10,can_intensify_into>@LAT-30LON-20,opposes>@LAT20LON-20
 [ew]
 conf:200
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Guilt
@@ -827,12 +827,12 @@ Guilt is self-directed but object-specific: it concerns a particular act, not th
 
 ---
 
-@LAT-30LON-20 | created:1775260800 | updated:1775260800 | relates:feels>@LAT0LON0,resonates_with>@LAT-30LON-30,can_intensify_into>@LAT-40LON-30,intensified_from>@LAT-20LON-20
+@LAT-30LON-20 | created:1775260800 | updated:1785542400 | relates:feels>@LAT0LON0,resonates_with>@LAT-30LON-30,can_intensify_into>@LAT-40LON-30,intensified_from>@LAT-20LON-20,opposes>@LAT30LON-20
 [ew]
 conf:195
 rev:0
 sal:0
-touched:1775260800
+touched:1785542400
 [/ew]
 
 ## Shame

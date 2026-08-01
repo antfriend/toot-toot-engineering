@@ -138,6 +138,15 @@ SIGN_MAP = {
     'can_intensify_into': +1,
     'intensifies_into':   +1,   # +30->+40, -30->-40
     'opens_toward':       +1,   # +10->+10
+
+    # Symmetric semantic polarity (TTDB-RFC-0003 §7.2). The ONLY -1 type in
+    # the affective store, and the only one that is -1 by definition rather
+    # than by observation: `opposes` asserts opposite ends of one dimension.
+    # NOTE: because these edges were authored between coordinate-mirrored
+    # pairs, they encode the valence ground truth. Any accuracy gain they
+    # produce is circular and must not be reported as evidence -- see
+    # TIER1_RESULTS.md §7.3.
+    'opposes':            -1,
 }
 DEFAULT_SIGN = +1
 

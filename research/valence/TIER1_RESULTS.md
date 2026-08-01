@@ -1,11 +1,12 @@
 # Tier 1 Results
 
 **Run date:** 2026-08-01
-**Sign map:** as proposed in `SIGN_MAP_PROPOSAL.md`, applied in full
-(hub excluded, `amends` left at −1 as statistically inert, φ = endorsement for
-the RFC stores, the two stores run as separate graphs), **plus `opposes: −1`**
-added after the fact when that type was minted (§7.5). Results in §§1–6 were
-measured *before* `opposes` existed and are unaffected by it.
+**Sign map:** as proposed in `SIGN_MAP_PROPOSAL.md` (hub excluded, φ =
+endorsement for the RFC stores, the two stores run as separate graphs), with two
+later changes: **`opposes: −1`** added when that type was minted (§7.5), and
+**`amends` reclassified −1 → +1** once the criterion existed to judge it (§3.2).
+Results in §§1, 6 were measured before either change and are unaffected —
+neither type occurs in the propagation graph.
 **Reproduce:**
 
 ```bash
@@ -18,17 +19,25 @@ python research/valence/ttdb_valence.py feelings_ttdb.md \
 ## Verdict
 
 **Propagation passes decisively, and is corroborated against external human
-norms at r = +0.941 on never-seeded nodes (§6.2). The balance/frustration
-experiment did not run on the feelings store, and did run — unexpectedly — on
-the RFC corpus, where it found one genuine structural contradiction (§3).
-Valence is not a redundant channel (§6.3).**
+norms at r = +0.941 on never-seeded nodes (§6.2). Valence is not a redundant
+channel (§6.3). Balance is a weaker story than first written: on the RFC corpus
+it is real but uninformative, because imbalance there is structurally guaranteed
+(§3.3); on `feelings_ttdb.md` it became measurable only after `opposes` was
+minted, and returns *balanced* (§7.6). The contrast between the two is the part
+worth keeping.**
 
-No §6 stop condition was triggered. Two §6 criteria needed repair before they
+No §6 stop condition was triggered. Three criteria needed repair before they
 could be trusted: the seed-shuffle null was measuring the wrong quantity (§4),
-and the redundancy test was unrunnable until `sal` was sourced from outside the
-store (§6.1).
+the redundancy test was unrunnable until `sal` was sourced from outside the
+store (§6.1), and the frustration count was order-dependent and irreproducible
+(§3.1).
 
 **Still no RFC.** The retrieval half of §6 remains undecided — see §6.4.
+
+> **Reading note.** Sections marked *Correction* record where an earlier draft
+> of this document was wrong. They are kept rather than silently rewritten,
+> because the corrections are the more useful artifact: §1.1, §3.1, §3.2, §3.3,
+> §4, §7.3.
 
 ---
 
@@ -153,52 +162,108 @@ provably *balanced*, in contrast to the RFC corpus in §3.
 
 ---
 
-## 3. Balance on the RFC corpus — ran, and found something
+## 3. Balance on the RFC corpus — ran, but the result is weaker than first reported
 
-φ = endorsement. Both RFC stores as one graph: 41 nodes, 125 merged edges, 3
-negative, one connected component.
+φ = endorsement. Both RFC stores as one graph. **An earlier draft of this
+section overclaimed, in three ways that are corrected below.**
 
-**Greedy 2-coloring: 2 violating edges. The corpus is genuinely unbalanced.**
-On a connected graph the coloring is forced once any node is fixed, so this is
-not a traversal-order artifact — a consistent endorsement assignment does not
-exist.
+### 3.1 Correction 1 — the violation count is order-dependent
 
-### 3.1 The frustrated triangle
+The earlier draft reported *"Greedy 2-coloring: 2 violating edges"* and argued
+*"on a connected graph the coloring is forced once any node is fixed, so this is
+not a traversal-order artifact."*
 
-Verified by sign product (−1, an odd number of negative edges):
+**That reasoning is wrong.** The coloring is forced only along a spanning tree;
+when a conflict appears, *which* edge gets blamed depends on visit order. Over
+2000 random traversal orders the count ranged **2 to 28**. The earlier figure of
+2 happened to be the minimum, reported as though it were stable.
+
+Worse, the function iterated a Python `set`, so it silently gave different
+answers in different processes — a reproducibility bug that would have surfaced
+as an unexplainable number change. It now iterates `sorted(nodes)`, and the
+docstring says plainly not to quote the value as stable.
+
+What *is* order-independent is the balance **decision**, and that decision is
+polynomial — only the minimum-deletion frustration *index* is NP-hard. There was
+never a reason to infer balance from a greedy count. `is_balanced()` now decides
+it exactly: contract the positive-only components, flag any negative edge inside
+one, then test the contracted negative multigraph for bipartiteness. Across all
+2000 orders the graph was unbalanced every time, and the exact test agrees.
+
+### 3.2 Correction 2 — two of the three "contradictions" were mine
+
+Of the three negative edges originally reported:
+
+| Edge | Verdict |
+|---|---|
+| `@LAT40LON2` ↔ `@LAT40LON5` (`amends`/`amended_by`) | **Not opposition.** Sign map error — see below. |
+| `@LAT98LON0` → `@LAT40LON1` (`refines`) | **Spurious edge.** Removed from the store. |
+| `@LAT40LON4` ↔ `@LAT98LON0`, `@LAT40LON5` ↔ `@LAT98LON3` (`contradicts`) | Genuine. |
+
+**`amends` was mis-signed at −1.** `SIGN_MAP_PROPOSAL.md` §2.2 flagged it as the
+one real judgment call and guessed wrong. The criterion now exists, in the
+taxonomy minted in §7: TTDB-RFC-0003 v1.1 §7.2 requires that opposition means *at
+most one endpoint is true*. A32-RFC-0002 Amendment A does not make A32-RFC-0002
+false — it extends it, and both are Stable and current. That is agreement.
+Reclassified to **+1**, which is a pleasing outcome: the vocabulary was minted to
+describe an affective store and immediately caught an error in the RFC store.
+
+**`refines@LAT40LON1` on `@LAT98LON0` was simply wrong.** The belief is entirely
+about build tooling — arduino-cli, sketch layout, filesystem upload scripts. A32-
+RFC-0001 is the architecture overview: offline reasoning, three layers,
+umwelt-as-identity, no build content whatsoever. The belief refines nothing in
+it. Removed; the record stays connected via `contradicts@LAT40LON4`.
+
+The corpus now reads 124 merged edges, **+122 / −2**, both negatives genuine.
+
+### 3.3 Correction 3 — the imbalance was structurally guaranteed
+
+This is the one that matters, and it undercuts the original framing.
+
+**All 41 nodes form a single positive-only connected component** (122 positive
+edges — an RFC corpus where everything `depends_on` a shared foundation). Any
+negative edge between two nodes of that mass closes a cycle carrying exactly one
+negative edge, and is therefore frustrated **automatically**.
+
+So the finding is not *"the method discovered a hidden contradiction."* It is
+*"the corpus contains `contradicts` edges, inside a positively-connected mass."*
+Every negative edge frustrates; the measure cannot discriminate among them. The
+"frustrated triangle" singled out earlier was one of three, all frustrated for
+the same structural reason, and the two survivors remain frustrated now.
+
+This is a close cousin of `VALENCE_FIELD.md` §6's own trivia check — *"frustration
+list is topologically trivial (all high-degree hubs) → measuring degree, not
+dissonance."* Here it is measuring **positive connectivity**, not dissonance.
+`is_balanced()` now warns when one positive component covers >80% of nodes.
+
+### 3.4 What survives
+
+The genuine conflict is real and worth stating, just not as a discovery:
 
 ```
 @LAT98LON0  --contradicts(-1)--> @LAT40LON4     BELIEF vs A32-RFC-0004
 @LAT40LON4  --depends_on(+1)---> @LAT40LON1     A32-RFC-0004 on A32-RFC-0001
-@LAT98LON0  --refines(+1)------> @LAT40LON1     BELIEF refines A32-RFC-0001
 ```
 
-In words: the belief **"the A32 RFCs say PlatformIO; robot_team uses
-arduino-cli"** contradicts A32-RFC-0004 (Claude Code Project Setup) while
-simultaneously refining A32-RFC-0001 (Architecture) — and A32-RFC-0004 depends
-on A32-RFC-0001. The belief is therefore required to be both aligned with and
-opposed to the same cluster. No consistent endorsement assignment exists.
+The belief *"the A32 RFCs say PlatformIO; robot_team uses arduino-cli"*
+contradicts A32-RFC-0004, which depends on the shared architecture that the
+belief does not dispute. Endorsement cannot be consistently assigned. But this
+was **already explicitly typed as `contradicts` by the store's author**, and
+already documented in prose at `@LAT40LON4` (*"build tooling superseded in
+robot_team — see @LAT98LON0"*). The `lat 98` belief lane exists precisely to
+record it. Nothing was found that was not already written down.
 
-This is exactly the §8 item-1 use case — *"RFC-12 supersedes RFC-4, but RFC-19
-still builds on RFC-4. Nobody notices until something breaks"* — found
-automatically, with checkable ground truth. The tension is real and already
-documented in prose at `@LAT40LON4` (*"build tooling superseded in robot_team —
-see @LAT98LON0"*). What the method adds is that it was **found structurally,
-without reading the corpus**.
+**Honest verdict on the balance experiment: it ran, it is correctly implemented
+now, and on this corpus it is uninformative.** It would become informative on a
+store whose positive relations do *not* form one blob — where some negative edges
+frustrate and others do not, and the difference means something. Whether the
+corpus can be restructured that way, or whether RFC corpora are simply the wrong
+shape for this measure, is open.
 
-### 3.2 How much weight this carries
-
-Limited, and the limit should be stated plainly:
-
-- **n = 1.** One frustrated triangle out of 125 edges, resting on 3 negative
-  edges total. This demonstrates the mechanism fires on a true positive; it is
-  not evidence about precision or recall.
-- **It was already known.** The prose records it. The method did not surface
-  something nobody knew — it surfaced something nobody had *indexed*.
-- **Not degree-driven** (§6's trivia check): the triangle sits on nodes of
-  degree 3–4, not on hubs.
-- The `amends`/`amended_by` = −1 judgment does **not** affect this finding — the
-  triangle uses `contradicts`, `depends_on`, and `refines` only.
+The one measurement that did discriminate is in §7.2: the same test returns
+**balanced** on `feelings_ttdb.md` and **unbalanced** here. That contrast is real
+because the affective store's positive edges do *not* form a single blob spanning
+both polarities.
 
 ---
 

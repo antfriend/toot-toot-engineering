@@ -1,8 +1,18 @@
 # Valence as a Scalar Field over TTDB
 
-**Status:** pre-experimental. Nothing here is validated against a real store yet.
-**Purpose:** context transfer. Read this before touching `ttdb_valence.py`.
-**Owner decision pending:** whether this line of work survives Tier 1 (see §6).
+**Status:** Tier 1 run 2026-08-01. Propagation validated against external human
+norms at r = +0.941 on never-seeded nodes. Tiers 2–4 remain unrun.
+**Purpose:** context transfer — the reasoning behind the work. Read this before
+touching `ttdb_valence.py`; read `TIER1_RESULTS.md` for what actually happened.
+**Owner decision — resolved:** this line of work **survives Tier 1**. No §6 stop
+condition triggered; the redundancy criterion in §6 was tested and not met
+(valence carries ~99% independent variance). It has **not** earned an RFC — the
+retrieval half of §6 is still unrun. See `TIER1_RESULTS.md` §5, §6.
+
+> **Where this document is now superseded.** The design reasoning below stands
+> as written. Three claims about *status* do not, and are corrected in place:
+> §3 (Tier 1 is run), §6 (one stop condition was defective — see §6.0), and §10
+> (the synthetic fixture is no longer the only evidence).
 
 ---
 
@@ -196,6 +206,23 @@ scalar sign (see §7.2), but that is live research.
 Unmapped types are reported with counts rather than silently defaulted. Keep
 that behavior.
 
+> **Correction from Tier 1: `{+1,−1}` was not enough, and `SIGN_MAP` was not the
+> only place judgment enters.** A third value is required — **0, exclude** — for
+> edges that are structurally real but assert nothing about valence, and it
+> turned out to carry more weight than any sign assignment.
+>
+> `feelings_ttdb.md` has 55 edges into its neutral origin asserting *membership*
+> ("this state belongs to the experiencer"), not valence. Forced to `+1` they
+> instruct the solver to make *Serenity* and *Unease* agree. Excluding them
+> moved free-node r from **+0.788 to +0.946** — a larger effect than any sign
+> choice in the map. Narrative traversal edges (a story arc deliberately
+> crossing valence) need the same treatment, and are notably *not* `−1`: `−1`
+> asserts consistent opposition, which an arc crossing zero twice is not.
+>
+> This lives in `EXCLUDE_TYPES`. Treat it as co-equal with `SIGN_MAP`, not as a
+> filter — deciding an edge means nothing is as substantive as deciding it means
+> opposition.
+
 ### 2.4 Pure stdlib
 
 No numpy. Runs on anything including a Pi, and the ESP32 port (§5) is closer if
@@ -204,7 +231,25 @@ it.
 
 ---
 
-## 3. Tier 1 — the experiment to run first
+## 3. Tier 1 — RUN (2026-08-01)
+
+> **Status: complete. Results in `TIER1_RESULTS.md`.** The plan below is kept as
+> written; what actually happened diverged from it in two ways worth knowing
+> before reading further.
+>
+> **The store changed.** Tier 1 was planned against the RFC corpus. It ran
+> against `feelings_ttdb.md`, because that store declares `lat = valence` in its
+> own globe mapping and therefore supplies **ground truth** — the RFC corpus
+> supplies none. The RFC corpus was still used, for balance (§3.1 question 1),
+> where it turned out to be the *only* store with enough negative edges to ask
+> the question at all.
+>
+> **The two questions split cleanly across the two stores.** Question 1
+> (frustration localizes real tension) was answered **yes, on the RFC corpus** —
+> one genuine frustrated triangle, a belief that both refines an architecture
+> and contradicts a document depending on it. Question 2 became a stronger test
+> than planned: propagation was scored against *external* human norms rather
+> than intuition, at r = +0.941 on never-seeded nodes.
 
 ### 3.1 What it is
 
@@ -271,8 +316,10 @@ active inference loop was noted as having a hole on the action side. Same move
 closes it. Precision-weighting ↔ TBEW is the existing correspondence; valence ↔
 expected free energy gradient would be the new one.
 
-**Status: credible, unproven.** Do not draft an RFC on this before Tier 1
-returns.
+**Status: credible, unproven — and still unrun.** Tier 1 has returned (§3), so
+that gate is cleared, but nothing here has been touched: no `@PERCEPT:` pair has
+been used as a source term. The gate on an RFC is now the *retrieval* half of
+§6.1, not Tier 1.
 
 ---
 
@@ -299,6 +346,35 @@ bench.
 ## 6. Falsification criteria — the stop conditions
 
 Written down in advance so they can't be renegotiated afterward.
+
+### 6.0 One of these criteria was defective — corrected 2026-08-01
+
+Writing stop conditions in advance protects against renegotiating them. It does
+not protect against one of them being **wrong**, which is what happened.
+
+**The seed-shuffle null was scored on spread (sd), and spread cannot detect seed
+placement.** Shuffling values across a fixed seed set preserves the multiset of
+seed values, so the field's overall spread barely moves no matter where they
+land. Measured on identical shuffles of the golden store:
+
+| Statistic | Observed | Null mean | p |
+|---|---|---|---|
+| Spread (sd) — as originally specified | 0.551 | 0.568 | **0.690** |
+| Total energy — now used | 1.246 | 17.58 | **< 0.004** |
+| LOO MAE | 0.173 | 0.800 | **< 0.004** |
+
+Row 1 of the table below would therefore have read *"archive this document"* on
+a run where placement demonstrably mattered. Both nulls are now scored on
+**energy**; spread is reported and flagged non-diagnostic.
+
+**A second failure mode, not originally anticipated:** on a store with no
+negative edges, sign-shuffle is a *no-op* and returns p = 1.000 as pure
+arithmetic. That is the **absence of the experiment**, not a result, and must
+not be read against row 1 either. The script now says so explicitly.
+
+The lesson generalizes past this document: a falsification criterion is itself a
+measurement, and can be miscalibrated. Fix the instrument before honoring its
+verdict.
 
 The script computes two permutation nulls:
 
@@ -330,6 +406,23 @@ arousal — `sal` and `|φ|` should partly duplicate each other. **If valence ad
 nothing beyond what salience already captures, it is a redundant channel and
 should be cut.** Run the head-to-head before writing any RFC, not after.
 
+### 6.1 The redundancy half: answered. The retrieval half: still open.
+
+**Answered — valence is not redundant.** `sal` was taken from the arousal column
+of Warriner et al. (2013) and *only* that column, because hand-authoring `sal`
+would have encoded `|lat|` and confirmed this hypothesis spuriously. On
+never-seeded nodes `|φ|` and `sal` correlate at **r = +0.102** — about 1% shared
+variance. The V-shape is real in the source data (+0.281) but far too weak to
+justify cutting the channel. Valence carries ~99% independent variance.
+
+**Still open — whether valence-weighted EPS is *better*.** It re-ranks, but the
+magnitude is a free parameter: `EPS × (1 + λ|φ|)` gives Spearman +0.932 at
+λ=0.5 and +0.591 at λ=10. Choosing λ, or declaring a winner, needs a retrieval
+quality metric that does not exist in this corpus. **"Different ranking" is not
+"better ranking,"** and this half of the criterion still gates the RFC.
+
+Full detail: `TIER1_RESULTS.md` §6.
+
 ---
 
 ## 7. Deferred — known-hard, do not build a spec on these yet
@@ -353,6 +446,13 @@ Live research. Not settled machinery. Do not spec against it.
 
 Symmetrization (§1.2) is a real loss. Non-symmetric Laplacians break the
 spectral results. Open.
+
+**Partially addressed for one type.** TTDB-RFC-0003 v1.1 §7 (minted 2026-08-01)
+introduces *symmetric* types, of which `opposes` is the first. For those,
+symmetrization loses nothing — the relation is genuinely mutual, and both
+directions are written explicitly since §2 of that RFC still forbids inferring
+reverses. This does not solve the general problem: `depends_on` and `refines`
+remain directed and are still being flattened.
 
 ---
 
@@ -396,24 +496,66 @@ topology in the other.
   affective-decoupling parallel to the Dream Cycle
 - Cellular sheaf Laplacians (recent, active)
 
-**Ours / speculative:**
+**Ours / speculative — still unrun:**
 - Mood-as-DC-component, emotion-as-high-frequency (§1.6)
 - `@PERCEPT:before/after` as the ρ source (§4)
 - Valence field over a hardware mesh (§5)
 - Extension of the Alexander duality framing to ambivalence (§1.7)
 
+**Ours / now empirically supported (Tier 1, `TIER1_RESULTS.md`):**
+- Signed diffusion recovers a known valence field on a TTDB store from ~12
+  seeds — r = +0.941 against external human norms on never-seeded nodes. The
+  *method* is standard (harmonic extension); what is ours is that it works on
+  this data structure.
+- Frustration detection localizes a real structural contradiction in a real spec
+  corpus. **n = 1**, and the contradiction was already known in prose — what was
+  new is that it was found without reading the corpus. Do not upgrade this to a
+  precision/recall claim.
+- Valence is not redundant with salience — r = +0.102 against arousal-derived
+  `sal` on unseeded nodes. This *weakens* a prior of ours, and is stated because
+  it cuts against the tidier story.
+
 Keep this separation when drafting anything public. The existing corpus has
-credibility precisely because it doesn't blur it.
+credibility precisely because it doesn't blur it — and note that two of the
+three supported items above carry their own limits in the same breath. That is
+the format to keep.
 
 ---
 
 ## 10. Files
 
 - `ttdb_valence.py` — Tier 1 implementation. Stdlib only. Format assumptions in
-  the top block.
+  the top block (`NODE_TOKEN`, `NODE_DECL_RE`, `RELATES_RE`, `EDGE_RE`,
+  `EW_OPEN_RE`, `FIELD_RE`); `SIGN_MAP` and `EXCLUDE_TYPES` below it.
+- `TIER1_RESULTS.md` — what actually happened. Read this alongside §3 and §6.
+- `SIGN_MAP_PROPOSAL.md` — the sign assignments and the evidence for each,
+  written before the run so they could not be fitted to it.
+- `seeds.feelings.tsv` — the 12 Tier 1 seeds, values from the store's own
+  declared globe mapping.
+- `arousal_from_norms.py` — derives `sal` from published arousal norms. Read its
+  header before touching salience by hand; the reason it exists is that
+  hand-authored `sal` silently encodes valence.
 - `seeds.example.tsv` — seed file format reference.
 
-Verified end-to-end on a synthetic fixture: parses, converges (66 iters),
-LOO r = +0.97 vs baseline, both nulls separate. **The synthetic fixture was
-constructed to work.** It proves the code runs. It proves nothing about the
-real store.
+**Evidence status.** The original note here read: *"Verified end-to-end on a
+synthetic fixture: parses, converges (66 iters), LOO r = +0.97 vs baseline, both
+nulls separate. The synthetic fixture was constructed to work. It proves the code
+runs. It proves nothing about the real store."*
+
+That caution was correct and has been discharged. The parser did not work on a
+real store at all — it matched zero records against the canonical
+TTDB-RFC-0001 §3 header format, which is exactly the silent-flat-field failure
+§3.2 warns about. After repair, on `feelings_ttdb.md`:
+
+- 41 records, 73 valence-bearing edges, 0 malformed — the store as it stood
+  when these numbers were taken. It now carries 95, after 22 `opposes` edges
+  were minted (§7.3); those postdate every figure below and, being authored
+  between coordinate-mirrored pairs, must never be used to restate them
+- free-node r = **+0.946** against the store's own coordinates
+- free-node r = **+0.941** against *external* human norms (Warriner et al. 2013),
+  on nodes that were never seeded — the evidence that does not depend on this
+  repository at all
+- both nulls separate on energy, p < 0.004
+
+The synthetic fixture is no longer the only evidence, and the external
+correlation is the number to quote if only one is quoted.

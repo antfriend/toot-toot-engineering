@@ -755,7 +755,7 @@ composite) gate every addition.
 
 ---
 
-@LAT98LON0 | created:1783468800 | updated:1783468800 | relates:contradicts@LAT40LON4,refines@LAT40LON1
+@LAT98LON0 | created:1783468800 | updated:1785542400 | relates:contradicts@LAT40LON4
 
 **BELIEF — Build system: the A32 RFCs say PlatformIO; robot_team uses arduino-cli.**
 

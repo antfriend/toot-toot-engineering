@@ -122,11 +122,16 @@ SIGN_MAP = {
 
     # --- RFC stores: opposition ---
     'contradicts':        -1,
-    # Weaker reading than 'contradicts': the amended portion is displaced by
-    # the amending text. Statistically inert either way at n=2 -- flagged as
-    # unreviewed rather than settled.
-    'amends':             -1,
-    'amended_by':         -1,
+
+    # RECLASSIFIED 2026-08-01, -1 -> +1. The criterion is now written down, in
+    # TTDB-RFC-0003 v1.1 §7.2: opposition requires that at most one endpoint be
+    # true. A32-RFC-0002 Amendment A does not make A32-RFC-0002 false -- it
+    # extends it, and both are current and Stable. That is agreement, not
+    # opposition. The original -1 was flagged as an unreviewed judgment call
+    # and it was wrong; it was manufacturing a frustrated edge out of an
+    # ordinary extension relation. See TIER1_RESULTS.md §3.
+    'amends':             +1,
+    'amended_by':         +1,
 
     # --- feelings_ttdb.md: same-valence, verified against endpoint latitudes ---
     'resonates_with':     +1,   # +30<->+20, -30<->-20; never crosses zero
@@ -403,18 +408,28 @@ def greedy_frustration_count(nodes, adj):
     -- exact minimum frustration is NP-hard. A count of 0 does prove the
     graph is balanced. A nonzero count does not prove it is unbalanced by
     that amount.
+
+    ORDER DEPENDENCE -- do not quote this number as if it were stable. Which
+    edge gets blamed for a conflict depends on the order nodes are visited.
+    On the RFC corpus this count ranged 2..28 over 2000 random orders while
+    the graph was unbalanced in every one. Iteration is over sorted(nodes)
+    so repeated runs at least agree with each other; earlier versions walked
+    a set and silently changed answers between processes.
+
+    For the balance DECISION use is_balanced(), which is exact and
+    order-independent. Use this only for a rough locality hint.
     """
     color = {}
     violations = 0
     counted = set()
-    for start in nodes:
+    for start in sorted(nodes):
         if start in color:
             continue
         color[start] = 1
         q = deque([start])
         while q:
             n = q.popleft()
-            for (m, _w, s) in adj[n]:
+            for (m, _w, s) in sorted(adj[n]):
                 want = color[n] * s
                 if m not in color:
                     color[m] = want
@@ -425,6 +440,80 @@ def greedy_frustration_count(nodes, adj):
                         counted.add(key)
                         violations += 1
     return violations
+
+
+def is_balanced(nodes, merged):
+    """Exact, order-independent balance decision. Returns (balanced, witnesses).
+
+    A signed graph is balanced iff no cycle carries an odd number of negative
+    edges. Deciding this is polynomial (only the minimum-deletion FRUSTRATION
+    INDEX is NP-hard), so there is no reason to infer balance from a greedy
+    count:
+
+      1. Contract the positive-only connected components. Any negative edge
+         inside one closes a cycle with exactly one negative edge -> unbalanced,
+         and that edge is a witness.
+      2. The remaining negative edges join distinct components. Balanced iff
+         that contracted multigraph is bipartite.
+
+    `witnesses` are the negative edges whose endpoints are positively
+    connected -- the cheapest thing to go look at.
+
+    CAUTION on interpreting a positive result: in a corpus whose positive
+    relations form a single connected mass (an RFC set where everything
+    depends_on a shared foundation), step 1 fires for EVERY negative edge.
+    Imbalance is then structurally guaranteed by the presence of any negative
+    edge at all, and says nothing specific about which claims conflict.
+    Check the positive-component structure before reading meaning into it.
+    """
+    pos = {n: [] for n in nodes}
+    neg = []
+    for a, b, _w, s in merged:
+        if s > 0:
+            pos[a].append(b)
+            pos[b].append(a)
+        else:
+            neg.append((a, b))
+
+    comp = {}
+    c = 0
+    for start in sorted(nodes):
+        if start in comp:
+            continue
+        c += 1
+        comp[start] = c
+        q = deque([start])
+        while q:
+            n = q.popleft()
+            for m in pos[n]:
+                if m not in comp:
+                    comp[m] = c
+                    q.append(m)
+
+    witnesses = [(a, b) for a, b in neg if comp[a] == comp[b]]
+    if witnesses:
+        return False, witnesses
+
+    # Step 2: is the contracted negative multigraph bipartite?
+    cadj = defaultdict(list)
+    for a, b in neg:
+        cadj[comp[a]].append(comp[b])
+        cadj[comp[b]].append(comp[a])
+    side = {}
+    for start in sorted(cadj):
+        if start in side:
+            continue
+        side[start] = 1
+        q = deque([start])
+        while q:
+            n = q.popleft()
+            for m in cadj[n]:
+                if m not in side:
+                    side[m] = -side[n]
+                    q.append(m)
+                elif side[m] == side[n]:
+                    return False, []
+    return True, []
 
 
 # ---------------------------------------------------------------------------
@@ -710,8 +799,39 @@ def main():
     fr = node_frustration(adj, phi)
     E = total_energy(merged, phi)
     gfc = greedy_frustration_count(nodes, adj)
+    bal, wit = is_balanced(nodes, merged)
     print(f'total signed energy   {E:.4f}')
-    print(f'greedy violating edges {gfc} / {len(merged)}  (UPPER bound on frustration index)')
+    print(f'balanced?             {"YES (exact)" if bal else "NO (exact)"}')
+    if wit:
+        print(f'  {len(wit)} negative edges whose endpoints are ALSO positively connected:')
+        for a, b in wit[:8]:
+            print(f'     {a} <-> {b}')
+        npos_edges = sum(1 for _a, _b, _w, s in merged if s > 0)
+        pos_only = {n: [] for n in nodes}
+        for a, b, _w, s in merged:
+            if s > 0:
+                pos_only[a].append(b)
+                pos_only[b].append(a)
+        seen, big = set(), 0
+        for st0 in sorted(nodes):
+            if st0 in seen:
+                continue
+            cnt, q = 0, deque([st0])
+            seen.add(st0)
+            while q:
+                v = q.popleft()
+                cnt += 1
+                for w in pos_only[v]:
+                    if w not in seen:
+                        seen.add(w)
+                        q.append(w)
+            big = max(big, cnt)
+        if big > 0.8 * len(nodes):
+            print(f'  !! {big}/{len(nodes)} nodes form ONE positive-only component '
+                  f'({npos_edges} positive edges).')
+            print(f'     Imbalance is then structurally guaranteed by the presence of')
+            print(f'     ANY negative edge, and does not identify a specific conflict.')
+    print(f'greedy violating edges {gfc} / {len(merged)}  (UPPER bound; ORDER-DEPENDENT, see docstring)')
     print(f'\nhighest local frustration - ambivalence points ({args.top}):')
     for n in sorted(fr, key=lambda x: -fr[x])[:args.top]:
         print(f'  {fr[n]:8.4f}  phi={phi[n]:+.4f}  deg={len(adj[n]):<3} {n}')

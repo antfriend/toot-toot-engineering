@@ -1,6 +1,5 @@
 # Toot Toot Engineering
-![Toot Toot Engineering](images/time-foundry.svg)
-TTE is free, open-source software. [MIT License](LICENSE) | [antfriend.github.io](https://antfriend.github.io/)
+free, open-source software. [MIT License](LICENSE) | [antfriend.github.io](https://antfriend.github.io/)
 ![Release](https://img.shields.io/github/v/release/antfriend/toot-toot-engineering)
 
 # Universal Agent Memory & Learning System
@@ -21,7 +20,7 @@ It's a synthetic, experimentally unified field with concrete elements of:
 - [https://antfriend.github.io](https://antfriend.github.io) — the reference viewer. 
 
 Upload any conforming TTDB store on it (including the spec file above) and walk the globe of records. This website is all static files, hosted on github. File "upload" is merely to a client-side cookie on your own machine.
-![upload here](/replicate/upload.png)
+![upload here](upload.png)
 
 The load-bearing idea, in one breath: an agent's memory is one plain-text file
 of coordinate-addressed records with typed edges and epistemic weights; the

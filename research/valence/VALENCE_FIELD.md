@@ -301,11 +301,23 @@ That list is the primary deliverable of Tier 1.
 §1.5 says the field needs non-semantic sources or it can only interpolate
 between hand-set seeds.
 
-**The claim:** TTDB already contains the answer. RFC-0001's paired
-`@PERCEPT:before` / `@PERCEPT:after` node **is a discrete derivative** — the
-primary datum is a difference, not a state. Prediction error over that pair is
-exactly the source term the field needs, and it is non-semantic by
-construction, which is what escapes the maximum principle.
+**The claim:** ~~TTDB already contains the answer.~~ **TTDB already *specifies*
+the answer — and contains no instance of it.** Corrected 2026-08-01: a scan of
+every store in the repository finds **zero `@PERCEPT:` record headers**. The
+paired-percept structure appears only in RFC prose (TTDB-RFC-0006 §5,
+TTDB-RFC-0007). For comparison, `@BELIEF:` has 1 instance, `@IMAGO:` 2,
+`@META:` 3; `@PERCEPT:` and `@VALENCE:` have none.
+
+The structural argument stands: the paired `@PERCEPT:before` / `@PERCEPT:after`
+node **is a discrete derivative** — the primary datum is a difference, not a
+state. Prediction error over that pair is exactly the source term the field
+needs, and it is non-semantic by construction, which is what escapes the maximum
+principle.
+
+**But there is nothing to compute it over.** Tier 2 is not an experiment waiting
+to be run against existing data; it is blocked on a sense–act loop that emits
+those pairs in the first place. That loop is the thing this project has
+advertised as deliberately unbuilt.
 
 This lands directly on `@LAT20LON3` (Learning from Action), the
 highest-EPS unimplemented item, deliberately left open in Draft 04. Valence-as-

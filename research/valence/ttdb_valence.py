@@ -41,8 +41,30 @@ from collections import defaultdict, deque
 # and optional trailing tag, per TTDB-RFC-0001 §3 and the @BELIEF:/@PERCEPT:
 # namespaces of TTDB-RFC-0007/-0008:
 #   @LAT20LON3   @LAT-10LON-10   @BELIEF:LAT20LON3   @LAT20LON3:before
-NODE_TOKEN = (r'@(?:[A-Za-z][A-Za-z0-9_]*:)?LAT-?\d+LON-?\d+'
-              r'(?::[A-Za-z0-9_\-]+)?')
+#
+# WIDENED 2026-08-01. The previous pattern required every address to carry
+# LAT/LON, so it rejected three legitimate forms and reported them as
+# "malformed edges" -- a false conformance signal. Found against
+# companion_arcprize.md, which uses all three:
+#   @IMAGO:seed  @META:state          namespaced, non-coordinate (TTDB-RFC-0008)
+#   games/ls20/companion.md@LAT20LON30   cross-file (TTDB-RFC-0003 §6)
+# A non-coordinate address MUST carry a namespace; a bare `@word` is not an
+# address (the companion store uses `@LOCUS` as a chat prefix, and matching it
+# would invent nodes).
+_NS = r'[A-Za-z][A-Za-z0-9_]*'
+_COORD = r'LAT-?\d+LON-?\d+'
+_TAG = r'(?::[A-Za-z0-9_\-]+)?'
+NODE_TOKEN = (
+    r'(?:[A-Za-z0-9_.\-]+(?:/[A-Za-z0-9_.\-]+)*)?'      # optional cross-file path
+    r'@(?:'
+    + _NS + r':' + _COORD + _TAG +                       # @BELIEF:LAT20LON3
+    # @IMAGO:seed -- but NOT @BELIEF:LATxLONy, which is this corpus's
+    # placeholder notation (TTDB-RFC-0001 §3 writes @LATxLONy generically).
+    # Without the lookahead, template lines in prose parse as real records.
+    r'|' + _NS + r':(?!LAT[A-Za-z]*LON)[A-Za-z][A-Za-z0-9_\-]*' +
+    r'|' + _COORD + _TAG +                               # @LAT20LON3[:before]
+    r')'
+)
 
 # A record header line. TTDB-RFC-0001 §3 makes this the ONLY thing that
 # declares a record:

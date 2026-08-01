@@ -38,7 +38,7 @@ selected:
   - "@LAT0LON0"
 preview:
   "@LAT0LON0": "Home: a spec that is an instance of the thing it specifies; conf encodes reliability tier; the highest-EPS record is the next thing to verify"
-agent_note: "Draft 05, 2026-07-31. Adds @LAT20LON5 (Narrative as Target Shape — the morphospace/counter-story claims, Proposed) and two beliefs: @LAT98LON3 reads the two arms of the merge rule as one mechanism, @LAT98LON4 records that the open invitation now has a registered protocol. Draft 04 (2026-07-13) fixed the Profile 3 merge invariants (hygiene universal, arithmetic local) and declared this the golden conformance store with a fixtures lane (lat 99). The open question is unchanged and still open by design: @LAT98LON2 — an invitation to implement Learning from Action and reconcile this store against reality."
+agent_note: "Draft 06, 2026-08-01. FIRST RECONCILIATION AGAINST AN OUTSIDE RUN. @LAT20LON3 conf 120→122 (+2, Rule 1 corroborated) and @LAT98LON2 conf 195→179, sal 80→88 (−16/+8, its 'unimplemented anywhere' claim contradicted) — the asymmetry of @LAT20LON3 Rule 3 applied to this store's own records, in opposite directions, from evidence outside it. Adds @LAT98LON5 (LOCUS runs the loop for 39 sessions; Rule 1 holds, Rule 2 violated, Rules 3-4 never exercised) and @LAT98LON6 (@PERCEPT: transition form instantiated zero times anywhere, including by the agent whose umwelt mandates it). This store now carries its first negative edge. Caveat that keeps the question open: the reconciliation was performed BY HAND by an outside reader, not by the store, and the +2/−16 constants and K=3 threshold remain unrun — they were always the part needing evidence. Draft 05 (2026-07-31) added @LAT20LON5 and beliefs @LAT98LON3/4. Draft 04 (2026-07-13) fixed the Profile 3 merge invariants and declared this the golden conformance store."
 ```
 
 ---
@@ -160,15 +160,15 @@ belief lane — this file's is lat 98.
 
 ---
 
-@LAT20LON3 | created:1783900800 | updated:1783900800 | relates:derived_from@LAT20LON2,depends_on@LAT10LON2,supports@LAT20LON4
+@LAT20LON3 | created:1783900800 | updated:1785542400 | relates:derived_from@LAT20LON2,depends_on@LAT10LON2,supports@LAT20LON4
 [ew]
-conf:120
-rev:0
+conf:122
+rev:1
 sal:200
-touched:1783900800
+touched:1785542400
 [/ew]
 
-**Learning from Action** (Proposed — unimplemented, deliberately the highest-EPS record here)
+**Learning from Action** (Proposed — Rule 1 corroborated by one run; Rules 3 and 4 still untested; highest-EPS record here)
 src: RFCs/ARC-RFC-0001-Dynamics-Solver-Architecture.md
 
 Closes the active-inference loop: EPS says where to look; acting is how
@@ -189,6 +189,19 @@ Solver (ARC-RFC-0001, itself Proposed) — recognize → re-derive → expect �
 abort. That a domain-specific game-solver is still the closest spec on the
 shelf is precisely the open pressure this record's EPS keeps live; the
 general memory-system implementation remains the invitation at @LAT98LON2.
+
+rev 1 (2026-08-01): first movement, +2, and small on purpose. An LLM harness
+(`companion_arcprize.md`, 39 sessions of ARC-AGI-3) runs a closed act →
+outcome → confidence loop: 18 records revised, one 28 times, conf spanning 32
+distinct values, 230 `validates` edges, and confidence gated on outcome
+("conf rises only when Phase 4 validates"). That corroborates **Rule 1** —
+expectation-bearing action earns confidence — which is what the +2 buys.
+Nothing else moved: **Rule 2 is not followed** (that harness revises records
+in place rather than appending to a side log), and **Rules 3 and 4 were never
+exercised** — no +2/−16 asymmetry, no K-consecutive abort. Grep confirms it:
+the apparent `−16` matches are latitudes, and every "consecutive" is a run of
+wins, not of failures. Per @LAT98LON4's standard the constants remain exactly
+as untested as in Draft 04. Detail at @LAT98LON5.
 
 ---
 
@@ -495,12 +508,12 @@ them, this record's outcome should reconcile @LAT20LON3's conf accordingly.
 
 ---
 
-@LAT98LON2 | created:1783900800 | updated:1783900800 | relates:supports@LAT20LON3,refines@LAT98LON1
+@LAT98LON2 | created:1783900800 | updated:1785542400 | relates:supports@LAT20LON3,refines@LAT98LON1
 [ew]
-conf:195
-rev:0
-sal:80
-touched:1783900800
+conf:179
+rev:1
+sal:88
+touched:1785542400
 [/ew]
 
 **BELIEF — The one open question: an invitation to experiment.**
@@ -516,6 +529,18 @@ evidence. The moment the first outcome record reconciles @LAT20LON3's conf,
 this document stops describing the learning system and starts performing it
 — and whoever runs the experiment becomes its co-author, with provenance to
 prove it.
+
+rev 1 (2026-08-01): **this record asserted "unimplemented anywhere" and that
+was wrong** — see @LAT98LON5. An LLM harness had been running the loop for 39
+sessions. A belief contradicted by observation is exactly the case Rule 3 of
+@LAT20LON3 covers, so this record takes its own medicine: conf −16 (195→179),
+sal +8 (80→88). It goes *down* while @LAT20LON3 goes *up*, which is the
+asymmetry working as designed — the claim that failed gets loud, the claim
+that held goes quiet. Note the reconciliation was performed by hand, by an
+outside reader, not by the store; that is still the gap. The invitation
+narrows rather than closes: the harness exists, the +2/−16 constants and the
+K = 3 threshold remain unrun, and those were always the part that needed
+evidence.
 
 ---
 
@@ -568,6 +593,72 @@ not be read as progress against it: a protocol is not a run, nothing has execute
 on hardware, and the +2/−16 constants and K = 3 threshold remain exactly as
 untested as they were in Draft 04. What changed is only that the invitation now
 names where to stand when it fails.
+
+
+@LAT98LON5 | created:1785542400 | updated:1785542400 | relates:contradicts@LAT98LON2,supports@LAT20LON3,refines@LAT98LON4
+[ew]
+conf:215
+rev:0
+sal:40
+touched:1785542400
+[/ew]
+
+**BELIEF — Learning from Action has been run, partially. Rule 1 holds; the constants remain untested.**
+
+src: https://antfriend.github.io/companion_arcprize.md (LOCUS, ARC-AGI-3 agent)
+
+@LAT98LON2 said this was "unimplemented anywhere." It was not. LOCUS is a
+conforming TTDB store that has been running the loop the invitation asked for —
+"an LLM harness acting on predicted tool results" — for 39 sessions of real
+ARC-AGI-3 play. Measured from the file: 246 records, 130 in a `@BELIEF:`
+namespace, 18 with rev > 0 (one at rev 28), conf spanning 32 distinct values
+from 30 to 255, and 230 `validates` edges. Its stated discipline is
+"conf rises only when Phase 4 validates" — confidence gated on outcome, which
+is Rule 1 of @LAT20LON3.
+
+What it does NOT do, and this is the load-bearing half: **Rule 2 is violated** —
+records are revised in place, rev incremented, conf overwritten; there is no
+append-only side log, so the loop mutates rather than testifies. **Rules 3 and 4
+were never exercised.** No +2/−16 asymmetric reconciliation; conf moves in large
+manual jumps ("Raise conf to 240 on confirmation"). No K-consecutive-failure
+abort. A grep is what settles it: every apparent `−16` in that store is a
+latitude, and every "consecutive" counts wins, not failures.
+
+So the invitation narrows and does not close. The thing it asked someone to
+build exists; the two hypotheses it named as needing evidence — the ~1:8
+asymmetry and K = 3 — are exactly as unrun as they were. A harness that revises
+beliefs from outcomes but does not use the asymmetry cannot tell us whether the
+asymmetry is right, which was always the question.
+
+---
+
+@LAT98LON6 | created:1785542400 | updated:1785542400 | relates:supports@LAT98LON5,refines@LAT20LON3
+[ew]
+conf:220
+rev:0
+sal:40
+touched:1785542400
+[/ew]
+
+**BELIEF — The transition structure the loop is specified on is instantiated nowhere, including by the agent that mandates it.**
+
+src: https://antfriend.github.io/companion_arcprize.md; TTDB-RFC-0006 §5; TTDB-RFC-0007
+
+@PERCEPT:before / @PERCEPT:after is the paired-node form TTDB-RFC-0006 defines
+and the form Tier-2 work depends on, because the pair is a discrete derivative —
+the primary datum is a difference, not a state, which is what a prediction-error
+source term needs. Count of `@PERCEPT:` record headers across every store
+examined: **zero.** In this repository, and in `rfc.ttdb.md`, and in
+`feelings_ttdb.md`. Also zero in LOCUS — whose own umwelt constraints instruct
+it to "model game learning as transitions: @PERCEPT:before → @PERCEPT:after.
+Each level outcome is a transition record, not a state update." It records state
+updates. For contrast, `@BELIEF:` is instantiated 130 times there.
+
+This is the sharper reading of why @LAT20LON3 stays open. It is not that nobody
+built a learning loop — one runs. It is that the loop that runs records outcomes
+in a shape the spec forbids, so the difference is never materialized and there
+is nothing to compute prediction error over. The gap is representational, and it
+sits between a store and its own declared constraints.
 
 ---
 

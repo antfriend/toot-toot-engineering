@@ -15,12 +15,18 @@ python research/valence/ttdb_valence.py feelings_ttdb.md \
 
 ## Verdict
 
-**Propagation passes decisively. The balance/frustration experiment did not run
-on the feelings store, and did run — unexpectedly — on the RFC corpus, where it
-found one genuine structural contradiction.**
+**Propagation passes decisively, and is corroborated against external human
+norms at r = +0.941 on never-seeded nodes (§6.2). The balance/frustration
+experiment did not run on the feelings store, and did run — unexpectedly — on
+the RFC corpus, where it found one genuine structural contradiction (§3).
+Valence is not a redundant channel (§6.3).**
 
-No §6 stop condition was triggered. One §6 criterion (the seed-shuffle null)
-turned out to be measuring the wrong quantity and was corrected; see §4.
+No §6 stop condition was triggered. Two §6 criteria needed repair before they
+could be trusted: the seed-shuffle null was measuring the wrong quantity (§4),
+and the redundancy test was unrunnable until `sal` was sourced from outside the
+store (§6.1).
+
+**Still no RFC.** The retrieval half of §6 remains undecided — see §6.4.
 
 ---
 
@@ -41,20 +47,36 @@ The free-node test is the stronger one and is not in the script: it scores every
 never-seeded node against its own latitude, so it cannot be gamed by seed
 choice. Every single free node landed on the correct side of zero.
 
-### 1.1 The hub exclusion was the whole result
+### 1.1 The hub exclusion matters, and its size depends on seed density
 
-Same store, same seeds, only difference being whether the 55 hub edges are
-included:
+An earlier draft of this section claimed the hub exclusion alone flipped LOO r
+from −0.963 to +0.948. **That was wrong** — it compared a 4-seed smoke test
+against the 12-seed protocol run, conflating hub exclusion with a threefold
+increase in seeds. Isolating the two factors (γ=0.15):
 
-| Hub edges | LOO r |
-|---|---|
-| Included at +1 | **−0.963** |
-| Excluded | **+0.948** |
+| Seeds | Hub edges | LOO r | LOO MAE |
+|---|---|---|---|
+| 4 (ad hoc) | included | **−0.952** | 0.745 |
+| 4 (ad hoc) | excluded | +0.719 | 0.440 |
+| 12 (protocol) | included | +0.899 | 0.374 |
+| 12 (protocol) | excluded | **+0.948** | 0.173 |
 
-Held-out seeds went from being predicted with *reversed* sign to being predicted
-well. This is the single decision that mattered, and it was made from the
-store's semantics — the hub asserts membership, not valence — rather than from
-the outcome.
+Hub inclusion is genuinely damaging at both seed counts, but **the damage scales
+inversely with seed density**. With sparse seeds the degree-55 origin dominates
+and inverts the field; with well-spread seeds it merely blurs it.
+
+The effect is much clearer on free nodes than on LOO, because LOO scores only
+the 12 seeds — which are well-connected by construction — while the blurring
+lands on everything else (γ=0.05):
+
+| Hub edges | Free-node r | Free-node MAE |
+|---|---|---|
+| Included | +0.788 | 0.384 |
+| Excluded | **+0.946** | **0.169** |
+
+The decision was made from the store's semantics — the hub asserts membership,
+not valence — before any of these numbers existed. That ordering is what keeps
+it from being outcome-fitting.
 
 ### 1.2 Errors are systematic shrinkage, not noise
 
@@ -72,15 +94,38 @@ Plateaus around γ ≈ 0.05. The default 0.15 is mildly over-damped for this sto
 Correlation is the honest headline statistic here since it is scale-invariant;
 MAE is inflated by a shrinkage with a known cause.
 
-### 1.3 Caveats that must travel with this result
+### 1.3 The boundary-seed alternative is rejected
+
+`SIGN_MAP_PROPOSAL.md` §1.2 offered an alternative to excluding the hub: keep
+the 55 edges at +1 but pin `@LAT0LON0 = 0.0` as a fixed boundary node,
+preserving the membership structure while stopping the origin from floating.
+Tested head-to-head (12 seeds, γ=0.05):
+
+| Config | Edges | Components | Seedless | Free-node r | MAE |
+|---|---|---|---|---|---|
+| **A — hub excluded** | 49 | 6 | 3 | **+0.946** | **0.169** |
+| B — hub kept, origin pinned 0.0 | 87 | 3 | 2 | +0.787 | 0.398 |
+| C — hub kept, unpinned (control) | 87 | 3 | 2 | +0.788 | 0.384 |
+
+**B ≈ C.** Pinning the origin changes essentially nothing — it is very slightly
+*worse* on MAE than not pinning. The damage is done by the 55 hub edges
+themselves dragging every affective state toward a common value, not by the
+origin's own value being unconstrained, so fixing that value repairs nothing.
+
+Exclusion stands. It costs connectivity — 6 components against 3, and one extra
+seedless component — and buys a large accuracy gain. **The connectivity cost is
+the honest price and is not recovered by this alternative;** recovering it needs
+more or better-spread seeds, not a different treatment of the hub.
+
+### 1.4 Caveats that must travel with this result
 
 - **One seed cannot be scored.** `@LAT30LON40` (Compassion) predicts 0.000 under
   leave-one-out because it lands in a seedless component when held out. That is
   a connectivity artifact, not a miss. It contributes a 0.75 error to the
   reported MAE; excluding it gives MAE ≈ 0.121.
 - **Excluding the hub fragmented the graph** into 6 components (largest 20 of 43
-  nodes), 3 of them seedless. This is a real cost of the exclusion and the main
-  argument for testing the `@LAT0LON0 = 0.0` boundary-seed alternative.
+  nodes), 3 of them seedless. This is a real and unrecovered cost — the
+  boundary-seed alternative that might have repaired it does not (§1.3).
 - **The store was authored as a coherent affective landscape.** It is not an
   adversarial test. Recovering its geometry proves the method works on a
   well-formed store; it does not prove the method survives a messy one.
@@ -98,6 +143,11 @@ polarity lives in its coordinates, not its edges.
 This is the absence of an experiment, not a negative result, and the script now
 says so explicitly rather than reporting `p = 1.000` as though it were evidence.
 Permuting signs that are all `+1` is a no-op; the p-value is arithmetic.
+
+**This is repairable, and §7 shows how.** The store has 11 antonym pairs it
+cannot currently express as edges; supplying them makes the balance experiment
+runnable, whereupon it returns a real answer — the affective landscape is
+provably *balanced*, in contrast to the RFC corpus in §3.
 
 ---
 
@@ -193,10 +243,237 @@ to present a vacuous sign-shuffle as evidence.
   redundant. Until that head-to-head runs, valence has not earned a channel.
 
 **Recommended next**, in order:
-1. Run the EPS head-to-head. It is the cheapest remaining test and it is the one
-   that can still kill the idea.
-2. Decide the `@LAT0LON0 = 0.0` boundary-seed alternative against exclusion, to
-   recover the 3 seedless components.
+1. ~~Run the EPS head-to-head.~~ **Done — see §6. Valence is not redundant
+   (r=+0.102 against arousal on unseeded nodes); the retrieval half is still
+   open and needs a quality metric.**
+2. ~~Decide the `@LAT0LON0 = 0.0` boundary-seed alternative against exclusion.~~
+   **Resolved — see §1.3. Rejected; exclusion stands.**
 3. Only then consider whether the corpus should mint a negative edge type — a
    TTDB-RFC-0003 taxonomy question, judged on whether the corpus needs to
    express opposition, not on whether it would make this experiment light up.
+
+---
+
+## 6. The EPS head-to-head — ran, on external norms. Valence survives.
+
+The blocker reported in an earlier draft — `sal ≡ 0` across all 40 records of
+`feelings_ttdb.md`, so `EPS = sal × (255 − conf)/255` is identically zero — was
+resolved the only way it honestly could be: by taking `sal` from a source blind
+to valence.
+
+### 6.1 Where `sal` came from, and why it could not be authored
+
+Hand-assigning salience would have destroyed the test. The intuitive way to
+score the salience of *Rage* or *Serenity* is to ask how strongly it registers,
+which in this store **is** `|lat|` — i.e. `|φ_true|` exactly. Hand-authored
+`sal` therefore encodes valence by construction and returns a strong spurious
+confirmation of §6's own redundancy hypothesis. The test would appear to run and
+be dead on arrival.
+
+`sal` is instead derived from the **arousal** column of Warriner, Kuperman &
+Brysbaert (2013) — 13,905 lemmas, ~1,800 raters — via
+`sal = round((arousal − 1)/8 × 255)`. The valence column of that dataset is
+never read into `sal`. 34 of 41 records matched by exact lemma or, for intents,
+the verb (*To Nurture* → `nurture`). The remaining 7 are **left unset, not
+inferred**: hyphenated compounds (*Self-Compassion*, *Self-Contempt*) have no
+lexicon entry and their head words would discard the self-directedness the
+store's longitude encodes; *Unease* and *Equanimity* are absent from the
+lexicon; three records are non-affective.
+
+Regenerate with `arousal_from_norms.py`; the derived table is
+`arousal.feelings.tsv`.
+
+### 6.2 A free external validation of the store itself
+
+The norms make a check possible that was not previously available: Warriner's
+valence ratings are an *independent* measurement of the same 34 emotions, so the
+store's hand-authored geometry can be scored against 1,800 human raters.
+
+| Comparison | All matched (n=34) | **Free nodes only (n=23)** |
+|---|---|---|
+| corr(store `lat`, Warriner valence) | +0.920 | +0.920 |
+| corr(**propagated φ**, Warriner valence) | +0.932 | **+0.941** |
+
+Two things follow. First, `feelings_ttdb.md` is a **well-calibrated store** — its
+author's coordinate assignment agrees with published norms at r = +0.92.
+Second, and more strongly: on the 23 nodes that were *never seeded*, the
+propagated field agrees with independent human ratings at **r = +0.941**,
+slightly better than the store's own coordinates do.
+
+This is substantially stronger evidence than §1's internal test. §1 scored φ
+against `lat`, which is the same quantity the seeds were drawn from. This scores
+it against a dataset with no connection to the store, this repository, or the
+method.
+
+### 6.3 The §6 redundancy test — valence is NOT redundant
+
+| Correlation with arousal-derived `sal` | All (n=34) | **Free (n=23)** |
+|---|---|---|
+| \|store `lat`\| | +0.234 | **+0.063** |
+| \|propagated φ\| | +0.307 | **+0.102** |
+| \|Warriner valence\| *(V-shape in the source data)* | +0.232 | +0.281 |
+
+**On never-seeded nodes, `|φ|` and `sal` share r = +0.102 — about 1% of
+variance.** §6's stop condition reads: *"If valence adds nothing beyond what
+salience already captures, it is a redundant channel and should be cut."*
+Valence carries ~99% independent variance. **The criterion is not met; valence
+survives.**
+
+The V-shaped valence–arousal relation is real in the source data (+0.281) but
+modest, and the store's own geometry reproduces even less of it (+0.063) — its
+intensity dimension is *more* orthogonal to arousal than real affective norms
+are. The premise behind §6's redundancy worry holds directionally and is far too
+weak to justify cutting the channel.
+
+### 6.4 The retrieval question is still undecided
+
+With real `sal` and real `conf`, EPS is now computable and valence-weighting
+does re-rank it — but the magnitude remains a free parameter in
+`EPS × (1 + λ|φ|)`:
+
+| λ | 0.5 | 1 | 2 | 5 | 10 |
+|---|---|---|---|---|---|
+| Spearman vs plain EPS | +0.932 | +0.832 | +0.745 | +0.624 | +0.591 |
+| Top-10 overlap | 9/10 | 8/10 | 7/10 | 7/10 | 7/10 |
+
+The re-ranking is more substantial than in the RFC attempt and saturates rather
+than collapsing, which is mildly encouraging. But **"different ranking" is still
+not "better ranking."** Choosing λ, or declaring a winner, needs a retrieval
+quality metric that does not exist in this corpus. That half of §6 remains open.
+
+### 6.5 What this licenses
+
+**Licensed:** valence is not a redundant channel, established against external
+norms rather than internal structure. The propagation result of §1 is
+corroborated by an independent dataset at r = +0.941 on unseeded nodes.
+
+**Still not licensed:** an RFC. The retrieval half of §6 is unrun, the balance
+half is unrun on affective data (§2), and Tier 2's ρ-from-`@PERCEPT` claim is
+untouched. What has changed is that the cheapest remaining test that could have
+killed the idea was run, and the idea survived it.
+
+### 6.6 License — resolved: the derived table is not committed
+
+The Warriner ratings are **CC BY-NC-ND 3.0**; this repository is **MIT**. That
+is a one-way incompatibility — `NC` and `ND` are both restrictions MIT does not
+carry, so shipping the derived table inside an MIT tree would promise downstream
+users commercial use and modification rights they do not actually have for that
+file.
+
+`ND` bites harder on the derived table than it would on the raw dataset:
+`arousal.feelings.tsv` rescales arousal (1–9) onto `sal` (0–255) and re-keys it
+to TTDB addresses, which makes it an *adaptation* — precisely what `ND` forbids
+distributing. Redistributing the untouched source CSV would be safer than this
+34-row transform.
+
+(The countervailing argument is real but not relied on: facts are not
+copyrightable in the US after *Feist* (1991), the EU database right covers only
+"substantial" extraction and this is 0.24% of the rows, and reuse of published
+affective norms is universal academic practice. Low risk is not compatibility.)
+
+**Resolution:** `arousal.feelings.tsv` is gitignored. `arousal_from_norms.py` is
+committed — it is original code containing no Warriner data — and regenerates
+the table byte-identically from the source CSV. Reproducibility is preserved in
+full; nobody downstream inherits a file whose stated terms are wrong.
+
+**To reproduce §6 from a clean checkout:**
+
+```bash
+# 1. Fetch the norms (CC BY-NC-ND 3.0; not redistributed here)
+curl -sLO https://raw.githubusercontent.com/JULIELab/XANEW/master/Ratings_Warriner_et_al.csv
+
+# 2. Regenerate the derived salience table
+python research/valence/arousal_from_norms.py Ratings_Warriner_et_al.csv --out research/valence/arousal.feelings.tsv
+```
+
+---
+
+## 7. Should the corpus mint a negative edge type?
+
+§5's third recommendation, with its own framing preserved: judged on **whether
+the corpus needs to express opposition**, not on whether it would make this
+experiment light up.
+
+### 7.1 The representational gap is real
+
+`feelings_ttdb.md` contains 11 clean antonym pairs at mirrored coordinates
+`(lat, lon) ↔ (−lat, lon)`:
+
+| | | | |
+|---|---|---|---|
+| Serenity / Unease | Bliss / Despair | Ecstasy / Rage | Hope / Frustration |
+| Pride / Guilt | Contentment / Sadness | Compassion / Hostility | Excitement / Fear |
+| Generosity / Contempt | Equanimity / Shame | Self-Compassion / Disappointment | |
+
+**None of the 11 carries any edge.** The store encodes their opposition purely
+positionally — the graph cannot say *"Serenity is the opposite of Unease."* A
+consumer reading only the edge list, which is what every implementation in this
+corpus actually does, cannot recover the single most obvious relation in an
+affective landscape.
+
+That is the answer to the question as posed. The gap is representational and
+exists independently of anything valence diffusion wants.
+
+### 7.2 What an `opposes` type would change structurally
+
+Simulating 11 `opposes` edges (σ = −1) between the mirror pairs — **not written
+to the store**:
+
+| | As authored | With `opposes` |
+|---|---|---|
+| Merged edges | 49 | 60 |
+| Negative edges | 0 | 11 |
+| Components | 6 | 4 |
+| **Largest component** | **20 / 43** | **40 / 43** |
+| Balance experiment runnable | **no** — sign-shuffle vacuous | **yes** |
+
+Two consequences worth having, neither of which is about prediction accuracy:
+
+1. **The graph stops being fragmented.** All 40 genuine affective states join a
+   single component. The three remaining isolates are exactly the non-affective
+   records — `@LAT0LON0` (umwelt origin), `@LAT88LON0` (story), `@LAT-90LON0`
+   (Discovery Settings) — which *should* be isolated once hub and narrative
+   edges are excluded. This directly repairs the connectivity cost that §1.3
+   found the boundary-seed alternative could not.
+
+2. **The balance experiment becomes real, and returns an answer.** Frustration
+   is 0 of 60 violating edges — and with 11 negative edges present that is a
+   *proof* of balance rather than the arithmetic tautology it was in §2. The
+   affective landscape is coherently bipolar: every cycle carries an even number
+   of negative edges, and no region resists consistent assignment.
+
+That contrast is itself the useful output. The same measurement returns
+**balanced** on `feelings_ttdb.md` and **unbalanced** on the RFC corpus (§3) —
+the instrument discriminates, which is the thing §6 of `VALENCE_FIELD.md` most
+needed to know and could not previously test.
+
+### 7.3 What was deliberately not measured
+
+**Whether adding these edges improves φ's agreement with the Warriner norms.**
+
+The mirror pairs are defined by `(lat, −lat)` — i.e. by the store's valence
+coordinates. An `opposes` edge between them asserts "these two have opposite
+valence," which is a restatement of the ground truth being predicted. Adding
+them would improve valence recovery by construction, and the improvement would
+measure nothing but the tautology.
+
+This is precisely the trap §5 warned against, so the number was not computed. It
+should not be computed later and quoted as support either.
+
+### 7.4 Recommendation
+
+**Mint the type — on representational grounds, with the structural benefits as
+secondary.** Specifically:
+
+- A symmetric `opposes` (or `antonym_of`) type in the TTDB-RFC-0003 taxonomy.
+  Symmetry matters: §1.2 of `VALENCE_FIELD.md` requires `σ_uv = σ_vu`, and an
+  antonym relation is genuinely mutual, so this is one of the few types where
+  symmetrization loses nothing.
+- Distinct from `contradicts`, which the RFC corpus uses for *epistemic*
+  conflict (this claim and that claim cannot both hold). `opposes` is
+  *semantic* polarity (these two sit at opposite ends of a dimension). Collapsing
+  them would conflate "these disagree" with "these are antonyms."
+- Adding the 11 edges to `feelings_ttdb.md` is a **separate** store-authoring
+  decision from amending the taxonomy, and should be taken separately.
+
+Neither has been done here. Both are the repository owner's call.

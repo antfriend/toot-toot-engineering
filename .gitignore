@@ -1,3 +1,8 @@
 *.mp4
 *.csv
 __pycache__/
+
+# Derived from the Warriner et al. (2013) norms, which are CC BY-NC-ND 3.0 and
+# so cannot ship under this repo's MIT license. Regenerate on demand with
+# research/valence/arousal_from_norms.py -- see that script for the source URL.
+research/valence/arousal.feelings.tsv

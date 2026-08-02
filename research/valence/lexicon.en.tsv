@@ -1,0 +1,298 @@
+# lexicon.en.tsv - hand-authored evaluative polarity lexicon for folder_valence.py
+#
+# WHAT THIS IS AND IS NOT
+# -----------------------
+# This is a BOOTSTRAP, not a validated instrument. It exists so folder_valence.py
+# can seed a field without vendoring the Warriner norms, which are CC BY-NC-ND 3.0
+# and cannot ship under this repository's MIT license (see .gitignore and
+# arousal_from_norms.py). Every entry below is a judgement call by the author.
+#
+# It is therefore NOT usable as ground truth. Validating the propagation against
+# these numbers would be circular: the seeds and the answer would share an origin.
+# For a falsifiable run, point --lexicon at a norms-derived table instead and treat
+# this file as the fallback it is. TIER1_RESULTS.md §5 is the standard to beat.
+#
+# FORMAT
+#   word<TAB>polarity        polarity in [-1, +1]
+# Matching is on lowercased whitespace/punctuation-delimited tokens with a light
+# suffix strip (-s, -es, -ed, -ing, -ly). No stemming beyond that: an aggressive
+# stemmer collides "abstraction" with "abstract" and the two are not equivalent
+# in a design corpus.
+#
+# SCOPE NOTE: entries are chosen for evaluative prose about work -- design docs,
+# reviews, commit messages, notes. Words that are strongly affective in general
+# English but neutral in a software corpus (error, fail, kill, abort, dead, panic,
+# critical, blocked) are DELIBERATELY ABSENT here and additionally suppressed by
+# TECH_NEUTRAL in folder_valence.py. Including them makes every source tree read
+# as miserable; that is the single largest failure mode of lexicon sentiment on
+# technical text.
+
+# --- strong positive -------------------------------------------------------
+excellent	0.90
+outstanding	0.90
+brilliant	0.85
+superb	0.85
+elegant	0.80
+beautiful	0.80
+delightful	0.80
+wonderful	0.80
+love	0.75
+loved	0.75
+best	0.75
+perfect	0.75
+remarkable	0.75
+impressive	0.70
+compelling	0.70
+exceptional	0.75
+triumph	0.80
+breakthrough	0.75
+thrilled	0.80
+joy	0.85
+elated	0.85
+gratifying	0.70
+
+# --- moderate positive -----------------------------------------------------
+good	0.55
+great	0.65
+strong	0.50
+solid	0.50
+clean	0.50
+clear	0.45
+clearer	0.45
+coherent	0.50
+robust	0.55
+reliable	0.55
+sound	0.50
+correct	0.50
+accurate	0.50
+precise	0.50
+rigorous	0.55
+honest	0.55
+principled	0.55
+defensible	0.45
+justified	0.45
+warranted	0.40
+valid	0.45
+useful	0.50
+helpful	0.50
+valuable	0.55
+worthwhile	0.55
+productive	0.50
+effective	0.50
+efficient	0.45
+fast	0.35
+simple	0.45
+straightforward	0.45
+readable	0.45
+maintainable	0.50
+consistent	0.45
+stable	0.45
+safe	0.45
+secure	0.45
+confident	0.50
+confidence	0.45
+promising	0.55
+encouraging	0.55
+improvement	0.55
+improved	0.55
+better	0.50
+gain	0.40
+advantage	0.45
+benefit	0.50
+succeed	0.60
+succeeded	0.60
+success	0.60
+successful	0.60
+works	0.40
+working	0.35
+validated	0.55
+confirmed	0.45
+verified	0.45
+proven	0.55
+survives	0.40
+holds	0.30
+agree	0.40
+agreement	0.40
+supports	0.35
+support	0.30
+endorse	0.45
+prefer	0.30
+preferred	0.35
+recommend	0.40
+recommended	0.40
+appreciate	0.50
+thanks	0.50
+glad	0.55
+happy	0.60
+satisfying	0.60
+satisfied	0.55
+relief	0.50
+calm	0.45
+serene	0.60
+hope	0.50
+hopeful	0.55
+optimistic	0.55
+progress	0.45
+achievement	0.55
+accomplished	0.55
+resolved	0.45
+fixed	0.40
+ready	0.30
+complete	0.30
+thorough	0.45
+careful	0.40
+graceful	0.50
+natural	0.30
+intuitive	0.45
+generous	0.55
+fair	0.45
+trustworthy	0.60
+trust	0.50
+
+# --- moderate negative -----------------------------------------------------
+bad	-0.55
+poor	-0.55
+weak	-0.50
+weaker	-0.50
+worse	-0.55
+worst	-0.75
+wrong	-0.60
+incorrect	-0.55
+inaccurate	-0.50
+misleading	-0.60
+confusing	-0.55
+confused	-0.50
+unclear	-0.45
+ambiguous	-0.35
+vague	-0.40
+messy	-0.50
+ugly	-0.55
+clumsy	-0.50
+awkward	-0.45
+brittle	-0.55
+fragile	-0.50
+unstable	-0.50
+unreliable	-0.60
+inconsistent	-0.50
+incoherent	-0.60
+contradiction	-0.45
+contradictory	-0.50
+contradicts	-0.45
+flawed	-0.60
+flaw	-0.55
+defective	-0.60
+broken	-0.55
+wasteful	-0.50
+waste	-0.50
+wasted	-0.50
+pointless	-0.60
+useless	-0.65
+worthless	-0.70
+redundant	-0.35
+unnecessary	-0.40
+bloated	-0.50
+convoluted	-0.55
+opaque	-0.45
+arbitrary	-0.35
+hacky	-0.50
+kludge	-0.55
+smell	-0.35
+regression	-0.50
+degraded	-0.50
+slow	-0.35
+sluggish	-0.45
+expensive	-0.35
+costly	-0.35
+painful	-0.60
+tedious	-0.45
+frustrating	-0.60
+frustration	-0.55
+annoying	-0.50
+irritating	-0.50
+disappointing	-0.60
+disappointed	-0.60
+unfortunate	-0.50
+unfortunately	-0.45
+regret	-0.55
+worry	-0.45
+worried	-0.50
+concerned	-0.40
+concern	-0.35
+doubt	-0.45
+doubtful	-0.50
+skeptical	-0.35
+suspicious	-0.45
+risky	-0.45
+dangerous	-0.60
+harmful	-0.65
+damage	-0.55
+hurt	-0.55
+loss	-0.50
+lost	-0.40
+missing	-0.35
+lacking	-0.40
+insufficient	-0.45
+inadequate	-0.55
+incomplete	-0.35
+unfinished	-0.30
+premature	-0.35
+naive	-0.40
+simplistic	-0.45
+overkill	-0.40
+overengineered	-0.50
+fought	-0.40
+struggle	-0.50
+struggled	-0.50
+stuck	-0.50
+difficult	-0.35
+hard	-0.25
+tricky	-0.30
+messy	-0.50
+noisy	-0.35
+spurious	-0.50
+contaminated	-0.55
+circular	-0.40
+decoration	-0.45
+illustrative	-0.20
+
+# --- strong negative -------------------------------------------------------
+terrible	-0.85
+awful	-0.85
+horrible	-0.85
+disaster	-0.85
+disastrous	-0.85
+catastrophic	-0.90
+appalling	-0.85
+hate	-0.80
+hated	-0.80
+despair	-0.90
+hopeless	-0.80
+miserable	-0.80
+grief	-0.80
+rage	-0.85
+furious	-0.80
+hostile	-0.75
+contempt	-0.75
+disgusting	-0.80
+absurd	-0.55
+nonsense	-0.65
+garbage	-0.70
+junk	-0.60
+abandoned	-0.55
+doomed	-0.75
+
+# --- hedges and weak signals ----------------------------------------------
+maybe	-0.10
+perhaps	-0.10
+unproven	-0.35
+untested	-0.30
+speculative	-0.25
+provisional	-0.20
+tentative	-0.20
+plausible	0.20
+reasonable	0.40
+acceptable	0.30
+adequate	0.25
+fine	0.30
+okay	0.25
+sufficient	0.35

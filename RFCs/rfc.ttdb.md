@@ -337,24 +337,26 @@ records preferred.
 
 ---
 
-@LAT20LON2 | created:1775347200 | updated:1775347200 | relates:depends_on@LAT20LON1,depends_on@LAT10LON3
+@LAT20LON2 | created:1775347200 | updated:1785542400 | relates:depends_on@LAT20LON1,depends_on@LAT10LON3
 [ew]
 conf:210
-rev:0
-sal:70
-touched:1775347200
+rev:1
+sal:80
+touched:1785542400
 [/ew]
 
-**TTN-RFC-0002 — Typed Edge Taxonomy** (Stable)
+**TTN-RFC-0002 — Typed Edge Taxonomy** (Stable, v1.1)
 src: TTN-RFC-0002-Typed-Edges.md
 
-The shared edge vocabulary, six groups: identity/topology (knows, seen_near,
+The shared edge vocabulary, seven groups: identity/topology (knows, seen_near,
 routes_via, connected_over); conversation/BBS (board_contains, thread_root,
 replies_to, mentions, moderates, supersedes); AI semantics (asks_ai, ai_summarizes,
 ai_flags, ai_responds_to, ai_refuses, ai_confidence_low); sensors/actions
 (reports_sensor, alerts, commands, acknowledges, escalates); knowledge graph
-(supports, contradicts, refines, duplicates, derived_from); moderation/trust
-(trusted_by, muted_by, blocked_by, flagged_as_spam, quarantined).
+(supports, contradicts, refines, duplicates, derived_from); **semantic polarity
+(opposes)**; moderation/trust (trusted_by, muted_by, blocked_by, flagged_as_spam,
+quarantined). v1.1 added the semantic-polarity group: `opposes` is symmetric and
+distinct from the epistemic `contradicts` — see TTDB-RFC-0003 §7.
 
 ---
 

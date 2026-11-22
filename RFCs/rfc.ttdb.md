@@ -316,6 +316,38 @@ writes), and computed from a local `millis()` delta because a stream clock is a 
 correct for recency, wrong for a duration.
 ---
 
+@LAT10LON11 | created:1795305600 | updated:1795305600 | relates:depends_on@LAT10LON5,depends_on@LAT10LON6,depends_on@LAT10LON7,depends_on@LAT10LON10,refines@LAT10LON5
+[ew]
+conf:120
+rev:0
+sal:130
+touched:1795305600
+[/ew]
+
+**TTDB-RFC-0011 — Precision Weighting and the Ignition Filter** (Proposed; nothing run, `@LAT108`/`@LAT109` unwritten)
+src: TTDB-RFC-0011-Precision-Weighting-and-the-Ignition-Filter.md
+
+TBEW has one precision (`conf`, the belief's); active inference needs two. `prec` (π) joins `[ew]`
+as the precision of the channel that reported, and the gain `K = 255·π/(π+conf)` replaces
+fixed confidence steps: reliable evidence against a shaky belief rewrites it; a contradiction
+with `K < k_revise` only lowers `conf` and sets `contradiction_flag` — `rev` now counts
+contradictions that won. Symbolic `pe` is the contradicted belief's `conf`, so the agent
+notices what it declines to believe.
+
+`ε = pe·π/255` ignites into a capacity-`W` workspace at `@LAT109` (FIELD, KEY, every
+TTDB-RFC-0010 §5 rule) with hysteresis; the system MUST answer identically with it empty.
+`π` is learned at `@LAT108` (EVIDENCE, KEY) from `@PERCEPT` residuals in Replay only.
+Precisions sum only across heterogeneous channels (√N is the independent-error limit).
+Every percept is logged whatever its `ε`. Received `π` is capped by local trust. Action picks
+the look maximizing `EPS × π`. Attention and valence shift ignition, never `K` or `conf`.
+Grimoire profile is read-only over `contradicts`/`supersedes` notes. Falsifier PW-1: if
+learned `π` does not separate channels on the archive, stop.
+Named for and inspired by Dehaene's global neuronal workspace: subliminal / preconscious /
+conscious access (Dehaene et al. 2006) map to below-threshold / eligible-but-unadmitted /
+ignited. Aim: synthesize ignition experimentally; PW-6 tests for the all-or-none signature.
+
+---
+
 @LAT20LON1 | created:1775001600 | updated:1775001600 | relates:default_log@LAT10LON1
 [ew]
 conf:210

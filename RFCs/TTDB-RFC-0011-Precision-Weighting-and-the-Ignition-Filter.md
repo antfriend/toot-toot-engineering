@@ -1,7 +1,7 @@
 # TTDB-RFC-0011: Precision Weighting and the Ignition Filter
 ### Signal Precision, Gain-Scaled Belief Update, and a Decaying Workspace — the "Consciousness Filter" for TTDB Agents and the Personal Grimoire
 
-**Version:** 0.1.5
+**Version:** 0.1.6
 **Status:** Proposed — the stage-2 offline replays PW-1, PW-2 and PW-4 have been run and passed
 as pre-registered (§8.1, §8.2); PW-3, PW-5, PW-6 and all firmware stages have not.
 The arithmetic (§3–§4) is integer-only and testable offline before any firmware changes
@@ -500,9 +500,9 @@ unchanged: *suggest* is what to ask about next; the workspace is what just went 
 
 Each is runnable before the next stage spends anything.
 
-| ID | Claim | Procedure | Kills the RFC if |
+| ID | Claim | Procedure | Falsified if |
 |---|---|---|---|
-| **PW-1** | Learned `π` separates channels, and stays put within a channel | **Pre-registered protocol (v0.1.2).** Fold §4.3 over the archived TTDBs (`robot_team/master/`; the RFC assumed 78) with `PI_SCALE = 8192` for every channel and `pe_span` fixed from physical ranges (firmware constants, never read from the archive). Series = `(node, channel)`, restarted at each stream change; ≥ 30 residuals; run-length windows computed both expanded and unexpanded. Checks: **Separation** — range of per-channel median `π` across nodes (pass > 32, kill ≤ 16); **Stability** — chronological split-half, share of series with \|π₁ − π₂\| ≤ 24 (pass ≥ 70 %, kill < 50 %); **Robustness** — channel rank order by median `π` identical at `PI_SCALE` 4096, 8192, 16384 | Separation ≤ 16, or Stability < 50 %. Anything between pass and kill is inconclusive; thresholds are not changed after the data is seen |
+| **PW-1** | Learned `π` separates channels, and stays put within a channel | **Pre-registered protocol (v0.1.2).** Fold §4.3 over the archived TTDBs (`robot_team/master/`; the RFC assumed 78) with `PI_SCALE = 8192` for every channel and `pe_span` fixed from physical ranges (firmware constants, never read from the archive). Series = `(node, channel)`, restarted at each stream change; ≥ 30 residuals; run-length windows computed both expanded and unexpanded. Checks: **Separation** — range of per-channel median `π` across nodes (pass > 32, falsified ≤ 16); **Stability** — chronological split-half, share of series with \|π₁ − π₂\| ≤ 24 (pass ≥ 70 %, kill < 50 %); **Robustness** — channel rank order by median `π` identical at `PI_SCALE` 4096, 8192, 16384 | Separation ≤ 16, or Stability < 50 %. Anything between pass and falsified is inconclusive; thresholds are not changed after the data is seen |
 | **PW-2** | Gain protects settled beliefs | Replay with a synthetic high-variance channel injected; compare `rev` on high-`conf` records, fixed-step vs §3.4 | §3.4 flips bodies at least as often as fixed steps |
 | **PW-3** | The broadcast gate saves airtime without losing beliefs | Replay archived percepts through §6.3; consolidate on the laptop both ways | Belief disagreement with ungated consolidation exceeds 5 % of records, or airtime falls by less than 30 % |
 | **PW-4** | Empty workspace changes no answer | §5.6, on every replay above | Any belief differs |
@@ -556,7 +556,7 @@ Run by `robot_team/tools/pw2/pw2_replay.py`. The protocol and constants were com
 **PW-2: PASS as pre-registered.** One scalar belief per series (acoustic, motion, link; entity
 excluded). At window 60 a deterministic noisy twin (noise up to 0.6 of span) starts reporting
 on each belief. Over the 41 beliefs with `conf ≥ 192` at window 60 under both rules, bodies
-rewritten afterwards: fixed-step **8 217**, §3.4 **139** (pass ≤ 4 108, kill ≥ 8 217).
+rewritten afterwards: fixed-step **8 217**, §3.4 **139** (pass ≤ 4 108, falsified ≥ 8 217).
 
 ⚠ **What it does and does not show.**
 - The cohort is 37 link, 2 acoustic and 2 motion beliefs: the result is mostly about link.
@@ -693,6 +693,7 @@ Absent `precision`, a reader MUST behave as TTDB-RFC-0005 alone.
 | 2026-11-22 | 0.1.3 — PW-1 result written back (§8.1): PASS as pre-registered, separation carried by the entity channel alone; unexpanded runs INCONCLUSIVE |
 | 2026-11-22 | 0.1.4 — Status, INDEX and `rfc.ttdb.md` entries corrected: PW-1 has been run (§8.1); nothing else has |
 | 2026-11-22 | 0.1.5 — PW-2 and PW-4 results written back (§8.2): both PASS as pre-registered; cohort mostly link, protection not immunity |
+| 2026-11-22 | 0.1.6 — wording: "kill" replaced by "falsified" in §8 (thresholds and results unchanged) |
 
 ---
 

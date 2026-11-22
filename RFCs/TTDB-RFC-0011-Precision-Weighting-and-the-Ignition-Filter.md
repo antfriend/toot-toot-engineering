@@ -1,9 +1,10 @@
 # TTDB-RFC-0011: Precision Weighting and the Ignition Filter
 ### Signal Precision, Gain-Scaled Belief Update, and a Decaying Workspace — the "Consciousness Filter" for TTDB Agents and the Personal Grimoire
 
-**Version:** 0.1.6
+**Version:** 0.1.7
 **Status:** Proposed — the stage-2 offline replays PW-1, PW-2 and PW-4 have been run and passed
-as pre-registered (§8.1, §8.2); PW-3, PW-5, PW-6 and all firmware stages have not.
+as pre-registered (§8.1, §8.2). PW-3 has been run and **falsified the broadcast gate as
+specified in §6.3** (§8.3); PW-5, PW-6 and all firmware stages have not been run.
 The arithmetic (§3–§4) is integer-only and testable offline before any firmware changes
 (§9, stage 2). The two lanes it allocates (`@LAT108`, `@LAT109`) are **unwritten**.
 **RFC Number:** 0011
@@ -411,6 +412,10 @@ turns every later baseline into a sample of what the node found interesting.
 
 ### 6.3 Broadcast gate
 
+⚠ **Falsified as specified by PW-3 (§8.3):** the gate saves airtime but leaves receivers' beliefs
+stale on entity and link channels. Do not implement this section until a refresh mechanism is
+specified and replayed.
+
 A node transmits a percept-derived toot only when `ε ≥ θ_tx` (reference `θ_tx = θ_ign`), or
 when a peer requests it. Proposed carrier: a **SALIENT** toot, type `15` *(provisional; `14` is `EPISODE` in `robot_team` —
 confirm against the type registry before allocation)*, payload 12 B:
@@ -576,8 +581,53 @@ workspace (attended targets learn at doubled `π`, the confirmation loop §5.4 f
 produce a different store, so the test can fail. ⚠ This exercises the reference implementation:
 it shows the specified rule is independent of workspace state, not that firmware code will be.
 
-Consequence: stage 2 is complete for PW-1, PW-2 and PW-4. PW-3 (broadcast gate), PW-5 (fusion)
-and PW-6 (ignition signature) remain, and no firmware stage has been started.
+Consequence: stage 2 is complete for PW-1, PW-2 and PW-4. PW-3 was also run (§8.3) and falsified
+the gate as specified; PW-5 (fusion) and PW-6 (ignition signature) remain, and no firmware
+stage has been started.
+
+### 8.3 PW-3 result (2026-11-22)
+
+**PW-3: FALSIFIED as pre-registered** — belief disagreement **38.1 %** (falsified above 5 %),
+airtime fall **97.9 %** (falsified below 30 %), 63 beliefs. The airtime criterion is met by a
+wide margin; the disagreement criterion decides the verdict.
+
+Run by `robot_team/tools/pw3/pw3_replay.py`. Protocol and constants committed (`f3eab94`) before
+any code; code, tests and report at `e90c453` / `fa688fd`, wording at `40fb5ed`
+(`tools/pw3/PW3-REPORT.md`). Same archive scope and dedup as §8.1 (4 417 distinct records).
+Design, chosen before the run: the unit is a logged record; each series (link per peer) holds a
+§3.4 state belief at the sender (fed every record, `θ_tx = 96`) and at two receivers, one fed
+every record and one fed only transmitted records; the gated arm pays a 53-byte SALIENT frame on
+top of the percept toot (33 B header, ≤ 208 B body per frame, 8 B HMAC); the first record of
+a series is always sent. Disagreement is a gated receiver with no belief, or whose final body
+differs from the ungated one by `pe ≥ pe_agree`.
+
+| Channel | Beliefs | Disagree | Airtime fall |
+|---|---|---|---|
+| acoustic | 2 | 0 | 99.7 % |
+| motion | 2 | 0 | 99.7 % |
+| link | 53 | 18 (34.0 %) | 98.3 % |
+| entity | 6 | 6 (100 %) | 96.9 % |
+| all | 63 | 24 (38.1 %) | 97.9 % |
+
+The gate sends 62 of 4 417 records (1.4 %).
+
+⚠ **Why, and what this does not show.**
+- On entity and link, each window-to-window change stays under `θ_tx` while the cumulative change
+  does not. A receiver that hears only the rare surprises holds a body that was right when sent
+  and is stale at the end. Acoustic and motion, which are smooth, agree throughout.
+- A descriptive sweep (not used for the verdict) over `θ_tx` ∈ {64, 96, 128} gives disagreement
+  30.2 %, 38.1 %, 52.4 % and airtime fall 89.5 %, 97.9 %, 99.1 %: no threshold in that range
+  meets the 5 % criterion with this gate and metric.
+- §6.3 specifies no heartbeat and no peer request, so the replay models neither. A periodic
+  refresh is a different mechanism and would be a new pre-registered experiment, not a re-run
+  or a retune of this one.
+- Disagreement is judged on final bodies, so a receiver stale mid-run but caught up at the end
+  counts as agreeing; airtime is bytes on air, a proxy for LoRa time; the §6.4 trust cap is
+  not modelled.
+
+Consequence: §6.3 as written MUST NOT be built. Stage 5 (§9.2) is blocked until a refresh
+mechanism is specified and passes its own pre-registered replay; stages 3 and 4 do not depend
+on the gate and are unaffected.
 
 ---
 
@@ -620,7 +670,8 @@ Absent `precision`, a reader MUST behave as TTDB-RFC-0005 alone.
 - **Stage 3 — one PRECISION lane.** `@LAT108` on the Cardputer, folded in the Dream Cycle.
   §3.4 still disabled; `π` observed, not used.
 - **Stage 4 — gain on.** §3.4 on one node. PW-2 on hardware.
-- **Stage 5 — broadcast gate.** §6.3–6.4 across the V4 spine. PW-3 on air.
+- **Stage 5 — broadcast gate.** §6.3–6.4 across the V4 spine. PW-3 on air. **Blocked:** PW-3
+  falsified §6.3 as specified (§8.3); needs a refresh mechanism and its own replay first.
 - **Stage 6 — workspace + views.** `@LAT109` on-device; grimoire workspace view.
 - **Stage 7 — looks.** §6.5 on the dual-camera rig.
 
@@ -660,6 +711,7 @@ Absent `precision`, a reader MUST behave as TTDB-RFC-0005 alone.
    like the SOCIAL field?
 5. **Hysteresis vs half-life.** Two mechanisms keep an item in view. One may be redundant.
 6. **Saturated channels (from PW-1, §8.1).** Acoustic, motion and link all fold to `π` ≈ 250–255. Are they quiet, or is `pe_span` too wide for `rms_mean` / `dev_mean_mg` (and `PI_SCALE` too large for them)? Settle by re-deriving `pe_span` from observed residual ranges *as a new pre-registered constant*, never by tuning against PW-1.
+7. **A refresh for the broadcast gate (from PW-3, §8.3).** What keeps a gated receiver's belief from going stale: a heartbeat every `N` windows, a drift-triggered resend when cumulative `pe` against the last transmitted value exceeds `θ_tx`, or a receiver pull? Each costs airtime that the 97.9 % saving can afford; the question is which keeps disagreement under 5 %. It needs its own pre-registered replay.
 
 ---
 
@@ -694,6 +746,7 @@ Absent `precision`, a reader MUST behave as TTDB-RFC-0005 alone.
 | 2026-11-22 | 0.1.4 — Status, INDEX and `rfc.ttdb.md` entries corrected: PW-1 has been run (§8.1); nothing else has |
 | 2026-11-22 | 0.1.5 — PW-2 and PW-4 results written back (§8.2): both PASS as pre-registered; cohort mostly link, protection not immunity |
 | 2026-11-22 | 0.1.6 — wording: "kill" replaced by "falsified" in §8 (thresholds and results unchanged) |
+| 2026-11-22 | 0.1.7 — PW-3 result written back (§8.3): FALSIFIED as pre-registered (disagreement 38.1 %, airtime fall 97.9 %); §6.3 flagged, stage 5 blocked, open question 7 added |
 
 ---
 

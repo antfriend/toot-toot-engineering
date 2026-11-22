@@ -324,7 +324,7 @@ sal:130
 touched:1795305600
 [/ew]
 
-**TTDB-RFC-0011 — Precision Weighting and the Ignition Filter** (Proposed; stage-2 replays PW-1, PW-2 and PW-4 run and passed as pre-registered, §8.1-§8.2; nothing else run, `@LAT108`/`@LAT109` unwritten)
+**TTDB-RFC-0011 — Precision Weighting and the Ignition Filter** (Proposed; stage-2 replays PW-1, PW-2 and PW-4 passed as pre-registered, PW-3 falsified the §6.3 broadcast gate as specified, §8.1-§8.3; nothing else run, `@LAT108`/`@LAT109` unwritten)
 src: TTDB-RFC-0011-Precision-Weighting-and-the-Ignition-Filter.md
 
 TBEW has one precision (`conf`, the belief's); active inference needs two. `prec` (π) joins `[ew]`

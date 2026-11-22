@@ -1,7 +1,7 @@
 # TTDB-RFC-0011: Precision Weighting and the Ignition Filter
 ### Signal Precision, Gain-Scaled Belief Update, and a Decaying Workspace — the "Consciousness Filter" for TTDB Agents and the Personal Grimoire
 
-**Version:** 0.1.2
+**Version:** 0.1.3
 **Status:** Proposed — nothing in this document has been run. The arithmetic (§3–§4) is
 integer-only and specified to be testable offline against the archived TTDBs before any
 firmware changes (§9, stage 2). The two lanes it allocates (`@LAT108`, `@LAT109`) are
@@ -513,6 +513,38 @@ PW-1 and PW-4 cost nothing but laptop time. PW-6 needs only the §5 code and a s
 so it can run on the laptop before stage 6. ⚠ PW-3's thresholds are pre-committed here so they
 cannot be tuned after the run.
 
+### 8.1 PW-1 result (2026-11-22)
+
+**PW-1: PASS as pre-registered** — separation 123 (pass > 32), stability 75.0 % (pass ≥ 70 %),
+robustness PASS. Run by `robot_team/tools/pw1/pw1_fold.py` (branch `pw1-replay`; constants
+committed in `055364d` before any archive read; full tables in `tools/pw1/PW1-REPORT.md`).
+Scope: all 187 `master/**/*.md` (the "78" above is stale), deduplicated on
+`(node, lane, stream, t_ms, body)`; 4 417 distinct records in `@LAT94`–`@LAT97`. `pe_span`:
+acoustic 32 767, motion 16 000 mg (BMI270 ±8 g datasheet default; the firmware sets no range),
+link 100 dB; `PI_SCALE = 8192`.
+
+| Check | Result |
+|---|---|
+| Separation | per-channel median `π`: acoustic 255, motion 255, link 250, entity 132 → range 123 |
+| Stability | 12 of 16 series within 24 between chronological halves = 75.0 % |
+| Robustness | same rank order at `PI_SCALE` 4096 / 8192 / 16384 |
+
+⚠ **What the pass does and does not show.** The separation is one channel (entity) against
+three that saturate near 255; acoustic, motion and link are not distinguishable from each
+other, and their rank order rests on a name tie-break. The rule is met as written and no
+threshold was changed, but the evidence supports "entity needs a lower gain than the rest",
+not yet "every channel earns its own gain". With runs not expanded the same data gives
+**INCONCLUSIVE** (stability 66.7 %); the expanded run is the verdict because skipping the
+zeros biases `π` low on change-triggered channels. `cardputer/entity` and `v4a/entity` drift
+(EWMA and mean `π` differ by more than 24).
+
+Consequence: stage 2 proceeds (PW-2, PW-4). Whether acoustic and motion saturate because they
+are quiet or because `pe_span` is too wide for `rms_mean` / `dev_mean_mg` is an open question
+(§11); it is a constant, not a threshold, and must be settled before stage 3.
+
+Divergences from the RFCs found on the way (candidate `lat 98` beliefs): records carry no node
+id and pre-October records carry no `stream`; `@LAT97` also holds `BELIEF-PUSH` records.
+
 ---
 
 ## 9. Adoption
@@ -623,6 +655,7 @@ Absent `precision`, a reader MUST behave as TTDB-RFC-0005 alone.
 | 2026-11-22 | 0.1 — initial proposal |
 | 2026-11-22 | 0.1.1 — field renamed `pi` → `prec` (constants `prec_*`); §2.4 credits Dehaene's global neuronal workspace as the inspiration and states the aim of synthesizing an Ignition Filter experimentally; Dehaene et al. (2006) taxonomy mapped; PW-6 ignition-signature falsifier added; references expanded |
 | 2026-11-22 | 0.1.2 — PW-1 pre-registered (constants fixed from physical ranges; split-half stability added); lanes moved to `@LAT108`/`@LAT109` and SALIENT to toot type `15` (`@LAT103`–`@LAT106` and type `14` were already in use in `robot_team`) |
+| 2026-11-22 | 0.1.3 — PW-1 result written back (§8.1): PASS as pre-registered, separation carried by the entity channel alone; unexpanded runs INCONCLUSIVE |
 
 ---
 

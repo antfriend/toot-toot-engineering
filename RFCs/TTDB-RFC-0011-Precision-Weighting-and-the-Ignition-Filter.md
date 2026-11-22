@@ -1,11 +1,11 @@
 # TTDB-RFC-0011: Precision Weighting and the Ignition Filter
 ### Signal Precision, Gain-Scaled Belief Update, and a Decaying Workspace — the "Consciousness Filter" for TTDB Agents and the Personal Grimoire
 
-**Version:** 0.1.3
-**Status:** Proposed — nothing in this document has been run. The arithmetic (§3–§4) is
-integer-only and specified to be testable offline against the archived TTDBs before any
-firmware changes (§9, stage 2). The two lanes it allocates (`@LAT108`, `@LAT109`) are
-**unwritten**.
+**Version:** 0.1.4
+**Status:** Proposed — PW-1 (the offline replay of the §4.3 fold over the archived TTDBs) has
+been run and passed as pre-registered (§8.1); PW-2 to PW-6 and all firmware stages have not.
+The arithmetic (§3–§4) is integer-only and testable offline before any firmware changes
+(§9, stage 2). The two lanes it allocates (`@LAT108`, `@LAT109`) are **unwritten**.
 **RFC Number:** 0011
 **Project:** toot-toot-engineering
 **Component:** Toot-Toot Database (TTDB)
@@ -657,6 +657,7 @@ Absent `precision`, a reader MUST behave as TTDB-RFC-0005 alone.
 | 2026-11-22 | 0.1.1 — field renamed `pi` → `prec` (constants `prec_*`); §2.4 credits Dehaene's global neuronal workspace as the inspiration and states the aim of synthesizing an Ignition Filter experimentally; Dehaene et al. (2006) taxonomy mapped; PW-6 ignition-signature falsifier added; references expanded |
 | 2026-11-22 | 0.1.2 — PW-1 pre-registered (constants fixed from physical ranges; split-half stability added); lanes moved to `@LAT108`/`@LAT109` and SALIENT to toot type `15` (`@LAT103`–`@LAT106` and type `14` were already in use in `robot_team`) |
 | 2026-11-22 | 0.1.3 — PW-1 result written back (§8.1): PASS as pre-registered, separation carried by the entity channel alone; unexpanded runs INCONCLUSIVE |
+| 2026-11-22 | 0.1.4 — Status, INDEX and `rfc.ttdb.md` entries corrected: PW-1 has been run (§8.1); nothing else has |
 
 ---
 

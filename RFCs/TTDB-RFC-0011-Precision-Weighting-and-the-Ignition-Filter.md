@@ -1,9 +1,9 @@
 # TTDB-RFC-0011: Precision Weighting and the Ignition Filter
 ### Signal Precision, Gain-Scaled Belief Update, and a Decaying Workspace — the "Consciousness Filter" for TTDB Agents and the Personal Grimoire
 
-**Version:** 0.1.4
-**Status:** Proposed — PW-1 (the offline replay of the §4.3 fold over the archived TTDBs) has
-been run and passed as pre-registered (§8.1); PW-2 to PW-6 and all firmware stages have not.
+**Version:** 0.1.5
+**Status:** Proposed — the stage-2 offline replays PW-1, PW-2 and PW-4 have been run and passed
+as pre-registered (§8.1, §8.2); PW-3, PW-5, PW-6 and all firmware stages have not.
 The arithmetic (§3–§4) is integer-only and testable offline before any firmware changes
 (§9, stage 2). The two lanes it allocates (`@LAT108`, `@LAT109`) are **unwritten**.
 **RFC Number:** 0011
@@ -545,6 +545,40 @@ are quiet or because `pe_span` is too wide for `rms_mean` / `dev_mean_mg` is an 
 Divergences from the RFCs found on the way (candidate `lat 98` beliefs): records carry no node
 id and pre-October records carry no `stream`; `@LAT97` also holds `BELIEF-PUSH` records.
 
+### 8.2 PW-2 and PW-4 results (2026-11-22)
+
+Run by `robot_team/tools/pw2/pw2_replay.py`. The protocol and constants were committed
+(`e3835e3`) before any replay code existed; the code, tests and report are `cc4159b`
+(`tools/pw2/PW2-PW4-REPORT.md`). Same archive scope and dedup as §8.1. Fixed-step baseline:
+`+2` / `−16` from `PerceptLearn.h:386-390` (TTDB-RFC-0005 leaves them symbolic), baseline
+`conf` 128. Reference values from §9.1.
+
+**PW-2: PASS as pre-registered.** One scalar belief per series (acoustic, motion, link; entity
+excluded). At window 60 a deterministic noisy twin (noise up to 0.6 of span) starts reporting
+on each belief. Over the 41 beliefs with `conf ≥ 192` at window 60 under both rules, bodies
+rewritten afterwards: fixed-step **8 217**, §3.4 **139** (pass ≤ 4 108, kill ≥ 8 217).
+
+⚠ **What it does and does not show.**
+- The cohort is 37 link, 2 acoustic and 2 motion beliefs: the result is mostly about link.
+- It is protection, not immunity: §3.4 still rewrote 139 bodies under noise, absorbing a
+  median of 12 contradictions before revising (range 1–91).
+- A fixed-step rule rewrites on every contradiction by construction, so its large count was
+  expected; the informative numbers are the 139 and the next point.
+- Without injection §3.4 revised 102 of 132 persistent genuine steps within 20 windows against
+  117 for fixed-step: it follows real change somewhat less often. §3.4 cannot revise on a single
+  contradiction when `conf ≥ 152` (`K ≥ k_revise` needs `π ≥ 1.68·conf`); this is by design but
+  is the cost side of the protection.
+
+**PW-4: PASS as pre-registered.** Four replays (fixed and §3.4 rules, with and without
+injection) were each run with the workspace disabled and enabled (1 446 ignitions in total);
+all four final belief stores were byte-identical. A canary variant whose update path reads the
+workspace (attended targets learn at doubled `π`, the confirmation loop §5.4 forbids) did
+produce a different store, so the test can fail. ⚠ This exercises the reference implementation:
+it shows the specified rule is independent of workspace state, not that firmware code will be.
+
+Consequence: stage 2 is complete for PW-1, PW-2 and PW-4. PW-3 (broadcast gate), PW-5 (fusion)
+and PW-6 (ignition signature) remain, and no firmware stage has been started.
+
 ---
 
 ## 9. Adoption
@@ -658,6 +692,7 @@ Absent `precision`, a reader MUST behave as TTDB-RFC-0005 alone.
 | 2026-11-22 | 0.1.2 — PW-1 pre-registered (constants fixed from physical ranges; split-half stability added); lanes moved to `@LAT108`/`@LAT109` and SALIENT to toot type `15` (`@LAT103`–`@LAT106` and type `14` were already in use in `robot_team`) |
 | 2026-11-22 | 0.1.3 — PW-1 result written back (§8.1): PASS as pre-registered, separation carried by the entity channel alone; unexpanded runs INCONCLUSIVE |
 | 2026-11-22 | 0.1.4 — Status, INDEX and `rfc.ttdb.md` entries corrected: PW-1 has been run (§8.1); nothing else has |
+| 2026-11-22 | 0.1.5 — PW-2 and PW-4 results written back (§8.2): both PASS as pre-registered; cohort mostly link, protection not immunity |
 
 ---
 

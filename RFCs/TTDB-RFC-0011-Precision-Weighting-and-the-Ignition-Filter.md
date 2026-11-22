@@ -625,6 +625,7 @@ Absent `precision`, a reader MUST behave as TTDB-RFC-0005 alone.
    whole band attends to — and if so is it elected like the Fleet Pulse conductor or emergent
    like the SOCIAL field?
 5. **Hysteresis vs half-life.** Two mechanisms keep an item in view. One may be redundant.
+6. **Saturated channels (from PW-1, §8.1).** Acoustic, motion and link all fold to `π` ≈ 250–255. Are they quiet, or is `pe_span` too wide for `rms_mean` / `dev_mean_mg` (and `PI_SCALE` too large for them)? Settle by re-deriving `pe_span` from observed residual ranges *as a new pre-registered constant*, never by tuning against PW-1.
 
 ---
 

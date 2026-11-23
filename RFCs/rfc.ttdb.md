@@ -150,20 +150,23 @@ src: TTDB-RFC-0004-Event-ID-and-Collision.md
 `@LATxLONy` IDs are assigned deterministically: from location when available, else a
 stable hash, always projected through `umwelt.globe.mapping` (the globe is a knowledge
 map, not necessarily geography). `southeast_step` collision policy: increment both lat
-and lon by the step until unique. Once assigned an ID never changes — a materially
+and lon by the step until unique — normative corpus-wide, and despite its name a
+north-east step (`@LAT40LON0` → `@LAT41LON1`). Determinism holds only given the same
+existing IDs, so two devices are not guaranteed the same address for one record;
+identity is TTDB-RFC-0010 §4's `(node_id, lane, sid)`. Once assigned an ID never changes — a materially
 changed umwelt gets a new record linked back with `revises@<old_id>`.
 
 ---
 
-@LAT10LON5 | created:1776902400 | updated:1776902400 | relates:depends_on@LAT10LON1,depends_on@LAT10LON2,depends_on@LAT10LON3,implemented_by@LAT40LON5
+@LAT10LON5 | created:1776902400 | updated:1795392000 | relates:depends_on@LAT10LON1,depends_on@LAT10LON2,depends_on@LAT10LON3,implemented_by@LAT40LON5
 [ew]
 conf:210
-rev:0
+rev:1
 sal:150
-touched:1776902400
+touched:1795392000
 [/ew]
 
-**TTDB-RFC-0005 — Toot-Bit Epistemic Weight (TBEW)** (Stable)
+**TTDB-RFC-0005 — Toot-Bit Epistemic Weight (TBEW)** (Stable, v1.1)
 src: TTDB-RFC-0005-Epistemic-Weight.md
 
 Optional `[ew]`…`[/ew]` block immediately after the record header: `conf` u8 (belief
@@ -172,8 +175,10 @@ writes), `sal` u8 (access count, SHOULD half-life-decay), `touched` u32 unix (an
 write; superset of `updated`). Absent block = defaults. Lines are `key:value`, no
 spaces, order-free; unknown keys skipped; out-of-range clamped, never fatal. Derived
 attention signal: `EPS = sal × (255 − conf) / 255` — high EPS = load-bearing but
-untrusted, the prime target for active sensing. A symbolic free-energy proxy: no
-floats, human-legible, runs on a microcontroller.
+untrusted, the prime target for active sensing. A usage × doubt heuristic inspired
+by active inference — v1.1 withdraws the claim that it approximates free energy,
+and `sal` is usage, not epistemic value. No floats, human-legible, runs on a
+microcontroller.
 
 ---
 

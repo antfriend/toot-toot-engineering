@@ -136,15 +136,15 @@ and validators MUST NOT demand the reverse edge.
 
 ---
 
-@LAT10LON4 | created:1774828800 | updated:1774828800 | relates:depends_on@LAT10LON1,depends_on@LAT10LON3
+@LAT10LON4 | created:1774828800 | updated:1795392000 | relates:depends_on@LAT10LON1,depends_on@LAT10LON3
 [ew]
 conf:210
-rev:0
+rev:1
 sal:110
-touched:1774828800
+touched:1795392000
 [/ew]
 
-**TTDB-RFC-0004 — Event ID Assignment and Collision Handling** (Stable)
+**TTDB-RFC-0004 — Event ID Assignment and Collision Handling** (Stable, v1.1)
 src: TTDB-RFC-0004-Event-ID-and-Collision.md
 
 `@LATxLONy` IDs are assigned deterministically: from location when available, else a

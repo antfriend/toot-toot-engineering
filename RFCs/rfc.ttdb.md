@@ -37,7 +37,7 @@ selected:
   - "@LAT0LON0"
 preview:
   "@LAT0LON0": "Home: what this database is and how each record expands back to its full RFC"
-agent_note: "First cut authored 2026-07-08 by semantic compression of the 28-file RFC corpus (~266 KB -> this file). Two-way sync with robot_team 2026-11-22, 42 -> 45 records: +@LAT98LON5-7 (fleet beliefs that had never been pushed here), robot_team's fuller @LAT10LON3 body and @LAT10LON8 generalized_by edge; @LAT98LON0 carries both checkouts' edges. sal and this front matter stay per-checkout by design."
+agent_note: "First cut authored 2026-07-08 by semantic compression of the 28-file RFC corpus (~266 KB -> this file). Two-way sync with robot_team 2026-11-22, 42 -> 45 records: +@LAT98LON5-7 (fleet beliefs that had never been pushed here), robot_team's fuller @LAT10LON3 body and @LAT10LON8 generalized_by edge; @LAT98LON0 carries both checkouts' edges. sal and this front matter stay per-checkout by design. 2026-11-23: @LAT10LON3/4/5/7 and @LAT60LON2 updated for TTDB-RFC-0003 v1.2, -0004 v1.1, -0005 v1.1, -0007 v0.2, TTG-RFC-0002 1.1 (external review); not yet synced to robot_team."
 ```
 
 ---
@@ -204,27 +204,31 @@ TTDB aims for experiential sufficiency, not comprehensiveness.
 
 ---
 
-@LAT10LON7 | created:1778803200 | updated:1782259200 | relates:depends_on@LAT10LON1,depends_on@LAT10LON3,depends_on@LAT10LON5,depends_on@LAT10LON6,propagated_by@LAT20LON9
+@LAT10LON7 | created:1778803200 | updated:1795392000 | relates:depends_on@LAT10LON1,depends_on@LAT10LON3,depends_on@LAT10LON5,depends_on@LAT10LON6,propagated_by@LAT20LON9
 [ew]
 conf:200
-rev:0
+rev:1
 sal:170
-touched:1782259200
+touched:1795392000
 [/ew]
 
-**TTDB-RFC-0007 — Locus Point and Dream Cycle** (Draft; first instance live via reconcile + push)
+**TTDB-RFC-0007 — Locus Point and Dream Cycle** (Draft v0.2; first instance live via reconcile + push)
 src: TTDB-RFC-0007-Locus-Point-and-Dream-Cycle.md
 
-Two-phase offline consolidation, idle-only, abortable at phase boundaries, < 500 ms
-on ESP32-S3. Phase 1 Replay: sal-weighted random walks (deliberately atemporal) →
-co-occurrence clusters → candidate beliefs (mean conf ≥ 128). Phase 2 Projection:
+Two-phase offline consolidation, idle-only, abortable at phase boundaries, < 650 ms
+on ESP32-S3. Inspired by sleep consolidation, not a model of it. Phase 1 Replay:
+sal-weighted random walks from recent records (not atemporal: recency enters via
+the start set and sal decay) → co-occurrence clusters → candidate beliefs (mean
+conf ≥ 128, and coverage above a degree-preserving shuffled-graph null). Phase 2 Projection:
 walks seeded from boundaries of bounded unknown regions (the Alexander dual) →
 hypotheses flagged `projection_flag`. Output: `@BELIEF:LATxLONy` Locus Point with
-required `[lp]` block (centroid, confidence = walk coverage 0–255, scope_lat/lon,
+required `[lp]` block (wrap-aware centroid, confidence = walk coverage 0–255 — not
+evidence and not comparable to TBEW conf — scope_lat/lon,
 projection_flag, contradiction_flag, source_count). Compression: subsumed episodic
 toot-bits are archived (NEVER deleted) and replaced by a `compresses>` edge. Sharing:
 agents exchange whole `@BELIEF:` records; independently-formed overlapping compatible
-beliefs merge with a +20 confidence bonus (environmental reality signal);
+beliefs merge with a +20 confidence bonus (heuristic, pending the held-out
+falsifier DC-1, proposed and not run);
 contradictions are flagged, not suppressed; ≥ 50 sources still contradicted → demote
 to conf 0 as an explicit open problem.
 

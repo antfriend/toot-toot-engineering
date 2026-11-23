@@ -102,15 +102,15 @@ queries (not free-form NL) and update the last_query/last_answer fields on reply
 
 ---
 
-@LAT10LON3 | created:1774396800 | updated:1785542400 | relates:depends_on@LAT10LON1,depends_on@LAT10LON2,aligns_with@LAT20LON2
+@LAT10LON3 | created:1774396800 | updated:1795392000 | relates:depends_on@LAT10LON1,depends_on@LAT10LON2,aligns_with@LAT20LON2
 [ew]
 conf:210
-rev:1
+rev:2
 sal:130
-touched:1785542400
+touched:1795392000
 [/ew]
 
-**TTDB-RFC-0003 — Typed Edge Semantics** (Stable, v1.1)
+**TTDB-RFC-0003 — Typed Edge Semantics** (Stable, v1.2)
 src: TTDB-RFC-0003-Typed-Edges.md
 
 Edges use the syntax declared in `mmpdb.typed_edges.syntax` (default
@@ -129,6 +129,10 @@ which is epistemic — under `opposes` both endpoints may be true at once (*Joy*
 and *Grief*), so a store holding both is not thereby inconsistent. Rationale:
 polarity encoded positionally (e.g. latitude carrying valence) is invisible to a
 consumer traversing the edge list, which is what implementations actually read.
+
+v1.2 adds §7.3: `contradicts` is written once, by the record that raises the
+conflict (direction = provenance), but conflict consumers MUST read it as symmetric
+and validators MUST NOT demand the reverse edge.
 
 ---
 

@@ -856,15 +856,15 @@ embedding surface: the engine/page divide, the boot gate, and the calls a host m
 
 ---
 
-@LAT60LON2 | created:1789257600 | updated:1790035200 | relates:depends_on@LAT60LON1,depends_on@LAT10LON1,depends_on@LAT10LON3,depends_on@LAT10LON4,depends_on@LAT10LON5,depends_on@LAT10LON6
+@LAT60LON2 | created:1789257600 | updated:1795392000 | relates:depends_on@LAT60LON1,depends_on@LAT10LON1,depends_on@LAT10LON3,depends_on@LAT10LON4,depends_on@LAT10LON5,depends_on@LAT10LON6
 [ew]
 conf:210
-rev:0
+rev:1
 sal:80
-touched:1790035200
+touched:1795392000
 [/ew]
 
-**TTG-RFC-0002 — Semantic Percepts, Episodes and Terms** (Stable, 1.0)
+**TTG-RFC-0002 — Semantic Percepts, Episodes and Terms** (Stable, 1.1)
 src: TTG-RFC-0002-Semantic-Percepts.md
 
 A sentence becomes percepts: `percept: n | subject | vector | object or - | polarity |
@@ -875,6 +875,7 @@ the same tag anywhere else is checked, never believed. THING and VECTOR terms ar
 records placed on the grammar sphere beside the terms that introduced them.
 Malformed percept lines are skipped, counted and reported; write-back is byte-stable.
 Stated divergence from TTDB-RFC-0006: the pair is subject→object, not before→after.
+Collisions use TTDB-RFC-0004's `southeast_step` (1.1; 1.0 had stepped latitude down).
 
 ---
 
